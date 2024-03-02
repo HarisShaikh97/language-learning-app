@@ -12,6 +12,8 @@ export default function SideNav() {
     return (
         <div className="h-full w-60 border-r flex flex-col gap-20 pt-10">
             <Image src={"/next.svg"} alt="logo" height={75} width={75} className="pl-5" />
+            
+            
             <div className="flex-1 flex flex-col">
                 {pathname === "/home" ? (
                     <div className="flex flex-row items-center justify-between h-16 bg-gray-100 pl-5">
