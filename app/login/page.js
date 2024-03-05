@@ -1,10 +1,17 @@
+"use client"
+
 import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function Login() {
+
+    const router = useRouter()
+
     return (
         <div className="h-screen w-screen flex flex-col items-center">
-            <div className="h-20 w-full bg-primary flex items-center px-5">
-                <Image src={"/logo2.png"} alt="logo" height={75} width={75} />
+            <div className="h-20 w-full bg-primary bg-opacity-15 flex items-center px-5">
+                <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
             </div>
             <p className="text-5xl text-primary font-extrabold w-[450px] text-center my-10">Log in to have fun and learn faster</p>
             <div className="flex flex-col items-center gap-5 w-[450px]">
@@ -43,8 +50,8 @@ export default function Login() {
             <div className="flex justify-end w-[450px] mt-5">
                 <p className="text-primary underline text-xs cursor-pointer">I forgot my password!</p>
             </div>
-            <button className="flex items-center justify-center bg-primary bg-opacity-25 h-14 w-[450px] rounded-lg mt-5 border-b-4 border-gray-400 text-gray-600 hover:text-black transition duration-1000 font-bold">Sign in</button>
-            <p className="underline mt-5">Don{"'"}t have an account? Sign up now!</p>
+            <button className="flex items-center justify-center bg-primary bg-opacity-25 h-14 w-[450px] rounded-lg mt-5 border-b-4 border-gray-400 text-gray-600 hover:text-black transition duration-1000 font-bold"  onClick={() => {router.push("/home")}}>Sign in</button>
+            <Link href={"/signup"} className="underline mt-5">Don{"'"}t have an account? Sign up now!</Link>
         </div>
     )
 }
