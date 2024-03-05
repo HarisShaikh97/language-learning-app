@@ -10,7 +10,7 @@ export default function Header() {
             <button
                 className="flex flex-row items-center py-8 relative"
                 onClick={() => {
-                    setShowDropDown(!showDropDown);
+                    setShowDropDown(!showDropDown)
                 }}
             >
                 <p className="font-semibold">Arabic</p>
