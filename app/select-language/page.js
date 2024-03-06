@@ -108,7 +108,7 @@ export default function SelectLanguage() {
                         {showDropDown ? <ChevronUpIcon className="h-6 w-6 text-primary" /> : <ChevronDownIcon className="h-6 w-6 text-primary" />}
                     </button>
                     {showDropDown && (
-                        <div className="absolute -bottom-[325px] -left-[10px] border h-80 w-64 bg-white rounded-lg shadow-xl overflow-y-auto scrollbar-none p-3 flex flex-col items-start gap-1">
+                        <div className="absolute -bottom-[325px] -left-[10px] border h-80 w-64 bg-white rounded-lg shadow-xl overflow-y-auto scrollbar-none p-3 flex flex-col items-start gap-1 z-50">
                             {languages?.map((item, key) => {
                                 return (
                                     <button 
