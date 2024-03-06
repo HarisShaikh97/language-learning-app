@@ -1,5 +1,6 @@
 "use client"
 
+import PropTypes from "prop-types"
 import SideNav from "../sidenav/SideNav"
 import Header from "../header/Header"
 
@@ -14,3 +15,7 @@ export default function Layout({ children }) {
         </div>
     )
 } 
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired
+}
