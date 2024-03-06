@@ -10,7 +10,7 @@ export default function Signup() {
             </div>
             <div className="grid grid-cols-2 h-full w-full">
                 <div className="bg-contain bg-no-repeat bg-center" style={{backgroundImage: "url('/signup-image.png')"}} />
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center overflow-y-auto scrollbar-none">
                     <p className="w-[350px] text-3xl text-center font-bold mt-10">Sign up and start learning</p>
                     <div className="flex flex-col items-center gap-5 w-[450px] mt-5">
                         <button className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center">

@@ -9,7 +9,7 @@ export default function Login() {
     const router = useRouter()
 
     return (
-        <div className="h-screen w-screen flex flex-col items-center">
+        <div className="h-screen w-screen flex flex-col items-center overflow-y-auto scrollbar-none">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex items-center px-5">
                 <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
             </div>
