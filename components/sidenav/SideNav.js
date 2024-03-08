@@ -17,7 +17,7 @@ export default function SideNav() {
             <button className="h-7 w-7 rounded-full border-2 border-primary absolute -right-[14px] bottom-[150px] bg-white flex items-center justify-center" onClick={() => {setCollapsed(!collapsed)}}>
                 {collapsed ? <ChevronRightIcon className="h-5 w-5 text-primary" /> : <ChevronLeftIcon className="h-5 w-5 text-primary" />}
             </button>
-            <Image src={"/next.svg"} alt="logo" height={75} width={75} className="pl-5" />
+            <Image src={"/logo2.png"} alt="logo" height={150} width={150} className="pl-5" />
             <div className="flex-1 flex flex-col">
                 {pathname === "/home" ? (
                     <div className="flex flex-row items-center justify-between h-16 bg-gray-100">

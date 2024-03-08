@@ -3,18 +3,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ShieldCheckIcon } from "@heroicons/react/24/solid"
-import PropTypes from "prop-types"
 import SkillLevelCard from "@/components/skill-level-card/SkillLevelCard"
-
-function CircleIcon({text}) {
-    return (
-        <div className="h-8 w-8 bg-teal-500 rounded-full flex items-center justify-center text-lg text-white font-bold">{text}</div>
-    )
-}
-
-CircleIcon.propTypes = {
-    text: PropTypes.string.isRequired
-}
+import CircleIcon from "@/components/circle-icon/CircleIcon"
 
 export default function SkillLevel() {
 
@@ -45,7 +35,7 @@ export default function SkillLevel() {
         <div className="h-screen w-screen flex flex-col items-center">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex flex-row justify-between items-center pl-5 pr-10">
                 <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
-                <Link href={"/"} className=" h-12 w-28 rounded-2xl border-b-4 border-amber-500 bg-amber-400 font-bold flex items-center justify-center">Sign in</Link>
+                <Link href={"/login"} className=" h-12 w-28 rounded-2xl border-b-4 border-amber-500 bg-amber-400 font-bold flex items-center justify-center">Sign in</Link>
             </div>
             <div className="flex-1 flex flex-col items-center justify-center gap-10">
                 <Image src={"/flag.png"} alt="logo" height={80} width={80} />

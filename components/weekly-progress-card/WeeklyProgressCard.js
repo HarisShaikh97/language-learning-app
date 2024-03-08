@@ -1,10 +1,12 @@
-import { LanguageIcon } from "@heroicons/react/24/solid"
+import { LanguageIcon, FilmIcon, ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/solid"
 import PropTypes from "prop-types"
 import UpNextWordsCard from "../up-next-words-card/UpNextWordsCard"
+import UpNextVideoCard from "../up-next-video-card/UpNextVideoCard"
+import UpNextConversationCard from "../up-next-conversation-card/UpNextConversationCard"
 
 export default function WeeklyProgressCard({selectedTab, setSelectedTab}) {
 	return (
-		<div className={`h-[350px] w-[350px] rounded-2xl ${selectedTab === "green" ? "bg-[#00a778]" : selectedTab === "red" ? "bg-[#e46962]" : "bg-[#009fbb]"} relative mt-10 mb-40 flex flex-col items-center`}>
+		<div className={`h-[400px] w-[350px] rounded-2xl ${selectedTab === "green" ? "bg-[#00a778]" : selectedTab === "red" ? "bg-[#e46962]" : "bg-[#009fbb]"} relative mt-10 mb-40 flex flex-col items-center`}>
 			<div className="absolute -top-12 left-[15px] w-80 flex flex-row items-center justify-between">
 				<button className={`${selectedTab === "green" ? "h-24 w-24" : "h-20 w-20"} rounded-full bg-[#00a778] shadow-xl flex items-center justify-center`} onClick={() => {setSelectedTab("green")}}>
 					<div className={`${selectedTab === "green" ? "h-[90px] w-[90px]" : "h-[75px] w-[75px]"} rounded-full flex items-center justify-center bg-[#b1f7e3]`}>
@@ -28,12 +30,13 @@ export default function WeeklyProgressCard({selectedTab, setSelectedTab}) {
 					</div>
 				</button>
 			</div>
-			<p className="text-xl font-bold text-white mt-16">words</p>
+			<p className="text-xl font-bold text-white mt-16">{selectedTab === "green" ? "words" : selectedTab === "red" ? "videos" : "conversations" }</p>
             <div className="flex flex-row items-center gap-3">
-                <LanguageIcon className="h-5 w-5 text-white" />
-			    <p className="font-semibold text-white text-sm">Build vocabulary</p>
+				{selectedTab === "green" ? <LanguageIcon className="h-5 w-5 text-white" /> : selectedTab === "red" ? <FilmIcon className="h-5 w-5 text-white" /> : <ChatBubbleOvalLeftEllipsisIcon className="h-5 w-5 text-white" /> }
+			    <p className="font-semibold text-white text-sm">{selectedTab === "green" ? "Build vocabulary" : selectedTab === "red" ? "Practice listening" : "Practice speaking" }</p>
 			</div>
-            <UpNextWordsCard />
+			{selectedTab === "green" ? <UpNextWordsCard /> : selectedTab === "red" ? <UpNextVideoCard /> : <UpNextConversationCard />}
+            
 		</div>
 	)
 }

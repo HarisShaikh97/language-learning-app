@@ -98,7 +98,7 @@ export default function SelectLanguage() {
         <div className="h-screen w-screen flex flex-col items-center">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex flex-row justify-between items-center pl-5 pr-10">
                 <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
-                <Link href={"/"} className=" h-12 w-28 rounded-2xl border-b-4 border-amber-500 bg-amber-400 font-bold flex items-center justify-center">Sign in</Link>
+                <Link href={"/login"} className=" h-12 w-28 rounded-2xl border-b-4 border-amber-500 bg-amber-400 font-bold flex items-center justify-center">Sign in</Link>
             </div>
             <div className="my-10 flex flex-row items-center gap-3">
                 <p className="text-primary text-xl font-bold font-sans">I speak</p>

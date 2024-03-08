@@ -12,13 +12,16 @@ export default function UpNextWordsCard() {
                 </div>
 			</div>
 			<p className="text-white">Learn new words</p>
-			<div className="h-32 flex rounded-2xl bg-white hover:bg-gray-100 border-b-4 border-gray-300 relative p-3">
+			<div className="h-32 flex rounded-2xl bg-gray-100 hover:bg-gray-200 border-b-4 border-gray-300 relative p-3">
 				<div className="absolute top-3 right-0 bg-amber-300 h-24 w-12 rounded-s-full"></div>
 				<p className="font-semibold text-sm">
 					Deciphering the Letters
 				</p>
+				<div className="h-[5px] w-[90%] rounded-full bg-white absolute bottom-2">
+					<div className="h-full w-[25%] rounded-full bg-primary" />
+				</div>
 			</div>
-			<button className="h-14 flex items-center justify-center bg-amber-400 hover:bg-amber-300 border-b-8 border-amber-500 rounded-2xl font-semibold">
+			<button className="h-14 flex items-center justify-center bg-amber-400 hover:bg-amber-300 border-b-4 border-amber-500 rounded-2xl font-semibold">
 				Continue
 			</button>
 		</div>
