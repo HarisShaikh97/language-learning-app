@@ -4,11 +4,12 @@ import { useState } from "react"
 import Layout from "@/components/layout/Layout"
 import DiscountBanner from "@/components/discount-banner/DiscountBanner"
 import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgressCard"
+import connect from "../db/connect"
 
 export default function Home() {
 
-  const [selectedTab, setSelectedTab] = useState("green")
-
+	const [selectedTab, setSelectedTab] = useState("green")
+	connect()
 	return (
 		<Layout>
 			<div className="min-h-full flex-1 flex flex-col items-center">

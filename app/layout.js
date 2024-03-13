@@ -1,5 +1,6 @@
 import { Noto_Sans } from "next/font/google"
 import "./globals.css"
+import AuthProvider from "@/components/Providers/AuthProvider"
 
 const noto = Noto_Sans({ subsets: ["cyrillic", "cyrillic-ext", "devanagari", "greek", "greek-ext", "latin", "latin-ext", "vietnamese"] })
 
@@ -11,7 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={noto.className}>{children}</body>
+      <body className={noto.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   )
 }
