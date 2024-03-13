@@ -1,10 +1,16 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import connect from "@/app/db/connect";
 import User from "@/app/models/UserModel";
 import bcrypt from "bcryptjs";
 export const authOptions = {
     providers: [
+        GoogleProvider({
+            clientId: "705256653211-k73bih0ok9miju5kckp8fqj4epr6n3gk.apps.googleusercontent.com",
+            clientSecret: "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",
+
+        }),
         CredentialsProvider({
             name: "credentials",
             credentials: {},
@@ -38,6 +44,7 @@ export const authOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: "/login",
+
     },
 };
 

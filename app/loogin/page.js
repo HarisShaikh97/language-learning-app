@@ -8,7 +8,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleCredentialsSubmit = async (e) => {
         e.preventDefault();
 
         // Call signIn method from NextAuth with email and password
@@ -19,18 +19,24 @@ export default function LoginPage() {
         });
         console.log(result, "result");
         if (result.error) {
-
-            console.error('Authentication failed:', result.error);
+            console.error('Credentials Authentication failed:', result.error);
         } else {
             // Redirect to home page or redirect user to intended page
             router.push('/');
         }
     };
 
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault();
+
+        // Call signIn method from NextAuth with Google provider
+        await signIn('google', { callbackUrl: '/home' });
+    };
+
     return (
         <div>
             <h1>Login Page</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleCredentialsSubmit}>
                 <div>
                     <label>Email:</label>
                     <input
@@ -51,6 +57,7 @@ export default function LoginPage() {
                 </div>
                 <button type="submit">Login</button>
             </form>
+            <button onClick={handleGoogleSignIn}>Sign in with Google</button>
         </div>
     );
 }
