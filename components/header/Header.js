@@ -52,7 +52,7 @@ export default function Header() {
                     {showProfileDropDown && (
                         <div className="absolute top-10 -right-5 w-60 shadow-lg border-2 rounded-2xl bg-white flex flex-col items-start">
                             <div className="flex flex-col gap-3 px-5 py-5 items-start">
-                                <button className="text-sm font-medium">Profile settings</button>
+                                <button className="text-sm font-medium" onClick={() => {router.push("/settings/profile")}}>Profile settings</button>
                                 <button className="text-sm font-medium">Learning settings</button>
                             </div>
                             <div className="h-1 w-full border-2" />
