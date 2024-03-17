@@ -39,7 +39,7 @@ export default function SettingsLayout({children}) {
                         </div>
                     </div>
                 </div>
-                <div className="flex-1">{children}</div>
+                <div className="flex-1 w-full">{children}</div>
                 <div className="w-full flex flex-col items-center">
                     <div
                         className="bg-[url('/footer-curve.svg')] bg-no-repeat bg-center h-16 w-full"
