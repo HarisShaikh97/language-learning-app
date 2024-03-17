@@ -9,12 +9,12 @@ export default function SettingsLayout({children}) {
     const pathname = usePathname()
 
     return (
-        <div className="h-screen w-screen flex flex-col items-center">
+        <div className="h-screen w-screen flex flex-col items-center bg-gray-100">
             <div className="h-16 w-full bg-primary pl-40 flex items-center">
                 <Image src={"/logo2.png"} alt="logo" height={65} width={65} />
             </div>
             <div className="w-full flex-1 flex flex-col items-center overflow-y-auto scrollbar-none">
-                <div className="min-h-24 w-full border-b pl-40 flex flex-row items-center gap-16">
+                <div className="min-h-24 w-full border-b pl-40 flex flex-row items-center gap-16 bg-white">
                     <p className="text-2xl font-bold text-primary">Settings</p>
                     <div className="flex flex-row items-center gap-10">
                         <div className="flex flex-row gap-5 items-center">
@@ -45,7 +45,7 @@ export default function SettingsLayout({children}) {
                         className="bg-[url('/footer-curve.svg')] bg-no-repeat bg-center h-16 w-full"
                         style={{ backgroundSize: "100% 100%" }}
                     />
-                    <div className="w-full bg-primary flex flex-row gap-16 py-10 pl-20">
+                    <div className="w-full bg-primary flex flex-row gap-16 pt-10 pl-20">
                         <div className="flex flex-col items-center gap-5">
                             <Image
                                 src={"/logo2.png"}
