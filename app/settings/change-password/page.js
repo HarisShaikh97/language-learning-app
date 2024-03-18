@@ -5,7 +5,7 @@ export default function ChangePassword() {
         <div className="w-[650px] rounded-lg bg-white my-10 flex flex-col gap-3 items-center p-3">
             <p className="text-xl font-semibold">Set Password</p>
             <div className="h-[1px] w-full border border-dashed"/>
-            <p className="w-full text-sm">You don't have a password yet - you'll need to set one up.</p>
+            <p className="w-full text-sm">You don&apos;t have a password yet - you&apos;ll need to set one up.</p>
             <p className="w-full text-sm font-bold">New Password:</p>
             <ul className="pl-10 list-disc text-sm w-full">
                 <li>Your password must contain at least 6 characters.</li>

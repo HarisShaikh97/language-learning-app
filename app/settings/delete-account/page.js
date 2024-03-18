@@ -9,7 +9,7 @@ export default function DeleteAccount() {
             <div className="h-[1px] w-full border border-dashed"/>
             <div className="flex flex-row items-center gap-3 w-full">
                 <input type="checkbox" />
-                <p className="font-semibold text-sm font-sans">I'm sure I want to delete my account</p>
+                <p className="font-semibold text-sm font-sans">I&apos;m sure I want to delete my account</p>
             </div>
             <button className="h-12 w-full rounded-lg bg-red-400 flex flex-row items-center justify-center gap-2">
                 <XMarkIcon className="h-6 w-6 text-white" />
