@@ -5,7 +5,7 @@ export default function DeleteAccount() {
         <div className="w-[650px] rounded-lg bg-white my-10 flex flex-col gap-3 items-center p-3">
             <p className="text-xl font-semibold">Set Password</p>
             <div className="h-[1px] w-full border border-dashed"/>
-            <p className="w-full text-sm">To assure the highest level of data protection, deleting your account will delete all personal identifiable information linked with the account. It{"'"}s an irreversible action that can not be undone.</p>
+            <p className="w-full text-sm">To assure the highest level of data protection, deleting your account will delete all personal identifiable information linked with the account. It&apos;s an irreversible action that can not be undone.</p>
             <div className="h-[1px] w-full border border-dashed"/>
             <div className="flex flex-row items-center gap-3 w-full">
                 <input type="checkbox" />
