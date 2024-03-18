@@ -59,7 +59,7 @@ export default function Login() {
                 <p className="text-primary underline text-xs cursor-pointer">I forgot my password!</p>
             </div>
             <button className="flex items-center justify-center bg-primary bg-opacity-25 py-3 w-[450px] rounded-lg mt-5 border-b-4 border-gray-400 text-gray-600 hover:text-black transition duration-1000 font-bold" onClick={() => { router.push("/home") }}>Sign in</button>
-            <Link href={"/select-language"} className="underline my-5">Don{"'"}t have an account? Sign up now!</Link>
+            <Link href={"/select-language"} className="underline my-5">Don&apos;t have an account? Sign up now!</Link>
         </div>
     )
 }

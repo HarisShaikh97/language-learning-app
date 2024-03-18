@@ -59,7 +59,7 @@ export default function Signup() {
                         <li>is 6 characters or longer</li>
                         <li>has no spaces</li>
                     </ul>
-                    <button className="flex items-center justify-center bg-primary bg-opacity-25 h-14 w-[450px] rounded-2xl mt-5 border-b-4 border-gray-400 text-xl text-gray-600 hover:text-black transition duration-1000 font-bold">Sign up, it{"'"}s free</button>
+                    <button className="flex items-center justify-center bg-primary bg-opacity-25 h-14 w-[450px] rounded-2xl mt-5 border-b-4 border-gray-400 text-xl text-gray-600 hover:text-black transition duration-1000 font-bold">Sign up, it&apos;s free</button>
                 </div>
             </div>
         </div>
