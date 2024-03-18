@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowUpTrayIcon, UserIcon, CheckIcon } from "@heroicons/react/16/solid"
+import { ArrowUpTrayIcon, UserIcon, CheckIcon, PencilSquareIcon } from "@heroicons/react/16/solid"
 import iso6391 from "iso-639-1"
 import moment from "moment-timezone"
 
@@ -12,16 +12,21 @@ export default function Profile() {
 
     const [selectedLanguage, setSelectedLanguage] = useState("English")
     const [selectedTimezone, setSelectedTimezone] = useState(allTimezones[0])
-
-    console.log(allTimezones, "fgjsfglk")
+    const [isHovered, setIsHovered] = useState(false)
 
     return (
         <div className="w-full py-10 flex flex-row gap-20 justify-center">
             <div className="flex flex-col gap-5">
                 <div
-                    className="bg-[url('/empty-profile-avatar.png')] bg-no-repeat bg-center border-4 border-white h-72 w-72 rounded-lg"
+                    className="bg-[url('/empty-profile-avatar.png')] relative bg-no-repeat bg-center border-4 border-white h-72 w-72 rounded-lg"
                     style={{ backgroundSize: "100% 100%" }}
-                ></div>
+                    onMouseEnter={() => {setIsHovered(true)}}
+                    onMouseLeave={() => {setIsHovered(false)}}
+                >
+                    <div className={`absolute -top-1 -left-1 h-72 w-72 bg-black bg-opacity-35 rounded-lg items-center justify-center ${isHovered ? "flex" : "hidden"}`}>
+                        <PencilSquareIcon className="h-12 w-12 text-white" />
+                    </div>
+                </div>
                 <button className="h-10 w-72 rounded-lg bg-primary flex flex-row gap-5 items-center justify-center">
                     <ArrowUpTrayIcon className="h-6 w-6 text-white" />
                     <p className="text-white text-sm font-semibold">
