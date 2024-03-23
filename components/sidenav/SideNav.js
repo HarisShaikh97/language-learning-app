@@ -13,7 +13,7 @@ export default function SideNav() {
     const [collapsed, setCollapsed] = useState(false)
 
     return (
-        <div className={`h-full ${collapsed ? "w-24" : "w-60"} border-r flex flex-col gap-20 pt-10 relative`}>
+        <div className={`h-full ${collapsed ? "w-24" : "w-60"} border-r flex flex-col gap-16 pt-10 relative`}>
             <button className="h-7 w-7 rounded-full border-2 border-primary absolute -right-[14px] bottom-[150px] bg-white flex items-center justify-center" onClick={() => {setCollapsed(!collapsed)}}>
                 {collapsed ? <ChevronRightIcon className="h-5 w-5 text-primary" /> : <ChevronLeftIcon className="h-5 w-5 text-primary" />}
             </button>

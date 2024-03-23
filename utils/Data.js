@@ -1,8 +1,9 @@
-const coursesData = [
+export const coursesData = [
     {
         "id": 1,
         "title": "Arabic Course",
-        "image": "arabic_course_image_url",
+        "image": "/bg-image-arabic.jpg",
+        "flagImage": "/arabic-flag.png",
         "content": "Description of the Arabic course...",
         "sections": [
             {
@@ -72,7 +73,8 @@ const coursesData = [
     {
         "id": 2,
         "title": "English Course",
-        "image": "english_course_image_url",
+        "image": "/bg-image-english.jpg",
+        "flagImage": "/english-flag.png",
         "content": "Description of the English course...",
         "sections": [
             {
@@ -141,48 +143,49 @@ const coursesData = [
     },
     {
         "id": 3,
-        "title": "Spanish Course",
-        "image": "spanish_course_image_url",
-        "content": "Description of the Spanish course...",
+        "title": "Greek Course",
+        "image": "/bg-image-greek.jpg",
+        "flagImage": "/greek-flag.png",
+        "content": "Description of the Greek course...",
         "sections": [
             {
                 "title": "Scenario Based",
                 "scenarios": [
                     {
                         "id": "unique_id_9",
-                        "title": "Introducing Yourself in Spanish",
-                        "description": "Description of how to introduce yourself in Spanish...",
+                        "title": "Introducing Yourself in Greek",
+                        "description": "Description of how to introduce yourself in Greek...",
                         "translations": [
                             {
                                 "english": "hello",
-                                "spanish": "hola"
+                                "greek": "hola"
                             },
                             {
                                 "english": "goodbye",
-                                "spanish": "adiós"
+                                "greek": "adiós"
                             },
                             {
                                 "english": "thank you",
-                                "spanish": "gracias"
+                                "greek": "gracias"
                             }
                         ]
                     },
                     {
                         "id": "unique_id_10",
-                        "title": "Ordering Food in Spanish",
-                        "description": "Description of ordering food in Spanish...",
+                        "title": "Ordering Food in Greek",
+                        "description": "Description of ordering food in Greek...",
                         "translations": [
                             {
                                 "english": "menu",
-                                "spanish": "menú"
+                                "greek": "menú"
                             },
                             {
                                 "english": "water",
-                                "spanish": "agua"
+                                "greek": "agua"
                             },
                             {
                                 "english": "bill",
-                                "spanish": "cuenta"
+                                "greek": "cuenta"
                             }
                         ]
                     }
@@ -193,14 +196,14 @@ const coursesData = [
                 "videos": [
                     {
                         "id": "unique_id_11",
-                        "title": "Spanish Grammar Lesson 1",
+                        "title": "Greek Grammar Lesson 1",
                         "url": "https://www.youtube.com/watch?v=6OE064HClCE&embeds_referring_euri=https%3A%2F%2Fapp.memrise.com%2F&embeds_referring_origin=https%3A%2F%2Fapp.memrise.com&source_ve_path=Mjg2NjY&feature=emb_logo",
                         "image": "video_thumbnail_url",
                         "tracking_id": "tracking_id_5"
                     },
                     {
                         "id": "unique_id_12",
-                        "title": "Spanish Pronunciation Lesson 1",
+                        "title": "Greek Pronunciation Lesson 1",
                         "url": "https://www.youtube.com/watch?v=0kDjspnzHgQ",
                         "image": "video_thumbnail_url",
                         "tracking_id": "tracking_id_6"

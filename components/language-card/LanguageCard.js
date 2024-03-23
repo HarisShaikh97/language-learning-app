@@ -2,11 +2,16 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import PropTypes from "prop-types"
 
-export default function LanguageCard({name, image, flagImage}) {
+export default function LanguageCard({id, name, image, flagImage}) {
 
     const [isHovered, setIsHovered] = useState(false)
 
     const router = useRouter()
+
+    const handleSelect = () => {
+        localStorage.setItem("course_id", id)
+        router.push("/signup")
+    }
 
     return (
         <button 
@@ -14,7 +19,7 @@ export default function LanguageCard({name, image, flagImage}) {
             style={{transition: "border-width 0.25s ease-in-out"}} 
             onMouseEnter={() => {setIsHovered(true)}} 
             onMouseLeave={() => {setIsHovered(false)}} 
-            onClick={() => {router.push("/learning-reason")}}
+            onClick={handleSelect}
         >
             <div className="h-40 w-44 rounded-lg bg-cover bg-no-repeat bg-center relative" style={{backgroundImage: `url('${image}')`}}>
                 <div className="h-12 w-12 rounded-full bg-cover bg-no-repeat bg-center absolute -bottom-6 left-16" style={{backgroundImage: `url('${flagImage}')`}}></div>
@@ -25,6 +30,7 @@ export default function LanguageCard({name, image, flagImage}) {
 }
 
 LanguageCard.propTypes = {
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     flagImage: PropTypes.string.isRequired

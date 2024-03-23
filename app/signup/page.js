@@ -10,14 +10,14 @@ export default function Signup() {
         await signIn('google', { callbackUrl: '/home' });
     };
     return (
-        <div className="h-screen w-screen flex flex-col items-center">
+        <div className="h-screen max-w-screen flex flex-col items-center">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex flex-row justify-between items-center pl-5 pr-10">
                 <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
                 <Link href={"/login"} className=" h-12 w-28 rounded-2xl border-b-4 border-amber-500 bg-amber-400 font-bold flex items-center justify-center">Sign in</Link>
             </div>
             <div className="grid grid-cols-2 h-full w-full">
                 <div className="bg-contain bg-no-repeat bg-center" style={{ backgroundImage: "url('/signup-image.png')" }} />
-                <div className="flex flex-col items-center overflow-y-auto scrollbar-none">
+                <div className="flex flex-col items-center">
                     <p className="w-[350px] text-3xl text-center font-bold mt-10">Sign up and start learning</p>
                     <div className="flex flex-col items-center gap-5 w-[450px] mt-5">
                         <button onClick={handleGoogleSignIn} className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center">
@@ -59,7 +59,7 @@ export default function Signup() {
                         <li>is 6 characters or longer</li>
                         <li>has no spaces</li>
                     </ul>
-                    <button className="flex items-center justify-center bg-primary bg-opacity-25 h-14 w-[450px] rounded-2xl mt-5 border-b-4 border-gray-400 text-xl text-gray-600 hover:text-black transition duration-1000 font-bold">Sign up, it&apos;s free</button>
+                    <button className="flex items-center justify-center bg-primary bg-opacity-25 mb-10 min-h-14 w-[450px] rounded-2xl mt-5 border-b-4 border-gray-400 text-xl text-gray-600 hover:text-black transition duration-1000 font-bold">Sign up, it&apos;s free</button>
                 </div>
             </div>
         </div>
