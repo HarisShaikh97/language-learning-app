@@ -56,14 +56,14 @@ export const coursesData = [
                         "id": "unique_id_3",
                         "title": "Arabic Video Lesson 1",
                         "url": "https://www.youtube.com/watch?v=6OE064HClCE&embeds_referring_euri=https%3A%2F%2Fapp.memrise.com%2F&embeds_referring_origin=https%3A%2F%2Fapp.memrise.com&source_ve_path=Mjg2NjY&feature=emb_logo",
-                        "image": "video_thumbnail_url",
+                        "image": "/video-thumbnail.jpg",
                         "tracking_id": "tracking_id_1"
                     },
                     {
                         "id": "unique_id_4",
                         "title": "Arabic Video Lesson 2",
                         "url": "https://www.youtube.com/watch?v=0kDjspnzHgQ",
-                        "image": "video_thumbnail_url",
+                        "image": "/video-thumbnail-3.jpg",
                         "tracking_id": "tracking_id_2"
                     }
                 ]
@@ -127,14 +127,14 @@ export const coursesData = [
                         "id": "unique_id_7",
                         "title": "English Grammar Lesson 1",
                         "url": "https://www.youtube.com/watch?v=XDCuYcxdG8E",
-                        "image": "video_thumbnail_url",
+                        "image": "/video-thumbnail.jpg",
                         "tracking_id": "tracking_id_3"
                     },
                     {
                         "id": "unique_id_8",
                         "title": "English Pronunciation Lesson 1",
                         "url": "https://www.youtube.com/watch?v=lAk6I94IZ_E",
-                        "image": "video_thumbnail_url",
+                        "image": "/video-thumbnail-3.jpg",
                         "tracking_id": "tracking_id_4"
                     }
                 ]
@@ -198,14 +198,14 @@ export const coursesData = [
                         "id": "unique_id_11",
                         "title": "Greek Grammar Lesson 1",
                         "url": "https://www.youtube.com/watch?v=6OE064HClCE&embeds_referring_euri=https%3A%2F%2Fapp.memrise.com%2F&embeds_referring_origin=https%3A%2F%2Fapp.memrise.com&source_ve_path=Mjg2NjY&feature=emb_logo",
-                        "image": "video_thumbnail_url",
+                        "image": "/video-thumbnail.jpg",
                         "tracking_id": "tracking_id_5"
                     },
                     {
                         "id": "unique_id_12",
                         "title": "Greek Pronunciation Lesson 1",
                         "url": "https://www.youtube.com/watch?v=0kDjspnzHgQ",
-                        "image": "video_thumbnail_url",
+                        "image": "/video-thumbnail-3.jpg",
                         "tracking_id": "tracking_id_6"
                     }
                 ]
