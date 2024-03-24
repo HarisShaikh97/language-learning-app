@@ -61,7 +61,7 @@ export default function SideNav() {
                         {!collapsed && <p className="text-lg text-primary font-semibold">Videos</p>}
                     </Link>
                 )}
-                {pathname === "/conversations" ? (
+                {/* {pathname === "/conversations" ? (
                     <div className="flex flex-row items-center justify-between h-16 bg-gray-100">
                         <div className="flex flex-row gap-5 items-center pl-5">
                             <ChatBubbleOvalLeftEllipsisIcon className="h-7 w-7 text-primary" />
@@ -74,7 +74,7 @@ export default function SideNav() {
                         <ChatBubbleOvalLeftEllipsisIcon className="h-7 w-7 text-primary" />
                         {!collapsed && <p className="text-lg text-primary font-semibold">Conversations</p>}
                     </Link>
-                )}
+                )} */}
             </div>
         </div>
     )
