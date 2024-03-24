@@ -1,10 +1,17 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { CheckIcon, MagnifyingGlassIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { useState, useRef, useEffect } from "react";
+import {
+    CheckIcon,
+    MagnifyingGlassIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon
+} from "@heroicons/react/24/outline";
 import Layout from "@/components/layout/Layout";
 import DiscountBanner from "@/components/discount-banner/DiscountBanner";
 import { ScenarioCard } from "@/components/scenario-card/ScenarioCard";
+import ScenarioPopup from "@/components/scenario-popup/ScenarioPopup";
+import coursesData from "@/utils/Data";
 
 export default function Scenarios() {
     const scrollViewRef = useRef();
@@ -12,65 +19,9 @@ export default function Scenarios() {
     const [showFreeScenarios, setShowFreeScenarios] = useState(false);
     const [isLeftButtonVisible, setIsLeftButtonVisible] = useState(false);
     const [isRightButtonVisible, setIsRightButtonVisible] = useState(true);
-
-    const data = [
-        {
-            name: "More letters",
-            isPremium: true
-        },
-        {
-            name: "Mastering the Abjad",
-            isPremium: false
-        },
-        {
-            name: "Additional Characters",
-            isPremium: true
-        },
-        {
-            name: "Short vowel marks",
-            isPremium: true
-        },
-        {
-            name: "Greetings",
-            isPremium: false
-        },
-        {
-            name: "Basic expressions",
-            isPremium: true
-        },
-        {
-            name: "Polite expressions",
-            isPremium: false
-        },
-        {
-            name: "How we feel",
-            isPremium: true
-        },
-        {
-            name: "Are you OK?",
-            isPremium: true
-        },
-        {
-            name: "Misunderstanding",
-            isPremium: false
-        },
-        {
-            name: "Basic needs",
-            isPremium: true
-        },
-        {
-            name: "Asking questions",
-            isPremium: false
-        },
-        {
-            name: "Are we friends",
-            isPremium: true
-        },
-        {
-            name: "What do you like?",
-            isPremium: false
-        }
-    ];
+    const [courseId, setcourseId] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
+    const [selectedScenario, setSelectedScenario] = useState();
 
     const scrollToRight = () => {
         if (scrollViewRef.current) {
@@ -85,21 +36,34 @@ export default function Scenarios() {
     };
 
     const handleScroll = () => {
-        if (scrollViewRef.current) {
-            const { scrollLeft, scrollWidth, clientWidth } =
-                scrollViewRef.current;
-            const isAtStart = scrollLeft === 0;
-            const isAtEnd = scrollLeft + clientWidth >= scrollWidth;
-            setIsLeftButtonVisible(!isAtStart);
-            setIsRightButtonVisible(!isAtEnd);
-        }
-    };
+		if (scrollViewRef.current) {
+		  const { scrollLeft, scrollWidth, clientWidth } = scrollViewRef.current;
+		  setIsLeftButtonVisible(scrollLeft > 0);
+		  setIsRightButtonVisible(scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth);
+		}
+	};
 
-    // console.log(isLeftButtonVisible, isRightButtonVisible);
+    useEffect(() => {
+		setcourseId(localStorage.getItem("course_id"))
+		const handleResize = () => {
+		  handleScroll();
+		};
+	
+		if (scrollViewRef.current) {
+		  handleScroll(); // Initial check
+		}
+	
+		window.addEventListener('resize', handleResize);
+	
+		return () => {
+		  window.removeEventListener('resize', handleResize);
+		};
+	  }, []);
 
     return (
         <Layout>
-            <div className="min-h-full flex-1 flex flex-col items-center">
+            <div className="min-h-full flex-1 flex flex-col items-center relative">
+				{showPopup && <ScenarioPopup id={selectedScenario} setShowPopup={setShowPopup} />}
                 <DiscountBanner />
                 <div className="flex-1 flex flex-col gap-5 h-full w-[95%] overflow-y-auto scrollbar-none">
                     <div className="w-full flex flex-row items-center justify-between mt-10">
@@ -154,27 +118,42 @@ export default function Scenarios() {
                     <div className="w-full flex flex-col gap-5">
                         <p className="font-bold">Recommended path</p>
                         <div className="flex flex-row items-center gap-5 w-full">
-							{isLeftButtonVisible && <button onClick={scrollToLeft}>
-								<ChevronLeftIcon className="size-5 text-black" />
-							</button>}
+                            {isLeftButtonVisible && (
+                                <button onClick={scrollToLeft}>
+                                    <ChevronLeftIcon className="size-5 text-black" />
+                                </button>
+                            )}
                             <div
                                 ref={scrollViewRef}
                                 onScroll={handleScroll}
                                 className="w-full overflow-x-auto scrollbar-none"
                             >
                                 <div className="flex flex-row gap-5 items-center">
-                                    {data?.map((item, key) => (
-                                        <ScenarioCard
-                                            name={item?.name}
-                                            isPremium={item?.isPremium}
-                                            key={key}
-                                        />
-                                    ))}
+                                    {coursesData
+                                        ?.find((course) => {
+                                            return (
+                                                course.id === parseInt(courseId)
+                                            );
+                                        })
+                                        ?.sections[0]?.scenarios?.map(
+                                            (item, key) => (
+                                                <ScenarioCard
+													id={item?.id}
+                                                    name={item?.title}
+                                                    isPremium={item?.isPremium}
+													setSelectedScenario={setSelectedScenario}
+													setShowPopup={setShowPopup}
+                                                    key={key}
+                                                />
+                                            )
+                                        )}
                                 </div>
                             </div>
-							{isRightButtonVisible && <button onClick={scrollToRight}>
-								<ChevronRightIcon className="size-5 text-black" />
-							</button>}
+                            {isRightButtonVisible && (
+                                <button onClick={scrollToRight}>
+                                    <ChevronRightIcon className="size-5 text-black" />
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

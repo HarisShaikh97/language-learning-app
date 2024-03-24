@@ -1,14 +1,40 @@
 "use client"
+
+import { useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { signIn } from 'next-auth/react';
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
 export default function Signup() {
+
+    const router = useRouter()
+
+    const [email, setEmail] = useState("")
+    const [password, setpassword] = useState("")
+
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
 
         // Call signIn method from NextAuth with Google provider
         await signIn('google', { callbackUrl: '/home' });
     };
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            email: email,
+            password: password
+        }
+
+        await axios.post("/api/user-signup", payload).then((res) => {
+            console.log(res);
+            router.push("/login")
+        }).catch((err) => {console.log("Error:", err);})
+    }
+
     return (
         <div className="h-screen max-w-screen flex flex-col items-center">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex flex-row justify-between items-center pl-5 pr-10">
@@ -43,13 +69,13 @@ export default function Signup() {
                     <div className="flex flex-col gap-3 w-[450px]">
                         <p className="text-primary text-sm font-bold">Email</p>
                         <div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
-                            <input type="text" placeholder="example@email.com" className="text-sm" style={{ outline: 'none', width: '100%' }} />
+                            <input type="text" placeholder="example@email.com" value={email} onChange={(e) => {setEmail(e.target.value)}} className="text-sm" style={{ outline: 'none', width: '100%' }} />
                         </div>
                     </div>
                     <div className="flex flex-col gap-3 w-[450px] mt-5">
                         <p className="text-primary text-sm font-bold">Password</p>
                         <div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
-                            <input type="password" placeholder="**********" className="text-sm" style={{ outline: 'none', width: '100%' }} />
+                            <input type="password" placeholder="**********" value={password} onChange={(e) => {setpassword(e.target.value)}} className="text-sm" style={{ outline: 'none', width: '100%' }} />
                         </div>
                     </div>
                     <div className="w-[450px] mt-5">
@@ -59,9 +85,9 @@ export default function Signup() {
                         <li>is 6 characters or longer</li>
                         <li>has no spaces</li>
                     </ul>
-                    <button className="flex items-center justify-center bg-primary bg-opacity-25 mb-10 min-h-14 w-[450px] rounded-2xl mt-5 border-b-4 border-gray-400 text-xl text-gray-600 hover:text-black transition duration-1000 font-bold">Sign up, it&apos;s free</button>
+                    <button className="flex items-center justify-center bg-primary bg-opacity-25 mb-10 min-h-14 w-[450px] rounded-2xl mt-5 border-b-4 border-gray-400 text-xl text-gray-600 hover:text-black transition duration-1000 font-bold" onClick={handleSignUp}>Sign up, it&apos;s free</button>
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { signIn } from 'next-auth/react';
@@ -9,6 +10,8 @@ export default function Login() {
 
     const router = useRouter()
 
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
@@ -16,6 +19,15 @@ export default function Login() {
         // Call signIn method from NextAuth with Google provider
         await signIn('google', { callbackUrl: '/home' });
     };
+
+    const handleSignIn = async (e) => {
+        e.preventDefault();
+        const res = await signIn('credentials', {email: email, password: password, redirect: false, callbackUrl: "home"})
+        if(res.status === 200) {
+            router.push(res.url)
+        }
+    }
+
     return (
         <div className="h-screen w-screen flex flex-col items-center overflow-y-auto scrollbar-none">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex items-center px-5">
@@ -46,13 +58,13 @@ export default function Login() {
             <div className="flex flex-col gap-3 w-[450px] mt-5">
                 <p className="text-primary text-xs font-bold">Username or Email:</p>
                 <div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
-                    <input type="text" placeholder="example@email.com" className="text-xs" style={{ outline: 'none', width: '100%' }} />
+                    <input type="text" placeholder="example@email.com" value={email} onChange={(e) => {setEmail(e.target.value)}} className="text-xs" style={{ outline: 'none', width: '100%' }} />
                 </div>
             </div>
             <div className="flex flex-col gap-3 w-[450px] mt-5">
                 <p className="text-primary text-xs font-bold">Password:</p>
                 <div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
-                    <input type="password" placeholder="**********" className="text-xs" style={{ outline: 'none', width: '100%' }} />
+                    <input type="password" placeholder="**********" value={password} onChange={(e) => {setPassword(e.target.value)}} className="text-xs" style={{ outline: 'none', width: '100%' }} />
                 </div>
             </div>
             <div className="flex justify-end w-[450px] mt-5">
