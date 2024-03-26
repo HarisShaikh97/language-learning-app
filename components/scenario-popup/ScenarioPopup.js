@@ -10,13 +10,13 @@ import {
 import coursesData from "@/utils/Data";
 
 export default function ScenarioPopup({ id, setShowPopup }) {
-    const [courseId, setCourseId] = useState();
+    const [courseId, setCourseId] = useState(2);
 
-    useEffect(() => {
-        setCourseId(localStorage.getItem("course_id"));
-    }, []);
+    // useEffect(() => {
+    //     setCourseId(localStorage.getItem("course_id"));
+    // }, []);
 
-    console.log(coursesData);
+    // console.log(coursesData);
 
     return (
         <div className="w-[500px] absolute top-0 left-52 bg-white rounded-xl border z-50 flex flex-col gap-5 items-center p-5">
@@ -29,7 +29,7 @@ export default function ScenarioPopup({ id, setShowPopup }) {
                     <XMarkIcon className="size-7 text-black" />
                 </button>
             </div>
-            <div className="size-20 rounded-full bg-amber-50 flex items-center justify-center relative">
+            <div className="size-20 rounded-full bg-blue-50 flex items-center justify-center relative">
                 <Image
                     src={"/greetings.png"}
                     alt="icon"
@@ -52,7 +52,7 @@ export default function ScenarioPopup({ id, setShowPopup }) {
                 }{" "}
                 words and phrases
             </p>
-            <button className="h-12 w-36 rounded-xl hover:bg-amber-400 bg-amber-300 border-b-4 border-amber-500 font-semibold">
+            <button className="h-12 w-36 rounded-xl hover:bg-blue-400 bg-blue-300 border-b-4 border-blue-500 font-semibold">
                 Start learning
             </button>
             <button className="flex flex-row gap-3 text-black hover:text-gray-700">

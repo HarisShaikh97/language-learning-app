@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Layout from "@/components/layout/Layout"
-import DiscountBanner from "@/components/discount-banner/DiscountBanner"
+// import DiscountBanner from "@/components/discount-banner/DiscountBanner"
 import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgressCard"
 import connect from "../db/connect"
 
@@ -13,7 +13,7 @@ export default function Home() {
 	return (
 		<Layout>
 			<div className="min-h-full flex-1 flex flex-col items-center">
-				<DiscountBanner />
+				{/* <DiscountBanner /> */}
 				<div
 					className="h-full w-full flex-1 flex flex-col items-center bg-cover bg-center"
 					style={{ backgroundImage: selectedTab === "green" ? "url('/bg-image-green.svg')" : selectedTab === "red" ? "url('/bg-image-red.svg')" : "url('/bg-image-blue.svg')" }}

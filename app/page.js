@@ -1,51 +1,77 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
 import Image from "next/image"
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid"
-import iso6391 from "iso-639-1"
+import Link from "next/link"
+import { signIn } from 'next-auth/react';
+import { useRouter } from "next/navigation"
 
-export default function Welcome() {
+export default function Login() {
 
     const router = useRouter()
 
-    const [showDropDown, setShowDropDown] = useState(false)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
-    const languages = iso6391.getAllNativeNames()
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault();
+
+        // Call signIn method from NextAuth with Google provider
+        await signIn('google', { callbackUrl: '/home' });
+    };
+
+    const handleSignIn = async (e) => {
+        e.preventDefault();
+        const res = await signIn('credentials', {email: email, password: password, redirect: false, callbackUrl: "/home"})
+        if(res.status === 200) {
+            router.push(res.url)
+        }
+    }
 
     return (
-        <div className="h-screen w-screen flex flex-col items-center">
-            <div className="w-full flex flex-col">
-                <div className="h-10 w-full bg-amber-400 flex flex-row items-center gap-10 justify-end pr-80">
-                    <button className="flex flex-row items-center gap-2 relative" onClick={() => {setShowDropDown(!showDropDown)}}>
-                        <p className="text-xs font-medium">Select page language</p>
-                        {showDropDown ? <ChevronUpIcon className="h-[15px] w-[15px] text-black" /> : <ChevronDownIcon className="h-[15px] w-[15px] text-black" />}
-                        {showDropDown && (
-                            <div className="absolute -bottom-[335px] -left-[10px] border h-80 w-44 bg-white rounded-lg shadow-xl overflow-y-auto scrollbar-none p-3 flex flex-col items-start gap-2 z-50">
-                                {languages?.map((item, key) => {
-                                    return (
-                                        <button 
-                                            className="font-semibold" 
-                                            key={key} 
-                                            onClick={() => {
-                                                setShowDropDown(false)
-                                            }}
-                                        >
-                                            {item}
-                                        </button>
-                                    )
-                                })}
-                            </div>
-                        )}
-                    </button>
-                    <button className="h-7 w-20 rounded border border-black text-xs font-medium" onClick={() => {router.push("/login")}}>Log in</button>
-                </div>
-                <div className="h-20 w-full shadow-2xl bg-primary flex flex-row items-center justify-between px-60">
-                    <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
-                    <div></div>
+        <div className="h-screen w-screen flex flex-col items-center overflow-y-auto scrollbar-none">
+            <div className="h-20 w-full bg-primary bg-opacity-15 flex items-center px-5">
+                <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
+            </div>
+            <p className="text-5xl text-primary font-extrabold w-[450px] text-center my-10">Log in to have fun and learn faster</p>
+            <div className="flex flex-col items-center gap-5 w-[450px]">
+                <button onClick={handleGoogleSignIn} className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
+                        <Image src={"/google-logo.svg"} alt="logo" height={35} width={35} />
+                    </div>
+                    <p className="text-white">Sign in with Google</p>
+                </button>
+                {/* <button className="h-10 w-full rounded-full bg-[#3B5998] hover:bg-opacity-75 relative flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
+                        <Image src={"/facebook-logo.svg"} alt="logo" height={22.5} width={22.5} />
+                    </div>
+                    <p className="text-white">Sign in with Facebook</p>
+                </button>
+                <button className="h-10 w-full rounded-full bg-black hover:bg-opacity-75 relative flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
+                        <Image src={"/apple-logo.svg"} alt="logo" height={25} width={25} />
+                    </div>
+                    <p className="text-white">Sign in with Apple</p>
+                </button> */}
+            </div>
+            <p className="mt-5">or</p>
+            <div className="flex flex-col gap-3 w-[450px] mt-5">
+                <p className="text-primary text-xs font-bold">Username or Email:</p>
+                <div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
+                    <input type="text" placeholder="example@email.com" value={email} onChange={(e) => {setEmail(e.target.value)}} className="text-xs" style={{ outline: 'none', width: '100%' }} />
                 </div>
             </div>
+            <div className="flex flex-col gap-3 w-[450px] mt-5">
+                <p className="text-primary text-xs font-bold">Password:</p>
+                <div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
+                    <input type="password" placeholder="**********" value={password} onChange={(e) => {setPassword(e.target.value)}} className="text-xs" style={{ outline: 'none', width: '100%' }} />
+                </div>
+            </div>
+            <div className="flex justify-end w-[450px] mt-5">
+                <p className="text-primary underline text-xs cursor-pointer">I forgot my password!</p>
+            </div>
+            <button className="flex items-center justify-center bg-blue-300 py-3 w-[450px] rounded-lg mt-5 border-b-4 border-blue-400 text-white font-bold" onClick={handleSignIn}>Sign in</button>
+            <Link href={"/signup"} className="underline my-5">Don&apos;t have an account? Sign up now!</Link>
         </div>
     )
 }

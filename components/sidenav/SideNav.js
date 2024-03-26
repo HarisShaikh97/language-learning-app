@@ -25,7 +25,7 @@ export default function SideNav() {
                             <RectangleStackIcon className="h-7 w-7 text-primary" />
                             {!collapsed && <p className="text-lg text-primary font-semibold">Home</p>}
                         </div>
-                        <div className="h-full w-2 bg-amber-400 rounded-s-full" />
+                        <div className="h-full w-2 bg-blue-400 rounded-s-full" />
                     </div>
                 ) : (
                     <Link href={"/home"} className="flex flex-row gap-5 items-center h-16 pl-5 hover:bg-gray-50">
@@ -39,7 +39,7 @@ export default function SideNav() {
                             <PresentationChartLineIcon className="h-7 w-7 text-primary" />
                             {!collapsed && <p className="text-lg text-primary font-semibold">Scenarios</p>}
                         </div>
-                        <div className="h-full w-2 bg-amber-400 rounded-s-full" />
+                        <div className="h-full w-2 bg-blue-400 rounded-s-full" />
                     </div>
                 ) : (
                     <Link href={"/scenarios"} className="flex flex-row gap-5 items-center h-16 pl-5 hover:bg-gray-50">
@@ -47,34 +47,6 @@ export default function SideNav() {
                         {!collapsed && <p className="text-lg text-primary font-semibold">Scenarios</p>}
                     </Link>
                 )}
-                {pathname === "/videos" ? (
-                    <div className="flex flex-row items-center justify-between h-16 bg-gray-100">
-                        <div className="flex flex-row gap-5 items-center pl-5">
-                            <FilmIcon className="h-7 w-7 text-primary" />
-                            {!collapsed && <p className="text-lg text-primary font-semibold">Videos</p>}
-                        </div>
-                        <div className="h-full w-2 bg-amber-400 rounded-s-full" />
-                    </div>
-                ) : (
-                    <Link href={"/videos"} className="flex flex-row gap-5 items-center h-16 pl-5 hover:bg-gray-50">
-                        <FilmIcon className="h-7 w-7 text-primary" />
-                        {!collapsed && <p className="text-lg text-primary font-semibold">Videos</p>}
-                    </Link>
-                )}
-                {/* {pathname === "/conversations" ? (
-                    <div className="flex flex-row items-center justify-between h-16 bg-gray-100">
-                        <div className="flex flex-row gap-5 items-center pl-5">
-                            <ChatBubbleOvalLeftEllipsisIcon className="h-7 w-7 text-primary" />
-                            {!collapsed && <p className="text-lg text-primary font-semibold">Conversations</p>}
-                        </div>
-                        <div className="h-full w-2 bg-amber-400 rounded-s-full" />
-                    </div>
-                ) : (
-                    <Link href={"/conversations"} className="flex flex-row gap-5 items-center h-16 pl-5 hover:bg-gray-50">
-                        <ChatBubbleOvalLeftEllipsisIcon className="h-7 w-7 text-primary" />
-                        {!collapsed && <p className="text-lg text-primary font-semibold">Conversations</p>}
-                    </Link>
-                )} */}
             </div>
         </div>
     )

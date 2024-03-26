@@ -2,7 +2,7 @@ import { StarIcon } from "@heroicons/react/16/solid"
 
 export default function DiscountBanner() {
     return (
-        <div className="flex flex-row items-center justify-between h-14 w-[95%] rounded-xl bg-amber-50 hover:bg-amber-100 px-5">
+        <div className="flex flex-row items-center justify-between h-14 w-[95%] rounded-xl bg-blue-50 hover:bg-blue-100 px-5">
             <div className="flex flex-row items-center gap-5">
                 <StarIcon className="h-6 w-6 text-black" />
                 <p className="text-lg font-semibold">20% off Pro!</p>

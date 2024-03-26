@@ -10,7 +10,7 @@ export default function Header() {
     const [showProfileDropDown, setShowProfileDropDown] = useState(false)
 
     return (
-        <div className="flex flex-row items-center justify-between px-10">
+        <div className="flex flex-row items-center justify-between px-10 bg-blue-300">
             <button
                 className="flex flex-row items-center py-8 relative"
                 onClick={() => {

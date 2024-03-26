@@ -8,7 +8,7 @@ import {
     ChevronRightIcon
 } from "@heroicons/react/24/outline";
 import Layout from "@/components/layout/Layout";
-import DiscountBanner from "@/components/discount-banner/DiscountBanner";
+// import DiscountBanner from "@/components/discount-banner/DiscountBanner";
 import { ScenarioCard } from "@/components/scenario-card/ScenarioCard";
 import ScenarioPopup from "@/components/scenario-popup/ScenarioPopup";
 import coursesData from "@/utils/Data";
@@ -19,7 +19,7 @@ export default function Scenarios() {
     const [showFreeScenarios, setShowFreeScenarios] = useState(false);
     const [isLeftButtonVisible, setIsLeftButtonVisible] = useState(false);
     const [isRightButtonVisible, setIsRightButtonVisible] = useState(true);
-    const [courseId, setcourseId] = useState(true);
+    const [courseId, setcourseId] = useState(2);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedScenario, setSelectedScenario] = useState();
 
@@ -44,7 +44,6 @@ export default function Scenarios() {
 	};
 
     useEffect(() => {
-		setcourseId(localStorage.getItem("course_id"))
 		const handleResize = () => {
 		  handleScroll();
 		};
@@ -64,7 +63,7 @@ export default function Scenarios() {
         <Layout>
             <div className="min-h-full flex-1 flex flex-col items-center relative">
 				{showPopup && <ScenarioPopup id={selectedScenario} setShowPopup={setShowPopup} />}
-                <DiscountBanner />
+                {/* <DiscountBanner /> */}
                 <div className="flex-1 flex flex-col gap-5 h-full w-[95%] overflow-y-auto scrollbar-none">
                     <div className="w-full flex flex-row items-center justify-between mt-10">
                         <div className="h-10 w-80 rounded-lg bg-gray-100 grid grid-cols-2 p-1">
@@ -102,11 +101,11 @@ export default function Scenarios() {
                     </div>
                     <p className="text-2xl font-bold">Continue learning</p>
                     <div className="h-28 w-96 rounded-lg bg-gray-100 border-b-4 border-slate-300 relative flex flex-col justify-between p-3">
-                        <div className="absolute top-6 right-0 bg-amber-300 h-16 w-8 rounded-s-full"></div>
+                        <div className="absolute top-6 right-0 bg-blue-300 h-16 w-8 rounded-s-full"></div>
                         <p className="text-xs font-bold">Abjad</p>
                         <div className="flex flex-row items-center justify-between w-[90%]">
                             <p>Deciphering the letters</p>
-                            <button className="h-10 w-24 bg-amber-400 border-b-4 border-amber-500 rounded-xl font-semibold">
+                            <button className="h-10 w-24 bg-blue-400 border-b-4 border-blue-500 rounded-xl font-semibold">
                                 Continue
                             </button>
                         </div>
