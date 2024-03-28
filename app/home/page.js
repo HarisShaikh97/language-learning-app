@@ -4,19 +4,24 @@ import { useState } from "react"
 import Layout from "@/components/layout/Layout"
 // import DiscountBanner from "@/components/discount-banner/DiscountBanner"
 import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgressCard"
-import connect from "../db/connect"
+import WeeklyProgressCardGrid from "@/components/weekly-progress-card-grid/WeeklyProgreeCardGrid"
 
 export default function Home() {
-
 	const [selectedTab, setSelectedTab] = useState("green")
-	connect()
 	return (
 		<Layout>
 			<div className="min-h-full flex-1 flex flex-col items-center">
 				{/* <DiscountBanner /> */}
 				<div
 					className="h-full w-full flex-1 flex flex-col items-center bg-cover bg-center"
-					style={{ backgroundImage: selectedTab === "green" ? "url('/bg-image-green.svg')" : selectedTab === "red" ? "url('/bg-image-red.svg')" : "url('/bg-image-blue.svg')" }}
+					style={{
+						backgroundImage:
+							selectedTab === "green"
+								? "url('/bg-image-green.svg')"
+								: selectedTab === "red"
+								? "url('/bg-image-red.svg')"
+								: "url('/bg-image-blue.svg')"
+					}}
 				>
 					<div className="w-[95%] flex flex-row items-center justify-between py-5">
 						<p className="text-3xl font-semibold">
@@ -26,7 +31,14 @@ export default function Home() {
 							Feb 26 - March 09
 						</p>
 					</div>
-					<WeeklyProgressCard selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+					<WeeklyProgressCard
+						selectedTab={selectedTab}
+						setSelectedTab={setSelectedTab}
+					/>
+					<WeeklyProgressCardGrid
+						selectedTab={selectedTab}
+						setSelectedTab={setSelectedTab}
+					/>
 				</div>
 			</div>
 		</Layout>
