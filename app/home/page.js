@@ -6,6 +6,7 @@ import Layout from "@/components/layout/Layout"
 import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgressCard"
 import WeeklyProgressCardGrid from "@/components/weekly-progress-card-grid/WeeklyProgreeCardGrid"
 import { ScenarioCard } from "@/components/scenario-card/ScenarioCard"
+import ScenarioPopup from "@/components/scenario-popup/ScenarioPopup"
 import coursesData from "@/utils/Data"
 
 export default function Home() {
