@@ -10,7 +10,7 @@ export default function Header() {
     const [showProfileDropDown, setShowProfileDropDown] = useState(false)
 
     return (
-        <div className="flex flex-row items-center justify-between px-10 bg-blue-300">
+        <div className="flex flex-row items-center justify-between px-5 sm:px-10 bg-blue-300">
             <button
                 className="flex flex-row items-center py-8 relative"
                 onClick={() => {
@@ -24,7 +24,7 @@ export default function Header() {
                     <ChevronDownIcon className="h-6 w-6 text-black" />
                 )}
                 {showLanguageDropDown && (
-                    <div className="absolute top-16 shadow-lg border-2 rounded-lg bg-white flex flex-col items-start">
+                    <div className="absolute top-16 shadow-lg border-2 rounded-lg bg-white flex flex-col items-start z-10">
                         <div className="flex flex-col gap-3 px-5 py-5 items-start">
                             <p className="text-lg font-bold text-gray-400 whitespace-nowrap">
                                 Select a language
@@ -40,8 +40,8 @@ export default function Header() {
                 )}
             </button>
             <div className="flex flex-row gap-5 items-center">
-                <p className="text-lg font-semibold">Help</p>
-                <div className="flex flex-row items-center gap-1">
+                <p className="text-lg font-semibold hidden sm:flex">Help</p>
+                <div className="flex-row items-center gap-1 hidden sm:flex">
                     <FireIcon className="h-5 w-5 text-gray-500" />
                     <p className="text-gray-500 font-semibold">0</p>
                 </div>

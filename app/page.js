@@ -37,10 +37,10 @@ export default function Login() {
 			<div className="h-20 w-full bg-primary bg-opacity-15 flex items-center px-5">
 				<Image src={"/logo2.png"} alt="logo" height={100} width={100} />
 			</div>
-			<p className="text-5xl text-primary font-extrabold w-[450px] text-center my-10">
+			<p className="text-xl sm:text-3xl md:text-5xl text-primary font-extrabold w-[250px] sm:w-[450px] text-center my-10">
 				Log in to have fun and learn faster
 			</p>
-			<div className="flex flex-col items-center gap-5 w-[450px]">
+			<div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px]">
 				<button
 					onClick={handleGoogleSignIn}
 					className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center"
@@ -69,7 +69,7 @@ export default function Login() {
                 </button> */}
 			</div>
 			<p className="mt-5">or</p>
-			<div className="flex flex-col gap-3 w-[450px] mt-5">
+			<div className="flex flex-col gap-3 w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary text-xs font-bold">
 					Username or Email:
 				</p>
@@ -86,7 +86,7 @@ export default function Login() {
 					/>
 				</div>
 			</div>
-			<div className="flex flex-col gap-3 w-[450px] mt-5">
+			<div className="flex flex-col gap-3 w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary text-xs font-bold">Password:</p>
 				<div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
 					<input
@@ -101,13 +101,13 @@ export default function Login() {
 					/>
 				</div>
 			</div>
-			<div className="flex justify-end w-[450px] mt-5">
+			<div className="flex justify-end w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary underline text-xs cursor-pointer">
 					I forgot my password!
 				</p>
 			</div>
 			<button
-				className="flex items-center justify-center bg-blue-300 py-3 w-[450px] rounded-lg mt-5 border-b-4 border-blue-400 text-white font-bold"
+				className="flex items-center justify-center bg-blue-300 py-3 w-[250px] sm:w-[450px] rounded-lg mt-5 border-b-4 border-blue-400 text-white font-bold"
 				onClick={handleSignIn}
 			>
 				Sign in

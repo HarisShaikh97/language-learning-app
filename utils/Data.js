@@ -10,7 +10,7 @@ export const coursesData = [
                 "title": "Scenario Based",
                 "scenarios": [
                     {
-                        "id": "unique_id_1",
+                        "id": "1",
                         "title": "How to Count in Arabic",
                         "description": "Description of how to count in Arabic...",
                         "translations": [
@@ -29,7 +29,7 @@ export const coursesData = [
                         ]
                     },
                     {
-                        "id": "unique_id_2",
+                        "id": "2",
                         "title": "Daily Basic Communication in Arabic",
                         "description": "Description of daily basic communication in Arabic...",
                         "translations": [

@@ -1,16 +1,18 @@
+"use client"
+
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import PropTypes from "prop-types"
 
-export default function LanguageCard({id, name, image, flagImage}) {
+export default function LanguageCard({id, name, image, flagImage, href}) {
 
     const [isHovered, setIsHovered] = useState(false)
 
     const router = useRouter()
 
     const handleSelect = () => {
-        localStorage.setItem("course_id", id)
-        router.push("/signup")
+        // localStorage.setItem("course_id", id)
+        router.push(href)
     }
 
     return (
@@ -33,5 +35,6 @@ LanguageCard.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    flagImage: PropTypes.string.isRequired
+    flagImage: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired
 }

@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 export default function UpNextConversationCard({ className }) {
 	return (
 		<div
-			className={`absolute ${className} w-80 rounded-2xl bg-primary border-b-8 border-blue-400 flex flex-col gap-5 px-5 py-5`}
+			className={`absolute ${className} w-56 sm:w-80 rounded-2xl bg-primary border-b-8 border-blue-400 flex flex-col gap-5 px-5 py-5`}
 		>
 			<div className="flex flex-row items-center justify-between">
 				<p className="text-lg font-semibold text-white">
@@ -19,9 +19,9 @@ export default function UpNextConversationCard({ className }) {
 					No recommended conversations right now
 				</p>
 			</div>
-			<button className="h-12 flex items-center justify-center bg-blue-400 hover:bg-blue-300 border-b-4 border-blue-500 rounded-2xl font-semibold">
+			<div className="h-12 flex items-center justify-center bg-blue-400 hover:bg-blue-300 border-b-4 border-blue-500 rounded-2xl font-semibold">
 				More conversations
-			</button>
+			</div>
 		</div>
 	)
 }

@@ -11,7 +11,7 @@ import UpNextConversationCard from "../up-next-conversation-card/UpNextConversat
 export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 	return (
 		<div
-			className={`h-[400px] w-[350px] rounded-2xl ${
+			className={`h-[400px] w-[250px] sm:w-[350px] rounded-2xl ${
 				selectedTab === "green"
 					? "bg-[#00a778]"
 					: selectedTab === "red"
@@ -19,10 +19,10 @@ export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 					: "bg-[#009fbb]"
 			} relative mt-10 mb-40 flex computer:hidden flex-col items-center`}
 		>
-			<div className="absolute -top-12 left-[15px] w-80 flex flex-row items-center justify-between">
+			<div className="absolute -top-12 w-60 sm:w-80 flex flex-row items-center justify-between">
 				<button
 					className={`${
-						selectedTab === "green" ? "h-24 w-24" : "h-20 w-20"
+						selectedTab === "green" ? "size-20 sm:size-24" : "size-16 sm:size-20"
 					} rounded-full bg-[#00a778] shadow-xl flex items-center justify-center`}
 					onClick={() => {
 						setSelectedTab("green")
@@ -31,15 +31,15 @@ export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 					<div
 						className={`${
 							selectedTab === "green"
-								? "h-[90px] w-[90px]"
-								: "h-[75px] w-[75px]"
+								? "size-[75px] sm:size-[90px]"
+								: "size-[60px] sm:size-[75px]"
 						} rounded-full flex items-center justify-center bg-[#b1f7e3]`}
 					>
 						<div
 							className={`${
 								selectedTab === "green"
-									? "h-[77.5px] w-[77.5px]"
-									: "h-[65px] w-[65px]"
+									? "size-[60px] sm:size-[77.5px]"
+									: "size-[50px] sm:size-[65px]"
 							} rounded-full bg-[#00a778] flex items-center justify-center`}
 						>
 							<p
@@ -54,7 +54,7 @@ export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 				</button>
 				<button
 					className={`${
-						selectedTab === "red" ? "h-24 w-24" : "h-20 w-20"
+						selectedTab === "red" ? "size-20 sm:size-24" : "size-16 sm:size-20"
 					} rounded-full bg-[#e46962] shadow-xl flex items-center justify-center`}
 					onClick={() => {
 						setSelectedTab("red")
@@ -63,15 +63,15 @@ export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 					<div
 						className={`${
 							selectedTab === "red"
-								? "h-[90px] w-[90px]"
-								: "h-[75px] w-[75px]"
+								? "size-[75px] sm:size-[90px]"
+								: "size-[60px] sm:size-[75px]"
 						} rounded-full flex items-center justify-center bg-[#f5bcb9]`}
 					>
 						<div
 							className={`${
 								selectedTab === "red"
-									? "h-[77.5px] w-[77.5px]"
-									: "h-[65px] w-[65px]"
+									? "size-[60px] sm:size-[77.5px]"
+									: "size-[50px] sm:size-[65px]"
 							} rounded-full bg-[#e46962] flex items-center justify-center`}
 						>
 							<p
@@ -86,7 +86,7 @@ export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 				</button>
 				<button
 					className={`${
-						selectedTab === "blue" ? "h-24 w-24" : "h-20 w-20"
+						selectedTab === "blue" ? "size-20 sm:size-24" : "size-16 sm:size-20"
 					} rounded-full bg-[#009fbb] shadow-xl flex items-center justify-center`}
 					onClick={() => {
 						setSelectedTab("blue")
@@ -95,15 +95,15 @@ export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 					<div
 						className={`${
 							selectedTab === "blue"
-								? "h-[90px] w-[90px]"
-								: "h-[75px] w-[75px]"
+								? "size-[75px] sm:size-[90px]"
+								: "size-[60px] sm:size-[75px]"
 						} rounded-full flex items-center justify-center bg-[#cfeff5]`}
 					>
 						<div
 							className={`${
 								selectedTab === "blue"
-									? "h-[77.5px] w-[77.5px]"
-									: "h-[65px] w-[65px]"
+									? "size-[60px] sm:size-[77.5px]"
+									: "size-[50px] sm:size-[65px]"
 							} rounded-full bg-[#009fbb] flex items-center justify-center`}
 						>
 							<p

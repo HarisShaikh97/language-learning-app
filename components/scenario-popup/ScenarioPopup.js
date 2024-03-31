@@ -8,6 +8,7 @@ import {
     EllipsisHorizontalIcon
 } from "@heroicons/react/24/outline";
 import coursesData from "@/utils/Data";
+import Link from "next/link";
 
 export default function ScenarioPopup({ id, setShowPopup }) {
     const [courseId, setCourseId] = useState(2);
@@ -19,7 +20,7 @@ export default function ScenarioPopup({ id, setShowPopup }) {
     // console.log(coursesData);
 
     return (
-        <div className="w-[500px] absolute top-0 left-52 bg-white rounded-xl border z-50 flex flex-col gap-5 items-center p-5">
+        <div className="w-[250px] sm:w-[500px] absolute top-5 sm:left-52 bg-white rounded-xl border z-50 flex flex-col gap-5 items-center p-5 shadow-xl">
             <div className="w-full flex justify-end">
                 <button
                     onClick={() => {
@@ -42,10 +43,7 @@ export default function ScenarioPopup({ id, setShowPopup }) {
             </p>
             <p className="text-sm">
                 {
-                    coursesData
-                        ?.find((course) => {
-                            return course.id === parseInt(courseId);
-                        })
+                    coursesData[0]
                         ?.sections[0]?.scenarios?.find((item) => {
                             return item?.id === id;
                         })?.translations?.length
@@ -59,23 +57,19 @@ export default function ScenarioPopup({ id, setShowPopup }) {
                 <CheckCircleIcon className="size-7" />
                 <p className="font-semibold">Mark all as known</p>
             </button>
-            {coursesData
-                ?.find((course) => {
-                    return course.id === parseInt(courseId);
-                })
-                ?.sections[0]?.scenarios?.find((item) => {
+            {coursesData[0]?.sections[0]?.scenarios?.find((item) => {
                     return item?.id === id;
                 })
                 ?.translations?.map((item, key) => {
                     return (
                         <div className="w-full flex flex-row items-center justify-between" key={key}>
                             <div className="size-10 border-2 rounded-full"></div>
-                            <div className="flex flex-row gap-5 items-center">
+                            <Link href={"/word/1"} className="flex flex-row gap-5 items-center">
                                 <p className="text-sm font-semibold">
                                     {item?.arabic}
                                 </p>
                                 <p className="text-xs">{item?.english}</p>
-                            </div>
+                            </Link>
                             <button>
                                 <EllipsisHorizontalIcon className="size-7 text-black" />
                             </button>

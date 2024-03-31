@@ -57,7 +57,7 @@ export default function SelectLanguage() {
                 <div className="grid grid-cols-4 gap-10 mt-10">
                     {coursesData?.map((item, key) => {
                         return (
-                            <LanguageCard id={item?.id} name={item?.title} image={item?.image} flagImage={item?.flagImage} key={key} />
+                            <LanguageCard id={item?.id} name={item?.title} image={item?.image} flagImage={item?.flagImage} href="/signup" key={key} />
                         )
                     })}
                 </div>
