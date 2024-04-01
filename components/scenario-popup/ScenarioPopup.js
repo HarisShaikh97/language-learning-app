@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import {
@@ -11,7 +11,8 @@ import coursesData from "@/utils/Data";
 import Link from "next/link";
 
 export default function ScenarioPopup({ id, setShowPopup }) {
-    const [courseId, setCourseId] = useState(2);
+    const router = useRouter()
+    // const [courseId, setCourseId] = useState(2);
 
     // useEffect(() => {
     //     setCourseId(localStorage.getItem("course_id"));
@@ -50,7 +51,7 @@ export default function ScenarioPopup({ id, setShowPopup }) {
                 }{" "}
                 words and phrases
             </p>
-            <button className="h-12 w-36 rounded-xl hover:bg-blue-400 bg-blue-300 border-b-4 border-blue-500 font-semibold">
+            <button className="h-12 w-36 rounded-xl hover:bg-blue-400 bg-blue-300 border-b-4 border-blue-500 font-semibold" onClick={() => {router.push("/word/1")}}>
                 Start learning
             </button>
             <button className="flex flex-row gap-3 text-black hover:text-gray-700">
@@ -64,7 +65,7 @@ export default function ScenarioPopup({ id, setShowPopup }) {
                     return (
                         <div className="w-full flex flex-row items-center justify-between" key={key}>
                             <div className="size-10 border-2 rounded-full"></div>
-                            <Link href={"/word/1"} className="flex flex-row gap-5 items-center">
+                            <Link href={"/word/1"} className="flex flex-row gap-5 items-center p-2 rounded-lg hover:border border-black">
                                 <p className="text-sm font-semibold">
                                     {item?.arabic}
                                 </p>

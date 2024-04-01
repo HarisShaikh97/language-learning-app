@@ -2,7 +2,7 @@ import { CheckIcon } from "@heroicons/react/16/solid"
 
 export default function ChangePassword() {
     return (
-        <div className="w-[650px] rounded-lg bg-white my-10 flex flex-col gap-3 items-center p-3">
+        <div className="w-full max-w-[650px] rounded-lg bg-white mx-5 sm:mx-10 my-10 flex flex-col gap-3 items-center p-3">
             <p className="text-xl font-semibold">Set Password</p>
             <div className="h-[1px] w-full border border-dashed"/>
             <p className="w-full text-sm">You don&apos;t have a password yet - you&apos;ll need to set one up.</p>

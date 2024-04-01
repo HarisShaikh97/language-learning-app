@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout"
 import LanguageCard from "@/components/language-card/LanguageCard"
 import coursesData from "@/utils/Data"
 
-export default function AllCourses() {
+export default function AllClasses() {
     return (
         <Layout>
             <div className="flex-1 min-h-full flex flex-col gap-5 p-10">

@@ -2,7 +2,7 @@ import { XMarkIcon } from "@heroicons/react/16/solid"
 
 export default function DeleteAccount() {
     return (
-        <div className="w-[650px] rounded-lg bg-white my-10 flex flex-col gap-3 items-center p-3">
+        <div className="w-full max-w-[650px] rounded-lg bg-white mx-5 sm:mx-10 my-10 flex flex-col gap-3 items-center p-3">
             <p className="text-xl font-semibold">Set Password</p>
             <div className="h-[1px] w-full border border-dashed"/>
             <p className="w-full text-sm">To assure the highest level of data protection, deleting your account will delete all personal identifiable information linked with the account. It&apos;s an irreversible action that can not be undone.</p>

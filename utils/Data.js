@@ -1,7 +1,7 @@
 export const coursesData = [
     {
         "id": 1,
-        "title": "Arabic Course",
+        "title": "Arabic Class",
         "image": "/bg-image-arabic.jpg",
         "flagImage": "/arabic-flag.png",
         "content": "Description of the Arabic course...",
@@ -72,7 +72,7 @@ export const coursesData = [
     },
     {
         "id": 2,
-        "title": "English Course",
+        "title": "English Class",
         "image": "/bg-image-english.jpg",
         "flagImage": "/english-flag.png",
         "content": "Description of the English course...",
@@ -143,7 +143,7 @@ export const coursesData = [
     },
     {
         "id": 3,
-        "title": "Greek Course",
+        "title": "Greek Class",
         "image": "/bg-image-greek.jpg",
         "flagImage": "/greek-flag.png",
         "content": "Description of the Greek course...",

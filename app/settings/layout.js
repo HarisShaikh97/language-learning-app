@@ -12,16 +12,16 @@ export default function SettingsLayout({children}) {
 
     return (
         <div className="h-screen w-screen flex flex-col items-center bg-gray-100">
-            <div className="h-16 w-full bg-primary pl-40 flex items-center">
+            <div className="h-16 w-full bg-primary pl-10 sm:pl-20 md:pl-40 flex items-center">
                 <Link href="/home">
                     <Image src={"/logo2.png"} alt="logo" height={65} width={65} />
                 </Link>
             </div>
             <div className="w-full flex-1 flex flex-col items-center overflow-y-auto scrollbar-none">
-                <div className="min-h-24 w-full border-b pl-40 flex flex-row items-center gap-16 bg-white">
+                <div className="min-h-64 sm:min-h-32 md:min-h-24 w-full border-b pl-10 sm:pl-20 md:pl-40 flex flex-col md:flex-row justify-center md:justify-start md:items-center gap-5 md:gap-16 bg-white">
                     <p className="text-2xl font-bold text-primary">Settings</p>
                     <div className="flex flex-row items-center gap-10">
-                        <div className="flex flex-row gap-5 items-center">
+                        <div className="flex flex-col sm:flex-row gap-5 sm:items-center">
                             <button 
                                 className={`flex flex-row items-center gap-2 p-3 hover:bg-gray-300 rounded-full ${pathname === "/settings/profile" && "bg-primary bg-opacity-35"}`} 
                                 onClick={() => {
@@ -70,8 +70,8 @@ export default function SettingsLayout({children}) {
                         className="bg-[url('/footer-curve.svg')] bg-no-repeat bg-center h-16 w-full"
                         style={{ backgroundSize: "100% 100%" }}
                     />
-                    <div className="w-full bg-primary flex flex-row gap-16 pt-10 pl-20">
-                        <div className="flex flex-col items-center gap-5">
+                    <div className="w-full bg-primary flex flex-col md:flex-row gap-5 md:gap-16 pb-10 md:pb-0 md:pt-10">
+                        <div className="flex flex-col items-center gap-5 md:pl-20">
                             <Image
                                 src={"/logo2.png"}
                                 alt="logo"
@@ -80,8 +80,8 @@ export default function SettingsLayout({children}) {
                             />
                             <div></div>
                         </div>
-                        <div className="flex flex-col gap-10">
-                            <div className="grid grid-cols-4 space-x-10">
+                        <div className="flex flex-col gap-10 pl-10 md:pl-0">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-10">
                                 <div className="flex flex-col gap-3 text-sm font-light text-white">
                                     <p>About Us</p>
                                     <p>Team</p>

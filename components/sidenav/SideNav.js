@@ -33,32 +33,32 @@ export default function SideNav() {
                         {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">Home</p>}
                     </Link>
                 )}
-                {pathname === "/my-courses" ? (
+                {pathname === "/my-classes" ? (
                     <div className="flex flex-row items-center justify-between h-16 bg-gray-100">
                         <div className="flex flex-row sm:gap-5 items-center pl-5">
                             <PresentationChartLineIcon className="h-7 w-7 text-primary" />
-                            {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">My Courses</p>}
+                            {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">My Classes</p>}
                         </div>
                         <div className="h-full w-2 bg-blue-400 rounded-s-full" />
                     </div>
                 ) : (
-                    <Link href={"/my-courses"} className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50">
+                    <Link href={"/my-classes"} className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50">
                         <PresentationChartLineIcon className="h-7 w-7 text-primary" />
-                        {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">My Courses</p>}
+                        {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">My Classes</p>}
                     </Link>
                 )}
-                {pathname === "/all-courses" ? (
+                {pathname === "/all-classes" ? (
                     <div className="flex flex-row items-center justify-between h-16 bg-gray-100">
                         <div className="flex flex-row sm:gap-5 items-center pl-5">
                             <PresentationChartLineIcon className="h-7 w-7 text-primary" />
-                            {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">All Courses</p>}
+                            {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">All Classes</p>}
                         </div>
                         <div className="h-full w-2 bg-blue-400 rounded-s-full" />
                     </div>
                 ) : (
-                    <Link href={"/all-courses"} className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50">
+                    <Link href={"/all-classes"} className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50">
                         <PresentationChartBarIcon className="h-7 w-7 text-primary" />
-                        {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">All Courses</p>}
+                        {!collapsed && <p className="hidden sm:flex text-lg text-primary font-semibold">All Classes</p>}
                     </Link>
                 )}
             </div>
