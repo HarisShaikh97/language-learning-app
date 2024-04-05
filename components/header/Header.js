@@ -10,7 +10,7 @@ export default function Header() {
     const [showProfileDropDown, setShowProfileDropDown] = useState(false)
 
     return (
-        <div className="flex flex-row items-center justify-between px-5 sm:px-10 bg-blue-300">
+        <div className="flex flex-row items-center justify-between px-5 sm:px-10 bg-blue-100">
             <button
                 className="flex flex-row items-center py-8 relative"
                 onClick={() => {
@@ -50,7 +50,7 @@ export default function Header() {
                         <UserCircleIcon className="h-10 w-10 text-black hover:text-primary" />
                     </button>
                     {showProfileDropDown && (
-                        <div className="absolute top-10 -right-5 w-60 shadow-lg border-2 rounded-2xl bg-white flex flex-col items-start z-50">
+                        <div className="absolute top-10 -right-5 w-52 shadow-lg border-2 rounded-lg bg-white flex flex-col items-start z-50">
                             <div className="flex flex-col gap-3 px-5 py-5 items-start">
                                 <button className="text-sm font-medium" onClick={() => {router.push("/settings/profile")}}>Profile settings</button>
                                 <button className="text-sm font-medium">Learning settings</button>

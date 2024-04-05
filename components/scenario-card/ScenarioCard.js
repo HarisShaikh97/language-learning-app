@@ -4,13 +4,12 @@ import { LockClosedIcon } from "@heroicons/react/24/solid"
 export const ScenarioCard = ({ id, name, isPremium, setSelectedScenario, setShowPopup }) => {
 	return (
 		<button 
-			className={`h-32 w-44 relative rounded-xl border-b-4 border-blue-300 ${isPremium ? "bg-blue-100 hover:bg-blue-200" : "bg-gray-100 hover:bg-gray-200"} flex items-end p-3`}
+			className={`h-24 w-44 rounded-lg border-b-2 border-blue-300 ${isPremium ? "bg-blue-100 hover:bg-blue-200" : "bg-gray-100 hover:bg-sky-200"} flex p-3`}
 			onClick={() => {
 				setSelectedScenario(id)
 				setShowPopup(true)
 			}}
 		>
-			<div className="absolute top-6 right-0 bg-blue-300 h-20 w-10 rounded-s-full"></div>
 			{isPremium && <Image
 				src={"/stars.svg"}
 				alt="stars"
