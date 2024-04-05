@@ -109,7 +109,7 @@ export default function Course({ params }) {
 					<p className="text-2xl font-bold mt-10">
 						Continue learning
 					</p>
-					<div className="h-36 w-60 sm:h-28 sm:w-72 bg-sky-100 border-b-2 border-sky-300 flex flex-col justify-between p-3">
+					<div className="h-36 w-60 sm:h-28 sm:w-72 shadow-xl bg-sky-100 border-b-2 border-sky-300 flex flex-col justify-between p-3">
 						<p className="text-xs font-bold">Abjad</p>
 						<div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 justify-between w-full">
 							<p>Deciphering the letters</p>

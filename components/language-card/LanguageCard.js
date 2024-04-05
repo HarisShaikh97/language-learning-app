@@ -17,7 +17,7 @@ export default function LanguageCard({ id, name, image, href }) {
 
 	return (
 		<button
-			className={`h-64 w-96 border-2 ${
+			className={`h-64 w-96 border ${
 				isHovered ? "border-b-[5px]" : "border-b-[3px]"
 			} border-gray-300 flex flex-col gap-12`}
 			style={{ transition: "border-width 0.25s ease-in-out" }}

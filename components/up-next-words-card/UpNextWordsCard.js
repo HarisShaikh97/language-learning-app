@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 export default function UpNextWordsCard({ className }) {
 	return (
 		<div
-			className={`absolute ${className} w-56 sm:w-80 rounded-lg bg-primary flex flex-col gap-5 px-5 py-5`}
+			className={`absolute ${className} w-56 sm:w-80 rounded-lg bg-primary shadow-xl flex flex-col gap-5 px-5 py-5`}
 		>
 			<div className="flex flex-row items-center justify-between">
 				<p className="text-lg font-semibold text-white">

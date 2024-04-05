@@ -10,7 +10,7 @@ export const ScenarioCard = ({
 }) => {
 	return (
 		<button
-			className={`h-32 w-52 border-b-2 border-blue-300 ${
+			className={`h-32 w-52 shadow-xl border-b-2 border-blue-300 ${
 				isPremium
 					? "bg-blue-100 hover:bg-blue-200"
 					: "bg-gray-100 hover:bg-sky-200"
