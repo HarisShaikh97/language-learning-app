@@ -11,7 +11,7 @@ import UpNextConversationCard from "../up-next-conversation-card/UpNextConversat
 export default function WeeklyProgressCard({ selectedTab, setSelectedTab }) {
 	return (
 		<div
-			className={`h-[400px] w-[250px] sm:w-[350px] rounded-lg shadow-xl ${
+			className={`h-[400px] w-[250px] sm:w-[350px] shadow-xl ${
 				selectedTab === "green"
 					? "bg-[#00a778]"
 					: selectedTab === "red"

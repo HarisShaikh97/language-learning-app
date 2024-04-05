@@ -19,7 +19,7 @@ export default function WeeklyProgressCardGrid({
 					selectedTab === "green"
 						? "h-[350px] w-[650px] grid grid-cols-2 content-center"
 						: "h-80 w-64 flex items-center justify-center"
-				} rounded-lg shadow-xl bg-[#00a778]`}
+				} shadow-xl bg-[#00a778]`}
 				onClick={() => {
 					setSelectedTab("green")
 				}}
@@ -53,7 +53,7 @@ export default function WeeklyProgressCardGrid({
 					selectedTab === "red"
 						? "h-[350px] w-[650px] grid grid-cols-2 content-center"
 						: "h-80 w-64 flex items-center justify-center"
-				} rounded-lg shadow-xl bg-[#e46962]`}
+				} shadow-xl bg-[#e46962]`}
 				onClick={() => {
 					setSelectedTab("red")
 				}}
@@ -83,7 +83,7 @@ export default function WeeklyProgressCardGrid({
 					selectedTab === "blue"
 						? "h-[350px] w-[650px] grid grid-cols-2 content-center"
 						: "h-80 w-64 flex items-center justify-center"
-				} rounded-lg shadow-xl bg-[#009fbb]`}
+				} shadow-xl bg-[#009fbb]`}
 				onClick={() => {
 					setSelectedTab("blue")
 				}}

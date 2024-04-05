@@ -73,7 +73,7 @@ export default function Login() {
 				<p className="text-primary text-xs font-bold">
 					Username or Email:
 				</p>
-				<div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
+				<div className="h-14 w-full rounded bg-sky-50 shadow-xl px-3 flex items-center justify-center">
 					<input
 						type="text"
 						placeholder="example@email.com"
@@ -82,13 +82,17 @@ export default function Login() {
 							setEmail(e.target.value)
 						}}
 						className="text-xs"
-						style={{ outline: "none", width: "100%" }}
+						style={{
+							outline: "none",
+							width: "100%",
+							background: "transparent"
+						}}
 					/>
 				</div>
 			</div>
 			<div className="flex flex-col gap-3 w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary text-xs font-bold">Password:</p>
-				<div className="h-14 w-full rounded-2xl border-2 border-primary px-3 flex items-center justify-center">
+				<div className="h-14 w-full rounded bg-sky-50 shadow-xl px-3 flex items-center justify-center">
 					<input
 						type="password"
 						placeholder="**********"
@@ -97,7 +101,11 @@ export default function Login() {
 							setPassword(e.target.value)
 						}}
 						className="text-xs"
-						style={{ outline: "none", width: "100%" }}
+						style={{
+							outline: "none",
+							width: "100%",
+							background: "transparent"
+						}}
 					/>
 				</div>
 			</div>
@@ -107,7 +115,7 @@ export default function Login() {
 				</p>
 			</div>
 			<button
-				className="flex items-center justify-center bg-blue-300 py-3 w-[250px] sm:w-[450px] rounded-lg mt-5 border-b-4 border-blue-400 text-white font-bold"
+				className="flex items-center justify-center bg-blue-300 py-2 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-white font-bold"
 				onClick={handleSignIn}
 			>
 				Sign in
