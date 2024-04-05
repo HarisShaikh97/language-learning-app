@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 export default function UpNextWordsCard({ className }) {
 	return (
 		<div
-			className={`absolute ${className} w-56 sm:w-80 rounded-2xl bg-primary border-b-8 border-blue-400 flex flex-col gap-5 px-5 py-5`}
+			className={`absolute ${className} w-56 sm:w-80 rounded-lg bg-primary flex flex-col gap-5 px-5 py-5`}
 		>
 			<div className="flex flex-row items-center justify-between">
 				<p className="text-lg font-semibold text-white">
@@ -16,15 +16,14 @@ export default function UpNextWordsCard({ className }) {
 				</div>
 			</div>
 			<p className="text-white">Learn new words</p>
-			<div className="h-32 flex rounded-2xl bg-gray-100 hover:bg-gray-200 border-b-4 border-gray-300 relative p-3">
-				<div className="absolute top-3 right-0 bg-blue-300 h-24 w-12 rounded-s-full"></div>
+			<div className="h-20 flex rounded-xl bg-gray-100 hover:bg-gray-200 p-3 relative">
 				<p className="font-semibold text-sm">Deciphering the Letters</p>
 				<div className="h-[5px] w-[90%] rounded-full bg-white absolute bottom-2">
 					<div className="h-full w-[25%] rounded-full bg-primary" />
 				</div>
 			</div>
 			<Link
-				className="h-14 flex items-center justify-center bg-blue-400 hover:bg-blue-300 border-b-4 border-blue-500 rounded-2xl font-semibold"
+				className="h-10 flex items-center justify-center bg-blue-400 hover:bg-blue-300 text-white rounded-xl font-semibold"
 				href="/scenarios"
 			>
 				Continue

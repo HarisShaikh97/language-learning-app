@@ -102,16 +102,15 @@ export default function Course({params}) {
                         </div>
                     </div> */}
                     <p className="text-2xl font-bold mt-10">Continue learning</p>
-                    <div className="h-36 w-60 sm:h-28 sm:w-80 rounded-lg bg-gray-100 border-b-4 border-slate-300 relative flex flex-col justify-between p-3">
-                        <div className="absolute top-10 sm:top-6 right-0 bg-blue-300 h-16 w-8 rounded-s-full"></div>
+                    <div className="h-36 w-60 sm:h-28 sm:w-72 rounded bg-sky-100 border-b-2 border-sky-300 flex flex-col justify-between p-3">
                         <p className="text-xs font-bold">Abjad</p>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 justify-between w-[90%]">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 justify-between w-full">
                             <p>Deciphering the letters</p>
-                            <button className="h-10 w-24 bg-blue-400 border-b-4 border-blue-500 rounded-xl font-semibold">
+                            <button className="h-10 w-24 bg-blue-400 text-white border-b-4 border-blue-500 rounded-xl font-semibold">
                                 Continue
                             </button>
                         </div>
-                        <div className="h-[5px] w-[90%] rounded-full bg-white">
+                        <div className="h-[5px] w-full rounded-full bg-white">
                             <div className="h-full w-[25%] rounded-full bg-primary" />
                         </div>
                     </div>

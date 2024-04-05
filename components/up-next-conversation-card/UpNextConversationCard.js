@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 export default function UpNextConversationCard({ className }) {
 	return (
 		<div
-			className={`absolute ${className} w-56 sm:w-80 rounded-2xl bg-primary border-b-8 border-blue-400 flex flex-col gap-5 px-5 py-5`}
+			className={`absolute ${className} w-56 sm:w-80 rounded-lg bg-primary flex flex-col gap-5 px-5 py-5`}
 		>
 			<div className="flex flex-row items-center justify-between">
 				<p className="text-lg font-semibold text-white">
@@ -14,12 +14,12 @@ export default function UpNextConversationCard({ className }) {
 					<ChatBubbleOvalLeftEllipsisIcon className="h-6 w-6 text-white" />
 				</div>
 			</div>
-			<div className="h-20 flex items-center px-5 rounded-2xl bg-slate-500 bg-opacity-35">
+			<div className="h-20 flex items-center px-5 rounded-xl bg-slate-500 bg-opacity-35">
 				<p className="font-bold text-slate-300">
 					No recommended conversations right now
 				</p>
 			</div>
-			<div className="h-12 flex items-center justify-center bg-blue-400 hover:bg-blue-300 border-b-4 border-blue-500 rounded-2xl font-semibold">
+			<div className="h-12 flex items-center justify-center text-white bg-blue-400 hover:bg-blue-300 rounded-xl font-semibold">
 				More conversations
 			</div>
 		</div>
