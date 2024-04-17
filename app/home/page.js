@@ -31,12 +31,7 @@ export default function Home() {
 				<div
 					className="h-full w-full flex-1 flex flex-col gap-5 items-center bg-cover bg-center"
 					style={{
-						backgroundImage:
-							selectedTab === "green"
-								? "url('/bg-image-green.svg')"
-								: selectedTab === "red"
-								? "url('/bg-image-red.svg')"
-								: "url('/bg-image-blue.svg')"
+						backgroundImage: "url('/bg-image-blue.svg')"
 					}}
 				>
 					<div className="w-[95%] flex flex-row items-center justify-between py-5">
