@@ -49,7 +49,7 @@ export const coursesData = [
 						]
 					},
 					{
-						id: "1",
+						id: "3",
 						title: "How to Count in Arabic",
 						description: "Description of how to count in Arabic...",
 						translations: [
@@ -68,7 +68,7 @@ export const coursesData = [
 						]
 					},
 					{
-						id: "2",
+						id: "4",
 						title: "Daily Basic Communication in Arabic",
 						description:
 							"Description of daily basic communication in Arabic...",
@@ -88,7 +88,7 @@ export const coursesData = [
 						]
 					},
 					{
-						id: "1",
+						id: "5",
 						title: "How to Count in Arabic",
 						description: "Description of how to count in Arabic...",
 						translations: [
@@ -107,7 +107,7 @@ export const coursesData = [
 						]
 					},
 					{
-						id: "2",
+						id: "6",
 						title: "Daily Basic Communication in Arabic",
 						description:
 							"Description of daily basic communication in Arabic...",

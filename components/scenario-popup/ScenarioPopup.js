@@ -21,73 +21,75 @@ export default function ScenarioPopup({ id, setShowPopup }) {
 	// console.log(coursesData);
 
 	return (
-		<div className="w-[250px] sm:w-[500px] absolute top-5 sm:left-52 bg-white rounded-xl border z-50 flex flex-col gap-5 items-center p-5 shadow-xl">
-			<div className="w-full flex justify-end">
+		<div className="fixed top-0 left-0 h-screen w-screen bg-primary bg-opacity-35 z-20">
+			<div className="w-[250px] sm:w-[500px] absolute top-32 left-[20%] lg:left-[35%] bg-white rounded-xl border z-50 flex flex-col gap-5 items-center p-5 shadow-xl">
+				<div className="w-full flex justify-end">
+					<button
+						onClick={() => {
+							setShowPopup(false)
+						}}
+					>
+						<XMarkIcon className="size-7 text-black" />
+					</button>
+				</div>
+				<div className="size-20 rounded-full bg-blue-50 flex items-center justify-center relative">
+					<Image
+						src={"/greetings.png"}
+						alt="icon"
+						height={50}
+						width={50}
+					/>
+				</div>
+				<p className="text-sm font-semibold uppercase font-sans">
+					Introductions
+				</p>
+				<p className="text-sm">
+					{
+						coursesData[0]?.sections[0]?.scenarios?.find((item) => {
+							return item?.id === id
+						})?.translations?.length
+					}{" "}
+					words and phrases
+				</p>
 				<button
+					className="h-12 w-36 rounded hover:bg-blue-400 bg-blue-300 border-b-4 border-blue-500 font-semibold"
 					onClick={() => {
-						setShowPopup(false)
+						router.push("/word/1")
 					}}
 				>
-					<XMarkIcon className="size-7 text-black" />
+					Start learning
 				</button>
-			</div>
-			<div className="size-20 rounded-full bg-blue-50 flex items-center justify-center relative">
-				<Image
-					src={"/greetings.png"}
-					alt="icon"
-					height={50}
-					width={50}
-				/>
-			</div>
-			<p className="text-sm font-semibold uppercase font-sans">
-				Introductions
-			</p>
-			<p className="text-sm">
-				{
-					coursesData[0]?.sections[0]?.scenarios?.find((item) => {
+				<button className="flex flex-row gap-3 text-black hover:text-gray-700">
+					<CheckCircleIcon className="size-7" />
+					<p className="font-semibold">Mark all as known</p>
+				</button>
+				{coursesData[0]?.sections[0]?.scenarios
+					?.find((item) => {
 						return item?.id === id
-					})?.translations?.length
-				}{" "}
-				words and phrases
-			</p>
-			<button
-				className="h-12 w-36 rounded hover:bg-blue-400 bg-blue-300 border-b-4 border-blue-500 font-semibold"
-				onClick={() => {
-					router.push("/word/1")
-				}}
-			>
-				Start learning
-			</button>
-			<button className="flex flex-row gap-3 text-black hover:text-gray-700">
-				<CheckCircleIcon className="size-7" />
-				<p className="font-semibold">Mark all as known</p>
-			</button>
-			{coursesData[0]?.sections[0]?.scenarios
-				?.find((item) => {
-					return item?.id === id
-				})
-				?.translations?.map((item, key) => {
-					return (
-						<div
-							className="w-full flex flex-row items-center justify-between"
-							key={key}
-						>
-							<div className="size-10 border-2 rounded-full"></div>
-							<Link
-								href={"/word/1"}
-								className="flex flex-row gap-5 items-center p-2 rounded-lg hover:border border-black"
+					})
+					?.translations?.map((item, key) => {
+						return (
+							<div
+								className="w-full flex flex-row items-center justify-between"
+								key={key}
 							>
-								<p className="text-sm font-semibold">
-									{item?.arabic}
-								</p>
-								<p className="text-xs">{item?.english}</p>
-							</Link>
-							<button>
-								<EllipsisHorizontalIcon className="size-7 text-black" />
-							</button>
-						</div>
-					)
-				})}
+								<div className="size-10 border-2 rounded-full"></div>
+								<Link
+									href={"/word/1"}
+									className="flex flex-row gap-5 items-center p-2 rounded-lg hover:border border-black"
+								>
+									<p className="text-sm font-semibold">
+										{item?.arabic}
+									</p>
+									<p className="text-xs">{item?.english}</p>
+								</Link>
+								<button>
+									<EllipsisHorizontalIcon className="size-7 text-black" />
+								</button>
+							</div>
+						)
+					})}
+			</div>
 		</div>
 	)
 }
