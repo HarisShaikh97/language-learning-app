@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { MultiSelect } from "primereact/multiselect"
 import TeacherLayout from "@/components/teacher/layout/Layout"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
@@ -8,7 +9,10 @@ import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
 
 export default function AddStudent() {
-	const [selectedClasses, setSelectedClasses] = useState([])
+
+    const router = useRouter()
+
+    const [selectedClasses, setSelectedClasses] = useState([])
 
 	const options = [
 		{ label: "Arabic", value: "arabic" },
@@ -55,10 +59,10 @@ export default function AddStudent() {
 						/>
 					</div>
 					<div className="h-20 w-full flex flex-row items-center justify-end gap-5">
-						<button className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150">
+						<button className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150" onClick={() => {router?.back()}}>
 							Save
 						</button>
-						<button className="h-12 w-40 flex items-center justify-center rounded-lg border border-b-2 hover:border-b-4 text-primary font-semibold border-primary transform-gpu ease-in-out duration-150">
+						<button className="h-12 w-40 flex items-center justify-center rounded-lg border border-b-2 hover:border-b-4 text-primary font-semibold border-primary transform-gpu ease-in-out duration-150" onClick={() => {router?.back()}}>
 							Cancel
 						</button>
 					</div>
