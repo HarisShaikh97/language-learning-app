@@ -97,7 +97,7 @@ export default function SideNav() {
 				{pathname === "/all-classes" ? (
 					<div className="flex flex-row items-center justify-between h-16 bg-gray-100">
 						<div className="flex flex-row lg:gap-5 items-center pl-5">
-							<PresentationChartLineIcon className="size-5 text-primary" />
+							<PresentationChartBarIcon className="size-5 text-primary" />
 							{!collapsed && (
 								<p className="hidden lg:flex text-lg text-primary font-semibold">
 									All Classes
