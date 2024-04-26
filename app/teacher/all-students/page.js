@@ -1,7 +1,14 @@
+"use client"
+
 import Link from "next/link"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { EyeIcon, TrashIcon } from "@heroicons/react/24/solid"
 import TeacherLayout from "@/components/teacher/layout/Layout"
 
 export default function AllStudents() {
+	const router = useRouter()
+
 	const data = [
 		{
 			id: 1,
@@ -200,23 +207,52 @@ export default function AllStudents() {
 					</Link>
 				</div>
 				<div className="w-full max-h-[70vh] flex-1 flex flex-col gap-5 rounded-lg border border-sky-500 p-10">
-					<div className="w-full grid grid-cols-4 text-lg font-semibold">
-						<p>Name</p>
-						<p>Email</p>
-						<p>Phone no.</p>
-						<p>Class</p>
+					<div className="w-full flex flex-row items-center">
+						<div className="w-20" />
+						<div className="w-full grid grid-cols-5 text-lg font-semibold">
+							<p className="pl-20">Name</p>
+							<p className="pl-20">Email</p>
+							<p className="pl-20">Phone no.</p>
+							<p className="pl-20">Class</p>
+							<p className="pl-20">Action</p>
+						</div>
 					</div>
-					<div className="size-full flex flex-col gap-3 overflow-y-auto scrollbar-none">
+					<div className="size-full flex flex-col overflow-y-auto scrollbar-none">
 						{data?.map((item, key) => {
 							return (
 								<div
-									className="w-full grid grid-cols-4 text-sm text-primary"
+									className="w-full flex flex-row items-center"
 									key={key}
 								>
-									<p>{item?.name}</p>
-									<p>{item?.email}</p>
-									<p>{item?.phone}</p>
-									<p>{item?.class}</p>
+									<div className="size-20 flex items-center justify-center">
+										<Image
+											src={"/profile.png"}
+											alt="profile"
+											height={50}
+											width={50}
+											className="rounded-full overflow-hidden"
+										/>
+									</div>
+									<div className="w-full grid grid-cols-5 text-sm text-primary">
+										<p className="pl-20">{item?.name}</p>
+										<p className="pl-20">{item?.email}</p>
+										<p className="pl-20">{item?.phone}</p>
+										<p className="pl-20">{item?.class}</p>
+										<div className="pl-20 flex flex-row items-center gap-3">
+											<button>
+												<TrashIcon className="size-6 text-sky-500" />
+											</button>
+											<button
+												onClick={() => {
+													router.push(
+														`/teacher/student/${item?.id}`
+													)
+												}}
+											>
+												<EyeIcon className="size-6 text-sky-500" />
+											</button>
+										</div>
+									</div>
 								</div>
 							)
 						})}

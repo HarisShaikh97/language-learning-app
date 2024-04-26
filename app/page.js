@@ -120,6 +120,12 @@ export default function Login() {
 			>
 				Sign in
 			</button>
+			<Link
+				href={"/teacher/login"}
+				className="flex items-center justify-center bg-blue-400 py-2 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-300 text-white font-bold"
+			>
+				Sign in as a teacher
+			</Link>
 			<Link href={"/signup"} className="underline my-5">
 				Don&apos;t have an account? Sign up now!
 			</Link>

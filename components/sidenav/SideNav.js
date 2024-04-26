@@ -54,7 +54,7 @@ export default function SideNav() {
 								</p>
 							)}
 						</div>
-						<div className="h-full w-2 bg-blue-400 rounded-s-full" />
+						<div className="h-full w-2 bg-sky-400 rounded-s-full" />
 					</div>
 				) : (
 					<Link
@@ -79,7 +79,7 @@ export default function SideNav() {
 								</p>
 							)}
 						</div>
-						<div className="h-full w-2 bg-blue-400 rounded-s-full" />
+						<div className="h-full w-2 bg-sky-400 rounded-s-full" />
 					</div>
 				) : (
 					<Link
@@ -104,7 +104,7 @@ export default function SideNav() {
 								</p>
 							)}
 						</div>
-						<div className="h-full w-2 bg-blue-400 rounded-s-full" />
+						<div className="h-full w-2 bg-sky-400 rounded-s-full" />
 					</div>
 				) : (
 					<Link
@@ -129,7 +129,7 @@ export default function SideNav() {
 								</p>
 							)}
 						</div>
-						<div className="h-full w-2 bg-blue-400 rounded-s-full" />
+						<div className="h-full w-2 bg-sky-400 rounded-s-full" />
 					</div>
 				) : (
 					<Link
