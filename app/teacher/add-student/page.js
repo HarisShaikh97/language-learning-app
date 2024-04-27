@@ -25,7 +25,7 @@ export default function AddStudent() {
 			<div className="w-full flex-1 flex flex-col gap-10 p-10">
 				<p className="text-xl font-semibold">Add New Student</p>
 				<div className="w-full flex flex-col gap-10">
-					<div className="flex flex-row items-center justify-between">
+					<div className="flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-between">
 						<div className="h-12 w-[48.5%] px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
@@ -41,7 +41,7 @@ export default function AddStudent() {
 							/>
 						</div>
 					</div>
-					<div className="flex flex-row items-center justify-between">
+					<div className="flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-between">
 						<div className="h-12 w-[48.5%] px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
