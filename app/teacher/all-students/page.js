@@ -12,184 +12,184 @@ export default function AllStudents() {
 	const data = [
 		{
 			id: 1,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 2,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 3,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 4,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 5,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 6,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 7,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 8,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 9,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 10,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 11,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 12,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 13,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 14,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 15,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 16,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 17,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 18,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 19,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 20,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 21,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 22,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 23,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 24,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 25,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		},
 		{
 			id: 26,
-			name: "Anees Iqbal",
-			phone: "+923351234567",
-			email: "anees@gmail.com",
+			name: "Jason Pink",
+			phone: "(111) 1234567",
+			email: "jason@gmail.com",
 			class: "Arabic"
 		}
 	]
@@ -228,8 +228,8 @@ export default function AllStudents() {
 										<Image
 											src={"/profile.png"}
 											alt="profile"
-											height={50}
-											width={50}
+											height={35}
+											width={35}
 											className="rounded-full overflow-hidden"
 										/>
 									</div>

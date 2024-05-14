@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 
-export default function TeacherLogin() {
+export default function AdminLogin() {
 	const router = useRouter()
 
 	const [email, setEmail] = useState("")
@@ -12,7 +12,7 @@ export default function TeacherLogin() {
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
-		router?.push("/teacher/all-students")
+		router?.push("/admin/home")
 	}
 
 	return (
@@ -21,7 +21,7 @@ export default function TeacherLogin() {
 				<Image src={"/logo2.png"} alt="logo" height={100} width={100} />
 			</div>
 			<p className="text-xl md:text-3xl text-primary font-extrabold w-[250px] sm:w-[450px] text-center my-10">
-				Log in to connect with students worldwide
+				Admin
 			</p>
 			<div className="flex flex-col gap-3 w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary text-xs font-bold">
@@ -62,11 +62,6 @@ export default function TeacherLogin() {
 						}}
 					/>
 				</div>
-			</div>
-			<div className="flex justify-end w-[250px] sm:w-[450px] mt-5">
-				<p className="text-primary underline text-xs cursor-pointer">
-					I forgot my password!
-				</p>
 			</div>
 			<button
 				className="flex items-center justify-center bg-blue-300 py-2 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-white font-bold"

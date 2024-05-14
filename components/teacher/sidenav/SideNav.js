@@ -8,6 +8,7 @@ import {
 	ListBulletIcon,
 	PresentationChartLineIcon,
 	PresentationChartBarIcon,
+	BuildingLibraryIcon,
 	ChevronLeftIcon,
 	ChevronRightIcon
 } from "@heroicons/react/16/solid"
@@ -114,6 +115,31 @@ export default function SideNav() {
 						{!collapsed && (
 							<p className="hidden sm:flex text-md text-primary font-semibold">
 								Create Class
+							</p>
+						)}
+					</Link>
+				)}
+				{pathname === "/teacher/suggest-class" ? (
+					<div className="flex flex-row items-center justify-between h-16 bg-gray-100">
+						<div className="flex flex-row sm:gap-5 items-center pl-5">
+							<BuildingLibraryIcon className="size-5 text-primary" />
+							{!collapsed && (
+								<p className="hidden sm:flex text-md text-primary font-semibold">
+									Suggest Class
+								</p>
+							)}
+						</div>
+						<div className="h-full w-2 bg-sky-400 rounded-s-full" />
+					</div>
+				) : (
+					<Link
+						href={"/teacher/suggest-class"}
+						className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50"
+					>
+						<BuildingLibraryIcon className="size-5 text-primary" />
+						{!collapsed && (
+							<p className="hidden sm:flex text-md text-primary font-semibold">
+								Suggest Class
 							</p>
 						)}
 					</Link>

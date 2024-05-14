@@ -1,5 +1,5 @@
 import Image from "next/image"
-import TeacherLayout from "@/components/teacher/layout/Layout"
+import AdminLayout from "@/components/admin/layout/Layout"
 import LanguageCard from "@/components/language-card/LanguageCard"
 
 export default function Student({ params }) {
@@ -25,7 +25,7 @@ export default function Student({ params }) {
 	]
 
 	return (
-		<TeacherLayout>
+		<AdminLayout>
 			<div className="h-full flex-1 flex flex-col lg:flex-row gap-20 p-20">
 				<div className="h-fit p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
 					<Image
@@ -51,7 +51,6 @@ export default function Student({ params }) {
 									name={item?.title}
 									flagImage={item?.flagImage}
 									image={item?.image}
-									href={`/teacher/class/${item?.id}`}
 									key={key}
 								/>
 							)
@@ -59,6 +58,6 @@ export default function Student({ params }) {
 					</div>
 				</div>
 			</div>
-		</TeacherLayout>
+		</AdminLayout>
 	)
 }
