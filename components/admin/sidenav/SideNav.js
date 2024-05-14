@@ -8,6 +8,7 @@ import {
 	ListBulletIcon,
 	HomeIcon,
 	PresentationChartBarIcon,
+	UserGroupIcon,
 	AcademicCapIcon,
 	ChevronLeftIcon,
 	ChevronRightIcon
@@ -122,7 +123,7 @@ export default function SideNav() {
 				{pathname === "/admin/all-teachers" ? (
 					<div className="flex flex-row items-center justify-between h-16 bg-gray-100">
 						<div className="flex flex-row sm:gap-5 items-center pl-5">
-							<AcademicCapIcon className="size-5 text-primary" />
+							<UserGroupIcon className="size-5 text-primary" />
 							{!collapsed && (
 								<p className="hidden sm:flex text-md text-primary font-semibold">
 									All Teachers
@@ -136,10 +137,35 @@ export default function SideNav() {
 						href={"/admin/all-teachers"}
 						className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50"
 					>
-						<AcademicCapIcon className="size-5 text-primary" />
+						<UserGroupIcon className="size-5 text-primary" />
 						{!collapsed && (
 							<p className="hidden sm:flex text-md text-primary font-semibold">
 								All Teachers
+							</p>
+						)}
+					</Link>
+				)}
+				{pathname === "/admin/learning-mode" ? (
+					<div className="flex flex-row items-center justify-between h-16 bg-gray-100">
+						<div className="flex flex-row sm:gap-5 items-center pl-5">
+							<AcademicCapIcon className="size-5 text-primary" />
+							{!collapsed && (
+								<p className="hidden sm:flex text-md text-primary font-semibold">
+									Learning Mode
+								</p>
+							)}
+						</div>
+						<div className="h-full w-2 bg-sky-400 rounded-s-full" />
+					</div>
+				) : (
+					<Link
+						href={"/admin/learning-mode"}
+						className="flex flex-row sm:gap-5 items-center h-16 pl-5 hover:bg-gray-50"
+					>
+						<AcademicCapIcon className="size-5 text-primary" />
+						{!collapsed && (
+							<p className="hidden sm:flex text-md text-primary font-semibold">
+								Learning Mode
 							</p>
 						)}
 					</Link>

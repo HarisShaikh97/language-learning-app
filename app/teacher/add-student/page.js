@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 import { MultiSelect } from "primereact/multiselect"
+import { CloudArrowUpIcon } from "@heroicons/react/24/solid"
 import TeacherLayout from "@/components/teacher/layout/Layout"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
@@ -12,6 +14,7 @@ export default function AddStudent() {
 	const router = useRouter()
 
 	const [selectedClasses, setSelectedClasses] = useState([])
+	const [image, setImage] = useState(null)
 
 	const options = [
 		{ label: "Arabic", value: "arabic" },
@@ -19,29 +22,48 @@ export default function AddStudent() {
 		{ label: "Greek", value: "greek" }
 	]
 
+	const handleImageDrop = (e) => {
+		e.preventDefault()
+		const file = e.dataTransfer.files[0]
+		if (file) {
+			setImage(URL.createObjectURL(file))
+		}
+	}
+
+	const handleImageDragOver = (e) => {
+		e.preventDefault()
+	}
+
 	return (
 		<TeacherLayout>
 			<div className="w-full flex-1 flex flex-col gap-10 p-10">
 				<p className="text-xl font-semibold">Add New Student</p>
 				<div className="w-full flex flex-col gap-10">
-					<div className="flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-between">
-						<div className="h-12 w-[48.5%] px-5 border border-gray-300 rounded-lg flex justify-center">
+					<div className="flex flex-col gap-10 md:flex-row items-center justify-between">
+						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
 								placeholder="Enter Full Name"
 								className="w-full bg-transparent outline-none border-none"
 							/>
 						</div>
-						<div className="h-12 w-[48.5%] px-5 border border-gray-300 rounded-lg flex justify-center">
+						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
 								placeholder="Enter Email Address"
 								className="w-full bg-transparent outline-none border-none"
 							/>
 						</div>
+						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
+							<input
+								type="password"
+								placeholder="Enter Password"
+								className="w-full bg-transparent outline-none border-none"
+							/>
+						</div>
 					</div>
-					<div className="flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-between">
-						<div className="h-12 w-[48.5%] px-5 border border-gray-300 rounded-lg flex justify-center">
+					<div className="flex flex-col gap-10 md:flex-row items-center justify-between">
+						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
 								placeholder="Enter Phone Number"
@@ -53,9 +75,29 @@ export default function AddStudent() {
 							value={selectedClasses}
 							options={options}
 							onChange={(e) => setSelectedClasses(e.value)}
-							className="w-[48.5%] border border-gray-300 outline-none rounded-lg"
+							className="w-full border border-gray-300 outline-none rounded-lg"
 							placeholder="Select Classes"
 						/>
+					</div>
+					<div
+						className="h-80 w-full border border-gray-300 p-5 rounded-lg flex flex-col justify-between items-center"
+						onDrop={handleImageDrop}
+						onDragOver={handleImageDragOver}
+					>
+						<div className="w-full text-gray-400">
+							Drag and Drop Profile Picture
+						</div>
+						{image ? (
+							<Image
+								src={image}
+								alt="uploaded"
+								height={100}
+								width={100}
+							/>
+						) : (
+							<CloudArrowUpIcon className="size-20 text-sky-500" />
+						)}
+						<div />
 					</div>
 					<div className="h-20 w-full flex flex-row items-center justify-end gap-5">
 						<button
