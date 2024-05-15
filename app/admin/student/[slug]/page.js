@@ -103,7 +103,15 @@ export default function Student({ params }) {
 					</div>
 				</div>
 				<div className="h-fit w-full rounded-xl border border-sky-200 shadow-xl p-10 flex flex-col gap-10">
-					<p className="text-3xl">Progress</p>
+					<div className="w-full flex flex-row items-center justify-between">
+						<p className="text-3xl">Progress</p>
+						<div className="flex flex-row items-center gap-3">
+							<p>Level</p>
+							<div className="size-6 rounded-full bg-sky-300 text-white text-sm flex items-center justify-center">
+								<p>3</p>
+							</div>
+						</div>
+					</div>
 					<div className="grid grid-cols-2 w-full gap-10">
 						<div className="h-96 w-full">
 							<ResponsiveContainer width="100%" height="100%">
