@@ -1,13 +1,6 @@
 "use client"
 
-import {
-	BarChart,
-	Bar,
-	YAxis,
-	CartesianGrid,
-	XAxis,
-	ResponsiveContainer
-} from "recharts"
+import { AreaChart, Area, YAxis, XAxis, ResponsiveContainer } from "recharts"
 import AdminLayout from "@/components/admin/layout/Layout"
 
 export default function Home() {
@@ -173,16 +166,16 @@ export default function Home() {
 					</p>
 					<div className="h-80 w-full">
 						<ResponsiveContainer width="100%" height="100%">
-							<BarChart width={500} height={300} data={students}>
-								<CartesianGrid strokeDasharray="3 3" />
+							<AreaChart width={500} height={300} data={students}>
 								<YAxis />
 								<XAxis dataKey="month" />
-								<Bar
+								<Area
+									type="bump"
 									dataKey="quantity"
 									fill="#2D9CDB"
-									barSize={15}
+									stroke="#2D9CDB"
 								/>
-							</BarChart>
+							</AreaChart>
 						</ResponsiveContainer>
 					</div>
 				</div>
@@ -192,16 +185,16 @@ export default function Home() {
 					</p>
 					<div className="h-80 w-full">
 						<ResponsiveContainer width="100%" height="100%">
-							<BarChart width={500} height={300} data={teachers}>
-								<CartesianGrid strokeDasharray="3 3" />
+							<AreaChart width={500} height={300} data={teachers}>
 								<YAxis />
 								<XAxis dataKey="month" />
-								<Bar
+								<Area
+									type="bump"
 									dataKey="quantity"
-									fill="#2D9CDB"
-									barSize={15}
+									fill="#7D9CDB"
+									stroke="#7D9CDB"
 								/>
-							</BarChart>
+							</AreaChart>
 						</ResponsiveContainer>
 					</div>
 				</div>
@@ -211,16 +204,16 @@ export default function Home() {
 					</p>
 					<div className="h-80 w-full">
 						<ResponsiveContainer width="100%" height="100%">
-							<BarChart width={500} height={300} data={classes}>
-								<CartesianGrid strokeDasharray="3 3" />
+							<AreaChart width={500} height={300} data={classes}>
 								<YAxis />
 								<XAxis dataKey="month" />
-								<Bar
+								<Area
+									type="bump"
 									dataKey="quantity"
-									fill="#2D9CDB"
-									barSize={15}
+									fill="#fD9CDB"
+									stroke="#fD9CDB"
 								/>
-							</BarChart>
+							</AreaChart>
 						</ResponsiveContainer>
 					</div>
 				</div>

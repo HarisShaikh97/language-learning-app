@@ -33,13 +33,14 @@ export default function LanguageCard({ id, name, image, href }) {
 		>
 			<div className="h-28 w-full bg-sky-200 relative flex flex-col items-start gap-5 p-5">
 				<p className="text-xl font-bold text-primary">{name}</p>
-				<p className="font-semibold text-primary">Teacher name</p>
+				<p className="font-semibold text-primary">Ms. Alex</p>
 				<div
 					className="size-20 rounded-full bg-cover bg-no-repeat bg-center absolute -bottom-6 right-5"
 					style={{ backgroundImage: `url('${image}')` }}
 				/>
 			</div>
-			<div className="w-full flex justify-end px-8">
+			<div className="w-full flex flex-row items-center justify-between px-5">
+				<p className="text-primary text-sm">Students: 28</p>
 				<FolderIcon className="size-6 text-gray-500" />
 			</div>
 		</button>
