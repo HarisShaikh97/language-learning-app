@@ -36,7 +36,7 @@ export default function AddStudent() {
 
 	return (
 		<TeacherLayout>
-			<div className="w-full flex-1 flex flex-col gap-10 p-10">
+			<div className="w-full flex-1 flex flex-col gap-10 py-10 px-5 xs:px-10">
 				<p className="text-xl font-semibold">Add New Student</p>
 				<div className="w-full flex flex-col gap-10">
 					<div className="flex flex-col gap-10 md:flex-row items-center justify-between">
@@ -99,7 +99,7 @@ export default function AddStudent() {
 						)}
 						<div />
 					</div>
-					<div className="h-20 w-full flex flex-row items-center justify-end gap-5">
+					<div className="h-36 sm:h-20 w-full flex flex-col sm:flex-row sm:items-center items-end sm:justify-end gap-5">
 						<button
 							className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
 							onClick={() => {

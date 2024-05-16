@@ -196,35 +196,35 @@ export default function AllStudents() {
 
 	return (
 		<TeacherLayout>
-			<div className="size-full flex flex-col p-10">
-				<div className="flex flex-row items-center justify-between h-20 w-full">
+			<div className="size-full flex flex-col px-10 pt-10 pb-20 sm:pb-10">
+				<div className="flex flex-col xs:flex-row xs:items-center xs:justify-between xs:h-20 gap-5 xs:gap-0 mb-5 w-full">
 					<p className="text-lg font-semibold">All Students</p>
 					<Link
 						href={"/teacher/add-student"}
-						className="p-3 rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
+						className="h-14 w-32 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
 					>
 						Add Student
 					</Link>
 				</div>
-				<div className="w-full max-h-[70vh] flex-1 flex flex-col gap-5 rounded-lg border border-sky-500 p-10">
+				<div className="w-full max-h-[70vh] flex-1 flex flex-col gap-5 rounded-lg border border-sky-500 py-10 px-5 md:px-10">
 					<div className="w-full flex flex-row items-center">
-						<div className="w-20" />
-						<div className="w-full grid grid-cols-5 text-lg font-semibold">
-							<p className="pl-20">Name</p>
-							<p className="pl-20">Email</p>
-							<p className="pl-20">Phone no.</p>
-							<p className="pl-20">Class</p>
-							<p className="pl-20">Action</p>
+						<div className="w-20 hidden md:flex" />
+						<div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 computer:grid-cols-5 text-lg font-semibold place-items-center">
+							<p>Name</p>
+							<p className="hidden lg:flex">Email</p>
+							<p className="hidden computer:flex">Phone no.</p>
+							<p className="hidden sm:flex">Class</p>
+							<p>Action</p>
 						</div>
 					</div>
 					<div className="size-full flex flex-col overflow-y-auto scrollbar-none">
 						{data?.map((item, key) => {
 							return (
 								<div
-									className="w-full flex flex-row items-center"
+									className="min-h-20 w-full flex flex-row items-center"
 									key={key}
 								>
-									<div className="size-20 flex items-center justify-center">
+									<div className="size-20 hidden md:flex items-center justify-center">
 										<Image
 											src={"/profile.png"}
 											alt="profile"
@@ -233,12 +233,18 @@ export default function AllStudents() {
 											className="rounded-full overflow-hidden"
 										/>
 									</div>
-									<div className="w-full grid grid-cols-5 text-sm text-primary">
-										<p className="pl-20">{item?.name}</p>
-										<p className="pl-20">{item?.email}</p>
-										<p className="pl-20">{item?.phone}</p>
-										<p className="pl-20">{item?.class}</p>
-										<div className="pl-20 flex flex-row items-center gap-3">
+									<div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 computer:grid-cols-5 text-sm text-primary place-items-center">
+										<p>{item?.name}</p>
+										<p className="hidden lg:flex">
+											{item?.email}
+										</p>
+										<p className="hidden computer:flex">
+											{item?.phone}
+										</p>
+										<p className="hidden sm:flex">
+											{item?.class}
+										</p>
+										<div className="flex flex-row items-center gap-3">
 											<button>
 												<TrashIcon className="size-6 text-sky-500" />
 											</button>

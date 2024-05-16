@@ -63,7 +63,7 @@ export default function Home() {
                                 </button>
                             )} */}
 							<div className="w-full overflow-x-auto scrollbar-none">
-								<div className="flex flex-col sm:flex-row gap-5 sm:items-center">
+								<div className="flex flex-row flex-wrap gap-5">
 									{coursesData?.map((item, key) => {
 										return (
 											<LanguageCard

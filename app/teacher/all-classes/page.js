@@ -26,7 +26,7 @@ export default function AllClasses() {
 
 	return (
 		<TeacherLayout>
-			<div className="size-full p-16 flex flex-col gap-10">
+			<div className="size-full py-16 px-5 xs:px-10 lg:px-16 flex flex-col gap-10">
 				<p className="text-3xl">All Classes</p>
 				<div className="flex flex-row flex-wrap gap-5 items-center">
 					{data?.map((item, key) => {

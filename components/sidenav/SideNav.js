@@ -39,8 +39,8 @@ export default function SideNav() {
 			<Image
 				src={"/logo2.png"}
 				alt="logo"
-				height={150}
-				width={150}
+				height={125}
+				width={125}
 				className="pl-2 lg:pl-5"
 			/>
 			<div className="flex-1 flex flex-col">

@@ -159,9 +159,9 @@ export default function Home() {
 
 	return (
 		<AdminLayout>
-			<div className="h-fit w-full p-10 mt-10 grid grid-cols-2 gap-10">
+			<div className="h-fit w-full py-10 sm:px-5 md:px-10 mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
 				<div className="flex flex-col gap-5">
-					<p className="text-xl font-semibold text-primary">
+					<p className="text-xl font-semibold text-primary sm:pl-0 pl-5">
 						Students
 					</p>
 					<div className="h-80 w-full">
@@ -180,7 +180,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="flex flex-col gap-5">
-					<p className="text-xl font-semibold text-primary">
+					<p className="text-xl font-semibold text-primary sm:pl-0 pl-5">
 						Teachers
 					</p>
 					<div className="h-80 w-full">

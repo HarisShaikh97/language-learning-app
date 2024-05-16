@@ -30,7 +30,7 @@ export default function Student({ params }) {
 	const progress = [
 		{
 			course: "English",
-			percentage: 85,
+			percentage: 55,
 			grade: "A"
 		},
 		{
@@ -42,32 +42,12 @@ export default function Student({ params }) {
 			course: "French",
 			percentage: 65,
 			grade: "C"
-		},
-		{
-			course: "Greek",
-			percentage: 91,
-			grade: "A+"
-		},
-		{
-			course: "Japanese",
-			percentage: 81,
-			grade: "A"
-		},
-		{
-			course: "Persian",
-			percentage: 75,
-			grade: "B"
-		},
-		{
-			course: "Italian",
-			percentage: 83,
-			grade: "A"
 		}
 	]
 
 	return (
 		<AdminLayout>
-			<div className="flex-1 w-full flex flex-col items-center gap-10 p-20">
+			<div className="flex-1 w-full flex flex-col items-center gap-10 py-20 px-5 sm:px-10 md:px-20">
 				<div className="w-full flex-1 flex flex-col lg:flex-row gap-20">
 					<div className="h-fit p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
 						<Image
@@ -83,7 +63,7 @@ export default function Student({ params }) {
 							<p className="text-sm font-light">(111) 1234567</p>
 						</div>
 					</div>
-					<div className="w-full h-fit border border-sky-200 rounded-xl shadow-xl p-10 flex flex-col gap-10">
+					<div className="w-full h-fit border border-sky-200 rounded-xl shadow-xl py-10 px-5 sm:px-10 flex flex-col gap-10">
 						<p className="text-xl font-semibold">
 							Enrolled Classes
 						</p>
@@ -102,7 +82,7 @@ export default function Student({ params }) {
 						</div>
 					</div>
 				</div>
-				<div className="h-fit w-full rounded-xl border border-sky-200 shadow-xl p-10 flex flex-col gap-10">
+				<div className="h-fit w-full rounded-xl border border-sky-200 shadow-xl py-10 px-5 md:px-10 flex flex-col gap-10">
 					<div className="w-full flex flex-row items-center justify-between">
 						<p className="text-3xl">Progress</p>
 						<div className="flex flex-row items-center gap-3">
@@ -112,7 +92,7 @@ export default function Student({ params }) {
 							</div>
 						</div>
 					</div>
-					<div className="grid grid-cols-2 w-full gap-10">
+					<div className="grid grid-cols-1 computer:grid-cols-2 w-full gap-10">
 						<div className="h-96 w-full">
 							<ResponsiveContainer width="100%" height="100%">
 								<AreaChart
@@ -132,9 +112,9 @@ export default function Student({ params }) {
 							</ResponsiveContainer>
 						</div>
 						<div className="h-96 w-full flex flex-col border border-gray-300 rounded-xl shadow-lg">
-							<div className="h-12 w-full grid grid-cols-3 place-items-center border-b">
+							<div className="h-12 w-full grid grid-cols-2 xs:grid-cols-3 place-items-center border-b">
 								<p>Course</p>
-								<p>Marks</p>
+								<p className="hidden xs:flex">Marks</p>
 								<p>Grade</p>
 							</div>
 							<div className="flex-1 w-full overflow-y-auto scrollbar-none">
@@ -142,11 +122,13 @@ export default function Student({ params }) {
 									{data?.map((item, key) => {
 										return (
 											<div
-												className="h-12 w-full grid grid-cols-3 place-items-center text-sm text-primary"
+												className="h-12 w-full grid grid-cols-2 xs:grid-cols-3 place-items-center text-sm text-primary"
 												key={key}
 											>
 												<p>{item?.title}</p>
-												<p>-</p>
+												<p className="hidden xs:flex">
+													-
+												</p>
 												<p className="py-1 px-2 rounded-full text-xs bg-sky-300 text-white">
 													In progress
 												</p>
@@ -156,11 +138,13 @@ export default function Student({ params }) {
 									{progress?.map((item, key) => {
 										return (
 											<div
-												className="h-12 w-full grid grid-cols-3 place-items-center text-sm text-primary"
+												className="h-12 w-full grid grid-cols-2 xs:grid-cols-3 place-items-center text-sm text-primary"
 												key={key}
 											>
 												<p>{item?.course}</p>
-												<p>{item?.percentage}%</p>
+												<p className="hidden xs:flex">
+													{item?.percentage}%
+												</p>
 												<div
 													className={`size-6 flex items-center justify-center text-xs text-white rounded ${
 														item?.percentage >= 90

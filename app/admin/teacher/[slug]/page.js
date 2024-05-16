@@ -26,7 +26,7 @@ export default function Teacher({ params }) {
 
 	return (
 		<AdminLayout>
-			<div className="h-full flex-1 flex flex-col lg:flex-row gap-20 p-20">
+			<div className="h-fit flex-1 flex flex-col lg:flex-row gap-20 py-20 px-5 sm:px-10 md:px-20">
 				<div className="h-fit p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
 					<Image
 						src={"/profile.png"}
@@ -41,7 +41,7 @@ export default function Teacher({ params }) {
 						<p className="text-sm font-light">(111) 1234567</p>
 					</div>
 				</div>
-				<div className="w-full h-fit border border-sky-200 rounded-xl shadow-xl p-10 flex flex-col gap-10">
+				<div className="w-full h-fit border border-sky-200 rounded-xl shadow-xl py-10 px-5 sm:px-10 flex flex-col gap-10">
 					<p className="text-xl font-semibold">Assigned Classes</p>
 					<div className="flex flex-row flex-wrap gap-5 items-center">
 						{data?.map((item, key) => {

@@ -28,12 +28,12 @@ export default function LearningMode() {
 
 	return (
 		<AdminLayout>
-			<div className="size-full py-20 px-10 flex flex-col gap-10">
-				<div className="flex flex-row items-center justify-between w-full">
+			<div className="size-full py-20 px-5 sm:px-10 flex flex-col gap-10">
+				<div className="flex flex-col gap-5 md:gap-0 md:flex-row md:items-center md:justify-between w-full">
 					<p className="text-3xl">Vocabularies</p>
 					<Link
 						href={"/admin/add-vocabulary"}
-						className="p-3 rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
+						className="h-10 w-44 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
 					>
 						Add new vocabulary
 					</Link>

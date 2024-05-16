@@ -3,7 +3,7 @@ import AdminLayout from "@/components/admin/layout/Layout"
 export default function Vocabulary({ params }) {
 	return (
 		<AdminLayout>
-			<div className="h-fit w-full p-10 flex flex-col gap-10">
+			<div className="h-fit w-full py-10 px-5 xs:px-10 flex flex-col gap-10">
 				<p className="text-2xl">Vocabulary</p>
 				<div className="flex flex-row items-center gap-3">
 					<p className="text-xl">Title:</p>
@@ -27,7 +27,7 @@ export default function Vocabulary({ params }) {
 					</div>
 				</div>
 				<p className="text-2xl">Quiz</p>
-				<div className="flex flex-row items-center gap-3">
+				<div className="flex flex-col sm:flex-row sm:items-center gap-3">
 					<p className="text-xl">Question:</p>
 					<div className="px-3 py-1 border border-sky-300 rounded-lg shadow-lg">
 						<p className="text-xl">
