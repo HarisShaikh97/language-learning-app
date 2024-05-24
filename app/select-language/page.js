@@ -6,6 +6,7 @@ import Image from "next/image"
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid"
 import iso6391 from "iso-639-1"
 import LanguageCard from "@/components/language-card/LanguageCard"
+import coursesData from "@/utils/Data"
 
 export default function SelectLanguage() {
 
@@ -16,86 +17,8 @@ export default function SelectLanguage() {
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
     const [selectedLanguageCode, setSelectedLanguageCode] = useState(languageCodes[0])
 
-    const data = [
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        },
-        {
-            name: "Arabic",
-            image: "/bg-image-arabic.jpg",
-            flagImage: "/arabic-flag.png"
-        }
-    ]
-
     return (
-        <div className="h-screen w-screen flex flex-col items-center">
+        <div className="h-screen w-screen flex flex-col items-center overflow-y-auto scrollbar-none">
             <div className="h-20 w-full bg-primary bg-opacity-15 flex flex-row justify-between items-center pl-5 pr-10">
                 <Image src={"/logo2.png"} alt="logo" height={100} width={100} />
                 <Link href={"/login"} className=" h-12 w-28 rounded-2xl border-b-4 border-amber-500 bg-amber-400 font-bold flex items-center justify-center">Sign in</Link>
@@ -132,9 +55,9 @@ export default function SelectLanguage() {
             </div>
             <div className="h-full overflow-y-auto scrollbar-none">
                 <div className="grid grid-cols-4 gap-10 mt-10">
-                    {data?.map((item, key) => {
+                    {coursesData?.map((item, key) => {
                         return (
-                            <LanguageCard name={item?.name} image={item?.image} flagImage={item?.flagImage} key={key} />
+                            <LanguageCard id={item?.id} name={item?.title} image={item?.image} flagImage={item?.flagImage} href="/signup" key={key} />
                         )
                     })}
                 </div>
