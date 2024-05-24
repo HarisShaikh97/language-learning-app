@@ -11,7 +11,7 @@ const connect = async () => {
         });
 
         connection.on("error", () => {
-            console.log("connection faild ");
+            console.log("connection failed ");
         });
     } catch (error) {
         console.log(error.message);
