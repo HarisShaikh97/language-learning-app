@@ -45,8 +45,6 @@ export async function POST(req) {
     }
 }
 
-
-
 export async function GET(req) {
     try {
         connect()
@@ -65,7 +63,6 @@ export async function GET(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-
 
 export async function DELETE(req) {
     try {
@@ -95,8 +92,6 @@ export async function DELETE(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-
-
 
 export async function PUT(req) {
     try {
@@ -128,3 +123,7 @@ export async function PUT(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
+
+
+
+
