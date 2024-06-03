@@ -1,11 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import Image from "next/image"
-import { signIn } from "next-auth/react"
+import axios from "axios"
 import { useRouter } from "next/navigation"
+import { AppContext } from "@/context/context"
 
 export default function AdminLogin() {
+	const { dispatch } = useContext(AppContext)
+
 	const router = useRouter()
 
 	const [email, setEmail] = useState("")
@@ -13,16 +16,25 @@ export default function AdminLogin() {
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
-		const res = await signIn("credentials", {
+
+		const payload = {
 			email: email,
-			password: password,
-			redirect: false,
-			callbackUrl: "/admin/home"
-		})
-		console.log(res, email, password)
-		// if (res.status === 200) {
-		// 	router.push(res.url)
-		// }
+			password: password
+		}
+
+		await axios
+			.post("/api/admin/login", payload)
+			?.then((res) => {
+				console.log(res)
+				dispatch({
+					type: "SET_ACCESS_TOKEN",
+					payload: res?.data?.accessToken
+				})
+				router?.push("/admin/home")
+			})
+			?.catch((err) => {
+				console.log(err)
+			})
 	}
 
 	return (
