@@ -3,7 +3,7 @@ import bcrypt from "bcrypt"
 import connect from "@/app/db/connect";
 import { NextResponse } from "next/server";
 import HandleFile from "@/utils/HandleFile";
-
+import Classroom from "@/app/models/classroom.model";
 
 export async function POST(req) {
     try {
@@ -23,6 +23,7 @@ export async function POST(req) {
             return NextResponse.json({ error: "email already exist" }, { status: 400 })
         }
 
+
         const hashedPassword = await bcrypt.hash(password, 10)
         // console.log(hashedPassword);
         const imageUrl = await HandleFile(image)
@@ -37,8 +38,15 @@ export async function POST(req) {
             image: imageUrl.url
         })
 
-        const newStudent = await student.save()
 
+        const newStudent = await student.save()
+        const isClass = await Classroom.findByIdAndUpdate(classrooms, {
+            students: newStudent._id
+        }, { new: false, runValidators: false })
+
+        if (!isClass) {
+            return NextResponse.json({ error: "classroom not found " }, { status: 400 })
+        }
         return NextResponse.json({ message: "student saved successfully", data: newStudent, success: true }, { status: 200 })
 
 
@@ -61,7 +69,7 @@ export async function GET(req) {
 
         }
 
-        const student = await User.findById(id)
+        const student = await User.findById(id).populate("classrooms")
         return NextResponse.json({ data: student, success: true }, { status: 200 })
 
     } catch (error) {
