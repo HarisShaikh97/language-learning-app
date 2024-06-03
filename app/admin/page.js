@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 export default function AdminLogin() {
@@ -12,7 +13,16 @@ export default function AdminLogin() {
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
-		router?.push("/admin/home")
+		const res = await signIn("credentials", {
+			email: email,
+			password: password,
+			redirect: false,
+			callbackUrl: "/admin/home"
+		})
+		console.log(res, email, password)
+		// if (res.status === 200) {
+		// 	router.push(res.url)
+		// }
 	}
 
 	return (
