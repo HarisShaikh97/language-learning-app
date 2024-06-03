@@ -1,9 +1,13 @@
 "use client"
 
+import { useContext } from "react"
 import { AreaChart, Area, YAxis, XAxis, ResponsiveContainer } from "recharts"
 import AdminLayout from "@/components/admin/layout/Layout"
+import { AppContext } from "@/context/context"
 
 export default function Home() {
+	const { state } = useContext(AppContext)
+
 	const classes = [
 		{
 			month: "Jan",
@@ -156,6 +160,8 @@ export default function Home() {
 			quantity: 15
 		}
 	]
+
+	console.log(state)
 
 	return (
 		<AdminLayout>

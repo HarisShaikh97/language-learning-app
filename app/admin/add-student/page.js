@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import axios from "axios"
 import { MultiSelect } from "primereact/multiselect"
 import { CloudArrowUpIcon } from "@heroicons/react/24/solid"
 import AdminLayout from "@/components/admin/layout/Layout"
@@ -13,26 +14,74 @@ import "primeicons/primeicons.css"
 export default function AddStudent() {
 	const router = useRouter()
 
+	const [allClasses, setAllClasses] = useState([])
 	const [selectedClasses, setSelectedClasses] = useState([])
+	const [firstName, setFirstName] = useState("")
+	const [lastName, setLastName] = useState("")
+	const [phone, setPhone] = useState("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [imageURL, setImageURL] = useState(null)
 	const [image, setImage] = useState(null)
-
-	const options = [
-		{ label: "Arabic", value: "arabic" },
-		{ label: "English", value: "english" },
-		{ label: "Greek", value: "greek" }
-	]
 
 	const handleImageDrop = (e) => {
 		e.preventDefault()
 		const file = e.dataTransfer.files[0]
 		if (file) {
-			setImage(URL.createObjectURL(file))
+			setImageURL(URL.createObjectURL(file))
+			setImage(file)
 		}
 	}
 
 	const handleImageDragOver = (e) => {
 		e.preventDefault()
 	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		console.log(selectedClasses)
+		if (!image) {
+			return
+		}
+
+		const formData = new FormData()
+		formData.append("firstName", firstName)
+		formData.append("lastName", lastName)
+		formData.append("phone", phone)
+		formData.append("email", email)
+		formData.append("password", password)
+		formData.append("image", image)
+		formData.append("role", "student")
+		formData.append("classrooms", JSON.stringify(selectedClasses))
+
+		await axios
+			.post("/api/students", formData, {
+				headers: {
+					"Content-Type": "multipart/form-data"
+				}
+			})
+			?.then((res) => {
+				console.log(res)
+				router?.back()
+			})
+			?.catch((err) => {
+				console.log(err)
+			})
+	}
+
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get("/api/classroom")
+				?.then((res) => {
+					console.log(res)
+					setAllClasses(res?.data?.Data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [])
 
 	return (
 		<AdminLayout>
@@ -43,22 +92,34 @@ export default function AddStudent() {
 						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
-								placeholder="Enter Full Name"
+								placeholder="Enter First Name"
 								className="w-full bg-transparent outline-none border-none"
+								value={firstName}
+								onChange={(e) => {
+									setFirstName(e.target.value)
+								}}
 							/>
 						</div>
 						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
-								placeholder="Enter Email Address"
+								placeholder="Enter Last Name"
 								className="w-full bg-transparent outline-none border-none"
+								value={lastName}
+								onChange={(e) => {
+									setLastName(e.target.value)
+								}}
 							/>
 						</div>
 						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
-								type="password"
-								placeholder="Enter Password"
+								type="text"
+								placeholder="Enter Phone Number"
 								className="w-full bg-transparent outline-none border-none"
+								value={phone}
+								onChange={(e) => {
+									setPhone(e.target.value)
+								}}
 							/>
 						</div>
 					</div>
@@ -66,16 +127,33 @@ export default function AddStudent() {
 						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
-								placeholder="Enter Phone Number"
+								placeholder="Enter Email Address"
 								className="w-full bg-transparent outline-none border-none"
+								value={email}
+								onChange={(e) => {
+									setEmail(e.target.value)
+								}}
+							/>
+						</div>
+						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
+							<input
+								type="password"
+								placeholder="Enter Password"
+								className="w-full bg-transparent outline-none border-none"
+								value={password}
+								onChange={(e) => {
+									setPassword(e.target.value)
+								}}
 							/>
 						</div>
 						<MultiSelect
 							display="chip"
 							value={selectedClasses}
-							options={options}
+							options={allClasses?.map((item) => {
+								return { label: item?.name, value: item?._id }
+							})}
 							onChange={(e) => setSelectedClasses(e.value)}
-							className="w-full border border-gray-300 outline-none rounded-lg"
+							className="min-w-96 border border-gray-300 outline-none rounded-lg"
 							placeholder="Select Classes"
 						/>
 					</div>
@@ -87,9 +165,9 @@ export default function AddStudent() {
 						<div className="w-full text-gray-400">
 							Drag and Drop Profile Picture
 						</div>
-						{image ? (
+						{imageURL ? (
 							<Image
-								src={image}
+								src={imageURL}
 								alt="uploaded"
 								height={100}
 								width={100}
@@ -102,9 +180,7 @@ export default function AddStudent() {
 					<div className="h-36 sm:h-20 w-full flex flex-col sm:flex-row sm:items-center items-end sm:justify-end gap-5">
 						<button
 							className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
-							onClick={() => {
-								router?.back()
-							}}
+							onClick={handleSubmit}
 						>
 							Save
 						</button>
