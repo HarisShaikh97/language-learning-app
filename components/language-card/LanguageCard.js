@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { FolderIcon } from "@heroicons/react/24/solid"
 import PropTypes from "prop-types"
 
-export default function LanguageCard({ id, name, image, href }) {
+export default function LanguageCard({ name, students, image, href }) {
 	const [isHovered, setIsHovered] = useState(false)
 
 	const router = useRouter()
@@ -39,7 +39,9 @@ export default function LanguageCard({ id, name, image, href }) {
 				/>
 			</div>
 			<div className="w-full flex flex-row items-center justify-between px-3 xs:px-5">
-				<p className="text-primary text-sm">Students: 28</p>
+				<p className="text-primary text-sm">
+					Students: {students?.length}
+				</p>
 				<FolderIcon className="size-6 text-gray-500" />
 			</div>
 		</button>
@@ -47,8 +49,8 @@ export default function LanguageCard({ id, name, image, href }) {
 }
 
 LanguageCard.propTypes = {
-	id: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
-	image: PropTypes.string.isRequired,
+	students: PropTypes.array.isRequired,
+	image: PropTypes.string,
 	href: PropTypes.string
 }

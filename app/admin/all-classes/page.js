@@ -39,9 +39,10 @@ export default function AllClasses() {
 					{data?.map((item, key) => {
 						return (
 							<LanguageCard
-								id={item?._id?.toString()}
+								id={item?._id}
 								name={item?.name}
 								image={item?.image}
+								students={item?.students}
 								key={key}
 							/>
 						)

@@ -9,27 +9,6 @@ import LanguageCard from "@/components/language-card/LanguageCard"
 export default function Teacher({ params }) {
 	const [data, setData] = useState()
 
-	const classes = [
-		{
-			id: 1,
-			title: "Arabic Class",
-			image: "/bg-image-arabic.jpg",
-			flagImage: "/arabic-flag.png"
-		},
-		{
-			id: 2,
-			title: "English Class",
-			image: "/bg-image-english.jpg",
-			flagImage: "/english-flag.png"
-		},
-		{
-			id: 3,
-			title: "Greek Class",
-			image: "/bg-image-greek.jpg",
-			flagImage: "/greek-flag.png"
-		}
-	]
-
 	useEffect(() => {
 		;(async () => {
 			await axios
@@ -64,13 +43,12 @@ export default function Teacher({ params }) {
 				<div className="w-full h-fit border border-sky-200 rounded-xl shadow-xl py-10 px-5 sm:px-10 flex flex-col gap-10">
 					<p className="text-xl font-semibold">Assigned Classes</p>
 					<div className="flex flex-row flex-wrap gap-5 items-center">
-						{classes?.map((item, key) => {
+						{data?.classrooms?.map((item, key) => {
 							return (
 								<LanguageCard
-									id={item?.id}
-									name={item?.title}
-									flagImage={item?.flagImage}
+									name={item?.name}
 									image={item?.image}
+									students={item?.students}
 									key={key}
 								/>
 							)

@@ -10,27 +10,6 @@ import LanguageCard from "@/components/language-card/LanguageCard"
 export default function Student({ params }) {
 	const [data, setData] = useState()
 
-	const classes = [
-		{
-			id: 1,
-			title: "Arabic",
-			image: "/bg-image-arabic.jpg",
-			flagImage: "/arabic-flag.png"
-		},
-		{
-			id: 2,
-			title: "English",
-			image: "/bg-image-english.jpg",
-			flagImage: "/english-flag.png"
-		},
-		{
-			id: 3,
-			title: "Greek",
-			image: "/bg-image-greek.jpg",
-			flagImage: "/greek-flag.png"
-		}
-	]
-
 	const progress = [
 		{
 			course: "English",
@@ -78,7 +57,7 @@ export default function Student({ params }) {
 							className="rounded-full overflow-hidden"
 						/>
 						<div className="flex flex-col gap-2 items-center">
-							<p className="text-xl font-semibold">{`${data?.firstName} ${data?.lastName}`}</p>
+							<p className="text-xl font-semibold truncate">{`${data?.firstName} ${data?.lastName}`}</p>
 							<p className="font-light">{data?.email}</p>
 							<p className="text-sm font-light">{data?.phone}</p>
 						</div>
@@ -88,13 +67,12 @@ export default function Student({ params }) {
 							Enrolled Classes
 						</p>
 						<div className="flex flex-row flex-wrap gap-5 items-center">
-							{classes?.map((item, key) => {
+							{data?.classrooms?.map((item, key) => {
 								return (
 									<LanguageCard
-										id={item?.id}
-										name={item?.title}
-										flagImage={item?.flagImage}
+										name={item?.name}
 										image={item?.image}
+										students={item?.students}
 										key={key}
 									/>
 								)
@@ -139,13 +117,13 @@ export default function Student({ params }) {
 							</div>
 							<div className="flex-1 w-full overflow-y-auto scrollbar-none">
 								<div className="h-fit w-full flex flex-col">
-									{classes?.map((item, key) => {
+									{data?.classrooms?.map((item, key) => {
 										return (
 											<div
 												className="h-12 w-full grid grid-cols-2 xs:grid-cols-3 place-items-center text-sm text-primary"
 												key={key}
 											>
-												<p>{item?.title}</p>
+												<p>{item?.name}</p>
 												<p className="hidden xs:flex">
 													-
 												</p>
