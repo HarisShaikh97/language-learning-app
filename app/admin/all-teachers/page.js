@@ -1,198 +1,33 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
+import axios from "axios"
 import { TrashIcon, EyeIcon } from "@heroicons/react/24/solid"
 import AdminLayout from "@/components/admin/layout/Layout"
 
 export default function AllTeachers() {
 	const router = useRouter()
 
-	const data = [
-		{
-			id: 1,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 2,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 3,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 4,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 5,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 6,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 7,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 8,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 9,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 10,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 11,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 12,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 13,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 14,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 15,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 16,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 17,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 18,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 19,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 20,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 21,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 22,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 23,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 24,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 25,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 26,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		}
-	]
+	const [data, setData] = useState([])
+
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get("/api/teacher?role=teacher")
+				?.then((res) => {
+					console.log(res)
+					setData(res?.data?.data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [])
+
+	console.log(data)
 
 	return (
 		<AdminLayout>
@@ -226,15 +61,15 @@ export default function AllTeachers() {
 								>
 									<div className="size-20 hidden md:flex items-center justify-center">
 										<Image
-											src={"/profile.png"}
+											src={item?.image || "/profile.png"}
 											alt="profile"
 											height={35}
 											width={35}
-											className="rounded-full overflow-hidden"
+											className="rounded-full overflow-hidden size-10 object-cover"
 										/>
 									</div>
 									<div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 computer:grid-cols-5 text-sm text-primary place-items-center">
-										<p>{item?.name}</p>
+										<p>{`${item?.firstName} ${item?.lastName}`}</p>
 										<p className="hidden lg:flex">
 											{item?.email}
 										</p>
