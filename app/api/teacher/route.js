@@ -3,6 +3,7 @@ import connect from "@/app/db/connect";
 import HandleFile from "@/utils/HandleFile";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"
+import Classroom from "@/app/models/classroom.model";
 
 
 
@@ -17,14 +18,14 @@ export async function POST(req) {
         const email = reqBody.get("email")
         const phone = reqBody.get("phone")
         const password = reqBody.get("password")
-        const classrooms = reqBody.get("classrooms")
+        const classrooms = reqBody.get("class")
         const role = reqBody.get("role")
         const image = reqBody.get("image")
 
         const teacherExited = await User.find({ email })
         console.log(teacherExited);
         if (teacherExited.length > 0) {
-            return NextResponse.json("Teacher already exited", { status: 400 })
+            return NextResponse.json("Teacher already exist", { status: 400 })
         }
         const imageUrl = await HandleFile(image)
         const hashPassword = await bcrypt.hash(password, 10)
@@ -36,9 +37,20 @@ export async function POST(req) {
             phone,
             password: hashPassword,
             role: role,
-            classrooms: classrooms,
+            classrooms: JSON.parse(classrooms),
             image: imageUrl.url
         })
+
+        const ClassID = JSON.parse(classrooms)
+        for (const classroomId of ClassID) {
+
+            const data = await Classroom.findByIdAndUpdate(
+                classroomId,
+                { $push: { teacher: newTeacher._id } },
+                { new: true, runValidators: true }
+            );
+
+        }
         return NextResponse.json({ success: true, data: newTeacher, message: "Teacher created successfully" }, { status: 200 })// return new teacher
 
     } catch (error) {
