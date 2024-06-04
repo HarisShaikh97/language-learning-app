@@ -1,9 +1,15 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Image from "next/image"
+import axios from "axios"
 import AdminLayout from "@/components/admin/layout/Layout"
 import LanguageCard from "@/components/language-card/LanguageCard"
 
 export default function Teacher({ params }) {
-	const data = [
+	const [data, setData] = useState()
+
+	const classes = [
 		{
 			id: 1,
 			title: "Arabic Class",
@@ -24,6 +30,20 @@ export default function Teacher({ params }) {
 		}
 	]
 
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get(`/api/teacher?id=${params?.slug}`)
+				?.then((res) => {
+					console.log(res)
+					setData(res?.data?.data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [params])
+
 	return (
 		<AdminLayout>
 			<div className="h-fit flex-1 flex flex-col lg:flex-row gap-20 py-20 px-5 sm:px-10 md:px-20">
@@ -36,15 +56,15 @@ export default function Teacher({ params }) {
 						className="rounded-full overflow-hidden"
 					/>
 					<div className="flex flex-col gap-2 items-center">
-						<p className="text-xl font-semibold">Jason Pink</p>
-						<p className="font-light">jason@gmail.com</p>
-						<p className="text-sm font-light">(111) 1234567</p>
+						<p className="text-xl font-semibold truncate">{`${data?.firstName} ${data?.lastName}`}</p>
+						<p className="font-light">{data?.email}</p>
+						<p className="text-sm font-light">{data?.phone}</p>
 					</div>
 				</div>
 				<div className="w-full h-fit border border-sky-200 rounded-xl shadow-xl py-10 px-5 sm:px-10 flex flex-col gap-10">
 					<p className="text-xl font-semibold">Assigned Classes</p>
 					<div className="flex flex-row flex-wrap gap-5 items-center">
-						{data?.map((item, key) => {
+						{classes?.map((item, key) => {
 							return (
 								<LanguageCard
 									id={item?.id}

@@ -86,7 +86,7 @@ export default function AllTeachers() {
 											<button
 												onClick={() => {
 													router.push(
-														`/admin/teacher/${item?.id}`
+														`/admin/teacher/${item?._id}`
 													)
 												}}
 											>

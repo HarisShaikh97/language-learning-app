@@ -11,7 +11,6 @@ export default function LanguageCard({ id, name, image, href }) {
 	const router = useRouter()
 
 	const handleSelect = () => {
-		// localStorage.setItem("course_id", id)
 		if (href) {
 			router.push(href)
 		}

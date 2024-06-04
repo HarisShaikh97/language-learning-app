@@ -71,7 +71,7 @@ export default function AddTeacher() {
 			})
 			?.catch((err) => {
 				console.log(err)
-				toast.error(err?.response?.data)
+				toast.error("Error")
 				setIsLoading(false)
 			})
 	}

@@ -130,7 +130,7 @@ export default function AllStudents() {
 											<button
 												onClick={() => {
 													router.push(
-														`/admin/student/${item?.id}`
+														`/admin/student/${item?._id}`
 													)
 												}}
 											>
