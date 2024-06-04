@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import axios from "axios"
+import { FallingLines } from "react-loader-spinner"
+import toast from "react-hot-toast"
 import { MultiSelect } from "primereact/multiselect"
 import { CloudArrowUpIcon } from "@heroicons/react/24/solid"
 import AdminLayout from "@/components/admin/layout/Layout"
@@ -14,6 +16,7 @@ import "primeicons/primeicons.css"
 export default function AddStudent() {
 	const router = useRouter()
 
+	const [isLoading, setIsLoading] = useState(false)
 	const [allClasses, setAllClasses] = useState([])
 	const [selectedClasses, setSelectedClasses] = useState([])
 	const [firstName, setFirstName] = useState("")
@@ -39,7 +42,7 @@ export default function AddStudent() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		console.log(selectedClasses)
+		setIsLoading(true)
 		if (!image) {
 			return
 		}
@@ -62,15 +65,19 @@ export default function AddStudent() {
 			})
 			?.then((res) => {
 				console.log(res)
+				toast.success(res?.data?.message)
+				setIsLoading(false)
 				router?.back()
 			})
 			?.catch((err) => {
 				console.log(err)
+				toast.error(err?.response?.data?.error)
+				setIsLoading(false)
 			})
 	}
 
 	useEffect(() => {
-		; (async () => {
+		;(async () => {
 			await axios
 				.get("/api/classroom")
 				?.then((res) => {
@@ -182,7 +189,16 @@ export default function AddStudent() {
 							className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
 							onClick={handleSubmit}
 						>
-							Save
+							{isLoading ? (
+								<FallingLines
+									color="#ffffff"
+									width="50"
+									visible={true}
+									ariaLabel="falling-circles-loading"
+								/>
+							) : (
+								"Save"
+							)}
 						</button>
 						<button
 							className="h-12 w-40 flex items-center justify-center rounded-lg border border-b-2 hover:border-b-4 text-primary font-semibold border-primary transform-gpu ease-in-out duration-150"
