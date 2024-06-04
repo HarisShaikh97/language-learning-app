@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import axios from "axios"
+import toast from "react-hot-toast"
 import { TrashIcon, EyeIcon } from "@heroicons/react/24/solid"
 import AdminLayout from "@/components/admin/layout/Layout"
 
@@ -80,7 +81,52 @@ export default function AllTeachers() {
 											{item?.class}
 										</p>
 										<div className="flex flex-row items-center gap-3">
-											<button>
+											<button
+												onClick={async () => {
+													await axios
+														.delete(
+															`/api/teacher?id=${item?._id}`
+														)
+														?.then(async (res) => {
+															toast.success(
+																res?.data
+																	?.message
+															)
+															await axios
+																.get(
+																	"/api/teacher?role=teacher"
+																)
+																?.then(
+																	(res) => {
+																		console.log(
+																			res
+																		)
+																		setData(
+																			res
+																				?.data
+																				?.data
+																		)
+																	}
+																)
+																?.catch(
+																	(err) => {
+																		console.log(
+																			err
+																		)
+																	}
+																)
+															console.log(res)
+														})
+														?.catch((err) => {
+															console.log(err)
+															toast.error(
+																err?.response
+																	?.data
+																	?.message
+															)
+														})
+												}}
+											>
 												<TrashIcon className="size-6 text-sky-500" />
 											</button>
 											<button

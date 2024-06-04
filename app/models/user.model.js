@@ -29,6 +29,9 @@ const userSchema = new mongoose.Schema({
         enum: ['student', 'teacher'],
         required: true
     },
+    level: {
+        type: String,
+    },
 
     classrooms: [{
         type: Schema.Types.ObjectId, ref: 'Classroom'
