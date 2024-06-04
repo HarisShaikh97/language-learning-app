@@ -52,7 +52,7 @@ export default function AddStudent() {
 		formData.append("password", password)
 		formData.append("image", image)
 		formData.append("role", "student")
-		formData.append("classrooms", JSON.stringify(selectedClasses))
+		formData.append("class", JSON.stringify(selectedClasses))
 
 		await axios
 			.post("/api/students", formData, {
@@ -70,7 +70,7 @@ export default function AddStudent() {
 	}
 
 	useEffect(() => {
-		;(async () => {
+		; (async () => {
 			await axios
 				.get("/api/classroom")
 				?.then((res) => {

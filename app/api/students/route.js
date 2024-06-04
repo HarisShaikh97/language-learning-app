@@ -17,13 +17,12 @@ export async function POST(req) {
         const password = reqBody.get("password")
         const classrooms = reqBody.get("class")
         const image = reqBody.get("image")
-
+        console.log(classrooms);
         const isStudent = await User.findOne({ email })
         if (isStudent) {
             return NextResponse.json({ error: "email already exist" }, { status: 400 })
         }
-
-
+        console.log();
         const hashedPassword = await bcrypt.hash(password, 10)
         // console.log(hashedPassword);
         const imageUrl = await HandleFile(image)
@@ -33,19 +32,21 @@ export async function POST(req) {
             email,
             phone,
             role,
-            classrooms: classrooms,
+            classrooms: JSON.parse(classrooms),
             password: hashedPassword,
             image: imageUrl.url
         })
 
-
+        const ClassID = JSON.parse(classrooms)
         const newStudent = await student.save()
-        const isClass = await Classroom.findByIdAndUpdate(classrooms, {
-            students: newStudent._id
-        }, { new: false, runValidators: false })
+        for (const classroomId of ClassID) {
 
-        if (!isClass) {
-            return NextResponse.json({ error: "classroom not found " }, { status: 400 })
+            const data = await Classroom.findByIdAndUpdate(
+                classroomId,
+                { $push: { students: newStudent._id } },
+                { new: true, runValidators: true }
+            );
+
         }
         return NextResponse.json({ message: "student saved successfully", data: newStudent, success: true }, { status: 200 })
 
