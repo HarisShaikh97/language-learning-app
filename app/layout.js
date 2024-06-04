@@ -1,4 +1,5 @@
 import { Noto_Sans } from "next/font/google"
+import { Toaster } from "react-hot-toast"
 import "./globals.css"
 import AuthProvider from "@/components/Providers/AuthProvider"
 import { ContextProvider } from "@/context/contextProvider"
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={noto.className}>
+				<Toaster />
 				<ContextProvider>
 					<AuthProvider>{children}</AuthProvider>
 				</ContextProvider>
