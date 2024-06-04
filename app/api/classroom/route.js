@@ -53,12 +53,12 @@ export async function GET(req) {
 
         const id = await req.nextUrl.searchParams.get("id")
         if (!id) {
-            const allClassrooms = await Classroom.find()
+            const allClassrooms = await Classroom.find().populate("teacher").populate("students")
             return NextResponse.json({ message: "All classrooms", Data: allClassrooms, success: true }, { status: 200 })
         }
 
-        const classroom = await Classroom.findById(id).populate("teacher").populate("students").populate("assignments")
-        console.log(classroom);
+        const classroom = await Classroom.findById(id).populate("teacher").populate("students")
+
         if (!classroom) {
             return NextResponse.json({ message: "Classroom Not found", success: true }, { status: 404 })
         }
