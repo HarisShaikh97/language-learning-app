@@ -28,8 +28,6 @@ export default function AllTeachers() {
 		})()
 	}, [])
 
-	console.log(data)
-
 	return (
 		<AdminLayout>
 			<div className="size-full flex flex-col px-10 pt-10 pb-20 sm:pb-10">
@@ -77,9 +75,24 @@ export default function AllTeachers() {
 										<p className="hidden computer:flex">
 											{item?.phone}
 										</p>
-										<p className="hidden sm:flex">
-											{item?.class}
-										</p>
+										<div className="hidden sm:flex">
+											{item?.classrooms?.map(
+												(classroom, index) => {
+													return (
+														<p
+															className="w-full truncate"
+															key={index}
+														>
+															<span>
+																{index > 0 &&
+																	", "}
+															</span>
+															{classroom?.name}
+														</p>
+													)
+												}
+											)}
+										</div>
 										<div className="flex flex-row items-center gap-3">
 											<button
 												onClick={async () => {
