@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { FolderIcon } from "@heroicons/react/24/solid"
 import PropTypes from "prop-types"
 
-export default function LanguageCard({ name, students, teacher, image, href }) {
+export default function LanguageCard({ name, students, teacher, href }) {
 	const [isHovered, setIsHovered] = useState(false)
 
 	const router = useRouter()
@@ -30,17 +30,13 @@ export default function LanguageCard({ name, students, teacher, image, href }) {
 			}}
 			onClick={handleSelect}
 		>
-			<div className="h-24 xs:h-28 w-full bg-sky-200 relative flex flex-col items-start gap-5 p-3 xs:p-5">
+			<div className="h-24 xs:h-28 w-full bg-sky-200 flex flex-col items-start gap-5 p-3 xs:p-5">
 				<p className="text-xl font-bold text-primary">{name}</p>
 				<p className="font-semibold text-primary max-w-32 truncate">
 					{teacher?.firstName &&
 						teacher?.lastName &&
 						`${teacher?.firstName} ${teacher?.lastName}`}
 				</p>
-				<div
-					className="size-20 rounded-full bg-cover bg-no-repeat bg-center absolute -bottom-6 right-5"
-					style={{ backgroundImage: `url('${image}')` }}
-				/>
 			</div>
 			<div className="w-full flex flex-row items-center justify-between px-3 xs:px-5">
 				<p className="text-primary text-sm">
@@ -56,6 +52,5 @@ LanguageCard.propTypes = {
 	name: PropTypes.string.isRequired,
 	students: PropTypes.array.isRequired,
 	teacher: PropTypes.object,
-	image: PropTypes.string,
 	href: PropTypes.string
 }

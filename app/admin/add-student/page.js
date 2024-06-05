@@ -160,7 +160,7 @@ export default function AddStudent() {
 								return { label: item?.name, value: item?._id }
 							})}
 							onChange={(e) => setSelectedClasses(e.value)}
-							className="min-w-96 border border-gray-300 outline-none rounded-lg"
+							className="min-w-96 border border-gray-300 rounded-lg ring-0"
 							placeholder="Select Classes"
 						/>
 					</div>

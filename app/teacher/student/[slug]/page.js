@@ -71,10 +71,7 @@ export default function Student({ params }) {
 							{data?.map((item, key) => {
 								return (
 									<LanguageCard
-										id={item?.id}
 										name={item?.title}
-										flagImage={item?.flagImage}
-										image={item?.image}
 										key={key}
 									/>
 								)

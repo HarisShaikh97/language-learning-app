@@ -160,7 +160,7 @@ export default function AddTeacher() {
 								return { label: item?.name, value: item?._id }
 							})}
 							onChange={(e) => setSelectedClasses(e.value)}
-							className="min-w-96 border border-gray-300 outline-none rounded-lg"
+							className="min-w-96 border border-gray-300 ring-0 rounded-lg"
 							placeholder="Select Classes"
 						/>
 					</div>

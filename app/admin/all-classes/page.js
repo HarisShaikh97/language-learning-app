@@ -41,7 +41,6 @@ export default function AllClasses() {
 							<LanguageCard
 								id={item?._id}
 								name={item?.name}
-								image={item?.image}
 								students={item?.students}
 								key={key}
 							/>

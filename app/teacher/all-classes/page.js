@@ -32,10 +32,7 @@ export default function AllClasses() {
 					{data?.map((item, key) => {
 						return (
 							<LanguageCard
-								id={item?.id}
 								name={item?.title}
-								flagImage={item?.flagImage}
-								image={item?.image}
 								href={`/teacher/class/${item?.id}`}
 								key={key}
 							/>

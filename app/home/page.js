@@ -67,10 +67,7 @@ export default function Home() {
 									{coursesData?.map((item, key) => {
 										return (
 											<LanguageCard
-												id={1}
 												name={item?.title}
-												flagImage={item?.flagImage}
-												image={item?.image}
 												href="/my-courses"
 												key={key}
 											/>

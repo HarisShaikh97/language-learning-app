@@ -69,7 +69,6 @@ export default function Student({ params }) {
 								return (
 									<LanguageCard
 										name={item?.name}
-										image={item?.image}
 										students={item?.students}
 										teacher={item?.teacher}
 										key={key}
