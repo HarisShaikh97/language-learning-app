@@ -30,8 +30,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     level: {
-        type: String,
-        default: "0"
+        type: Number,
+        default: 0
     },
 
     classrooms: [{
