@@ -65,7 +65,7 @@ export async function GET(req) {
         connect()
         const id = await req.nextUrl.searchParams.get("id")
         if (!id) {
-            const students = await User.find({ role: "student" })
+            const students = await User.find({ role: "student" }).populate('classrooms')
             return NextResponse.json({ data: students, success: true }, { status: 200 })
 
         }
