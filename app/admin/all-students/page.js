@@ -68,16 +68,31 @@ export default function AllStudents() {
 										/>
 									</div>
 									<div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 computer:grid-cols-5 text-sm text-primary place-items-center">
-										<p>{`${item?.firstName} ${item?.lastName}`}</p>
-										<p className="hidden lg:flex">
+										<p className="truncate max-w-32">{`${item?.firstName} ${item?.lastName}`}</p>
+										<p className="hidden lg:flex max-w-40 truncate">
 											{item?.email}
 										</p>
 										<p className="hidden computer:flex">
 											{item?.phone}
 										</p>
-										<p className="hidden sm:flex">
-											{item?.class}
-										</p>
+										<div className="hidden sm:flex">
+											{item?.classrooms?.map(
+												(classroom, index) => {
+													return (
+														<p
+															className="w-full truncate"
+															key={index}
+														>
+															<span>
+																{index > 0 &&
+																	", "}
+															</span>
+															{classroom?.name}
+														</p>
+													)
+												}
+											)}
+										</div>
 										<div className="flex flex-row items-center gap-3">
 											<button
 												onClick={async () => {

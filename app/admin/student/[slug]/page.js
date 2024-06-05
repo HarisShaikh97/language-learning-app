@@ -42,22 +42,20 @@ export default function Student({ params }) {
 		})()
 	}, [params])
 
-	console.log(data)
-
 	return (
 		<AdminLayout>
 			<div className="flex-1 w-full flex flex-col items-center gap-10 py-20 px-5 sm:px-10 md:px-20">
 				<div className="w-full flex-1 flex flex-col lg:flex-row gap-20">
 					<div className="h-fit p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
 						<Image
-							src={"/profile.png"}
+							src={data?.image || "/profile.png"}
 							alt="profile"
 							height={150}
 							width={150}
 							className="rounded-full overflow-hidden"
 						/>
 						<div className="flex flex-col gap-2 items-center">
-							<p className="text-xl font-semibold truncate">{`${data?.firstName} ${data?.lastName}`}</p>
+							<p className="text-xl font-semibold max-w-52 truncate">{`${data?.firstName} ${data?.lastName}`}</p>
 							<p className="font-light">{data?.email}</p>
 							<p className="text-sm font-light">{data?.phone}</p>
 						</div>
@@ -73,6 +71,7 @@ export default function Student({ params }) {
 										name={item?.name}
 										image={item?.image}
 										students={item?.students}
+										teacher={item?.teacher}
 										key={key}
 									/>
 								)
