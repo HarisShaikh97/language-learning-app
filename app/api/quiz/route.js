@@ -32,9 +32,8 @@ export async function POST(req) {
     }
 }
 
-
-
 export async function GET(req) {
+
     try {
         connect()
         const id = await req.nextUrl.searchParams.get('id')
