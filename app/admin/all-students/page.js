@@ -75,14 +75,11 @@ export default function AllStudents() {
 										<p className="hidden computer:flex">
 											{item?.phone}
 										</p>
-										<div className="hidden sm:flex">
+										<div className="hidden sm:flex w-full truncate justify-center">
 											{item?.classrooms?.map(
 												(classroom, index) => {
 													return (
-														<p
-															className="w-full truncate"
-															key={index}
-														>
+														<p key={index}>
 															<span>
 																{index > 0 &&
 																	", "}
