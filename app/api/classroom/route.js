@@ -71,3 +71,25 @@ export async function GET(req) {
 }
 
 
+
+export async function DELETE(req) {
+    try {
+
+        connect()
+        const id = await req.nextUrl.searchParams.get("id")
+
+        if (!id) {
+            return NextResponse.json({ error: "Invalid classroom ID" }, { status: 400 })
+        }
+
+        const DeletedClass = await Classroom.findByIdAndDelete(id)
+        if (!DeletedClass) {
+            return NextResponse.json({ error: "Classroom not found" }, { status: 404 })
+        }
+
+        return NextResponse.json({ message: "Classroom deleted successfully", success: true }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+}
+
