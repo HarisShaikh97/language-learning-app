@@ -55,7 +55,9 @@ export default function Student({ params }) {
 							className="rounded-full overflow-hidden"
 						/>
 						<div className="flex flex-col gap-2 items-center">
-							<p className="text-xl font-semibold max-w-52 truncate">{`${data?.firstName} ${data?.lastName}`}</p>
+							<p className="text-xl font-semibold max-w-52 truncate">{`${
+								data?.firstName || ""
+							} ${data?.lastName || ""}`}</p>
 							<p className="font-light">{data?.email}</p>
 							<p className="text-sm font-light">{data?.phone}</p>
 						</div>

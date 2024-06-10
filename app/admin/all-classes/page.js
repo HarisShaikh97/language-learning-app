@@ -42,6 +42,7 @@ export default function AllClasses() {
 								id={item?._id}
 								name={item?.name}
 								students={item?.students}
+								href={`/admin/class/${item?._id}`}
 								key={key}
 							/>
 						)
