@@ -1,30 +1,27 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import axios from "axios"
 import Link from "next/link"
 import AdminLayout from "@/components/admin/layout/Layout"
 import { VocabularyCard } from "@/components/vocabulary-card/VocabularyCard"
 
 export default function LearningMode() {
-	const data = [
-		{
-			id: 1,
-			title: "Level 1"
-		},
-		{
-			id: 2,
-			title: "Level 2"
-		},
-		{
-			id: 3,
-			title: "Level 3"
-		},
-		{
-			id: 4,
-			title: "Level 4"
-		},
-		{
-			id: 5,
-			title: "Level 5"
-		}
-	]
+	const [data, setData] = useState([])
+
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get("/api/quiz")
+				?.then((res) => {
+					console.log(res)
+					setData(res?.data?.quiz)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [])
 
 	return (
 		<AdminLayout>
@@ -42,7 +39,7 @@ export default function LearningMode() {
 					{data?.map((item, key) => {
 						return (
 							<VocabularyCard
-								id={item?.id}
+								id={item?._id}
 								name={item?.title}
 								key={key}
 							/>

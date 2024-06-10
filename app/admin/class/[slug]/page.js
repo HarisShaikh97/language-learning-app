@@ -22,8 +22,6 @@ export default function Class({ params }) {
 		})()
 	}, [params])
 
-	console.log(data)
-
 	return (
 		<AdminLayout>
 			<div className="flex-1 p-10 flex flex-col gap-10">
