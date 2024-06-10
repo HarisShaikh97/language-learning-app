@@ -7,7 +7,7 @@ import { FallingLines } from "react-loader-spinner"
 import toast from "react-hot-toast"
 import AdminLayout from "@/components/admin/layout/Layout"
 
-export default function UpdateStudent({ params }) {
+export default function UpdateTeacher({ params }) {
 	const router = useRouter()
 
 	const [isLoading, setIsLoading] = useState(false)
@@ -29,7 +29,7 @@ export default function UpdateStudent({ params }) {
 		}
 
 		await axios
-			.put(`/api/students?id=${params?.slug}`, payload)
+			.put(`/api/teacher?id=${params?.slug}`, payload)
 			?.then((res) => {
 				console.log(res)
 				toast.success(res?.data?.message)
@@ -41,12 +41,13 @@ export default function UpdateStudent({ params }) {
 				toast.error(err?.response?.data?.error)
 				setIsLoading(false)
 			})
+		console.log(payload)
 	}
 
 	useEffect(() => {
 		;(async () => {
 			await axios
-				.get(`/api/students?id=${params?.slug}`)
+				.get(`/api/teacher?id=${params?.slug}`)
 				?.then((res) => {
 					console.log(res)
 					setFirstName(res?.data?.data?.firstName || "")
@@ -63,7 +64,7 @@ export default function UpdateStudent({ params }) {
 	return (
 		<AdminLayout>
 			<div className="w-full flex-1 flex flex-col gap-10 py-10 px-5 xs:px-10">
-				<p className="text-xl font-semibold">Edit Student</p>
+				<p className="text-xl font-semibold">Edit Teacher</p>
 				<div className="w-full flex flex-col gap-10">
 					<div className="flex flex-col gap-10 md:flex-row items-center justify-between">
 						<div className="flex flex-col gap-3 w-full">
