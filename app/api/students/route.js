@@ -99,21 +99,21 @@ export async function PUT(req) {
         connect()
 
         const id = await req.nextUrl.searchParams.get('id')
-        const file = await req.formData()
-        const image = file.get("image")
+        // const file = await req.formData()
+        // const image = file.get("image")
 
 
         if (!id) {
             return NextResponse.json({ message: "Id not found!", success: false }, { status: 404 })
         }
-        if (image) {
-            const imageUrl = await HandleFile(image)
-            const student = await User.findOneAndUpdate({ _id: id }, {
-                image: imageUrl.url
-            }, { new: true, runValidators: false })
-            return NextResponse.json({ message: "student Profile image updated successfully", data: student, success: true }, { status: 200 })
+        // if (image) {
+        //     const imageUrl = await HandleFile(image)
+        //     const student = await User.findOneAndUpdate({ _id: id }, {
+        //         image: imageUrl.url
+        //     }, { new: true, runValidators: false })
+        //     return NextResponse.json({ message: "student Profile image updated successfully", data: student, success: true }, { status: 200 })
 
-        }
+        // }
 
         const reqBody = await req.json()
         const student = await User.findOneAndUpdate({ _id: id }, {
@@ -122,7 +122,9 @@ export async function PUT(req) {
             email: reqBody.email,
             phone: reqBody.phone,
         }, { new: true, runValidators: false })
-        console.log(student);
+        if (!student) {
+            return NextResponse.json({ message: "student not found!", success: false }, { status: 404 })
+        }
         return NextResponse.json({ message: "student updated successfully", data: student, success: true }, { status: 200 })
 
 

@@ -118,3 +118,46 @@ export async function DELETE(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
+
+
+export async function PUT(req) {
+    try {
+        connect()
+
+        const id = await req.nextUrl.searchParams.get('id')
+        // const file = await req.formData()
+        // const image = file.get("image")
+
+
+        if (!id) {
+            return NextResponse.json({ message: "Id not found!", success: false }, { status: 404 })
+        }
+        // if (image) {
+        //     const imageUrl = await HandleFile(image)
+        //     const student = await User.findOneAndUpdate({ _id: id }, {
+        //         image: imageUrl.url
+        //     }, { new: true, runValidators: false })
+        //     return NextResponse.json({ message: "Teachers Profile image updated successfully", data: student, success: true }, { status: 200 })
+
+        // }
+
+        const reqBody = await req.json()
+
+        const Teacher = await User.findOneAndUpdate({ _id: id }, {
+            firstName: reqBody.firstName,
+            lastName: reqBody.lastName,
+            email: reqBody.email,
+            phone: reqBody.phone,
+        }, { new: true, runValidators: false })
+        if (!Teacher) {
+            return NextResponse.json({ message: "student not found!", success: false }, { status: 404 })
+        }
+        return NextResponse.json({ message: "Teacher updated successfully", data: Teacher, success: true }, { status: 200 })
+
+
+
+    } catch (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+}
