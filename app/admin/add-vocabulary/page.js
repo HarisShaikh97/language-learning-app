@@ -27,6 +27,8 @@ export default function AddVocabulary() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
+		setIsLoading(true)
+
 		const payload = {
 			title: title,
 			words: [
