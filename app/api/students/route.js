@@ -29,6 +29,7 @@ export async function POST(req) {
         const student = new User({
             firstName,
             lastName,
+            nickname: "",
             email,
             phone,
             role,
@@ -38,7 +39,7 @@ export async function POST(req) {
         })
 
         const ClassID = JSON.parse(classrooms)
-        const newStudent = await student.save().select("-password")
+        const newStudent = await student.save()
         for (const classroomId of ClassID) {
 
             const data = await Classroom.findByIdAndUpdate(
@@ -48,6 +49,7 @@ export async function POST(req) {
             );
 
         }
+        console.log(newStudent);
         return NextResponse.json({ message: "student saved successfully", data: newStudent, success: true }, { status: 200 })
 
 
