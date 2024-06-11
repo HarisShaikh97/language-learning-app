@@ -1,28 +1,26 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import axios from "axios"
 import TeacherLayout from "@/components/teacher/layout/Layout"
 import LanguageCard from "@/components/language-card/LanguageCard"
 
 export default function AllClasses() {
-	const data = [
-		{
-			id: 1,
-			title: "Arabic Class",
-			image: "/bg-image-arabic.jpg",
-			flagImage: "/arabic-flag.png"
-		},
-		{
-			id: 2,
-			title: "English Class",
-			image: "/bg-image-english.jpg",
-			flagImage: "/english-flag.png"
-		},
-		{
-			id: 1,
-			id: 3,
-			title: "Greek Class",
-			image: "/bg-image-greek.jpg",
-			flagImage: "/greek-flag.png"
-		}
-	]
+	const [data, setData] = useState([])
+
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get("/api/classroom")
+				?.then((res) => {
+					console.log(res)
+					setData(res?.data?.Data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [])
 
 	return (
 		<TeacherLayout>
@@ -32,8 +30,10 @@ export default function AllClasses() {
 					{data?.map((item, key) => {
 						return (
 							<LanguageCard
-								name={item?.title}
-								href={`/teacher/class/${item?.id}`}
+								id={item?._id}
+								name={item?.name}
+								students={item?.students}
+								href={`/teacher/class/${item?._id}`}
 								key={key}
 							/>
 						)
