@@ -17,13 +17,13 @@ export async function POST(req) {
         const password = reqBody.get("password")
         const classrooms = reqBody.get("class")
         const image = reqBody.get("image")
-        console.log(classrooms);
+
         const isStudent = await User.findOne({ email })
         if (isStudent) {
             return NextResponse.json({ error: "email already exist" }, { status: 400 })
         }
-        console.log();
-        const hashedPassword = await bcrypt.hash(password, 10)
+
+        // const hashedPassword = await bcrypt.hash(password, 10)
         // console.log(hashedPassword);
         const imageUrl = await HandleFile(image)
         const student = new User({
@@ -33,12 +33,12 @@ export async function POST(req) {
             phone,
             role,
             classrooms: JSON.parse(classrooms),
-            password: hashedPassword,
+            password: password,
             image: imageUrl.url
         })
 
         const ClassID = JSON.parse(classrooms)
-        const newStudent = await student.save()
+        const newStudent = await student.save().select("-password")
         for (const classroomId of ClassID) {
 
             const data = await Classroom.findByIdAndUpdate(
@@ -56,8 +56,6 @@ export async function POST(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-
-
 
 export async function GET(req) {
     try {
@@ -91,8 +89,6 @@ export async function GET(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-
-
 
 export async function PUT(req) {
     try {
@@ -134,8 +130,6 @@ export async function PUT(req) {
     }
 
 }
-
-
 
 export async function DELETE(req) {
     try {

@@ -123,7 +123,3 @@ export async function PUT(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-
-
-
-

@@ -3,8 +3,6 @@ import User from "@/app/models/user.model";
 import connect from "@/app/db/connect";
 import { NextResponse } from "next/server";
 
-
-
 export async function POST(req) {
 
     try {
@@ -45,8 +43,6 @@ export async function POST(req) {
     }
 }
 
-
-
 export async function GET(req) {
     try {
         connect()
@@ -70,8 +66,6 @@ export async function GET(req) {
     }
 }
 
-
-
 export async function DELETE(req) {
     try {
 
@@ -92,4 +86,3 @@ export async function DELETE(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
-

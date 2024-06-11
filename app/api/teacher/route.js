@@ -25,20 +25,20 @@ export async function POST(req) {
             return NextResponse.json("Teacher already exist", { status: 400 })
         }
         const imageUrl = await HandleFile(image)
-        const hashPassword = await bcrypt.hash(password, 10)
+        // const hashPassword = await bcrypt.hash(password, 10)
 
         const newTeacher = new User({
             firstName,
             lastName,
             email,
             phone,
-            password: hashPassword,
+            password,
             role: role,
             classrooms: JSON.parse(classrooms),
             image: imageUrl.url
         })
 
-        const createdTeacher = await newTeacher.save()
+        const createdTeacher = await newTeacher.save().select("-nickname")
 
         const ClassID = JSON.parse(classrooms)
 
@@ -68,7 +68,7 @@ export async function GET(req) {
         const id = await req.nextUrl.searchParams.get("id")
         const role = await req.nextUrl.searchParams.get("role")
         if (!id) {
-            const teachers = await User.find({ role }).populate("classrooms").select("-level")
+            const teachers = await User.find({ role }).populate("classrooms").select("-level -nickname")
             if (teachers.length > 0) {
                 return NextResponse.json(
                     { data: teachers, success: true },
@@ -81,7 +81,7 @@ export async function GET(req) {
             )
         }
 
-        const teacher = await User.findById(id).populate("classrooms").select("-level")
+        const teacher = await User.findById(id).populate("classrooms").select("-level -nickname")
 
         return NextResponse.json(
             { data: teacher, success: true },
