@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import Image from "next/image"
 import axios from "axios"
 import { AreaChart, Area, YAxis, XAxis, ResponsiveContainer } from "recharts"
@@ -45,6 +46,15 @@ export default function Student({ params }) {
 	return (
 		<AdminLayout>
 			<div className="flex-1 w-full flex flex-col items-center gap-10 py-20 px-5 sm:px-10 md:px-20">
+				<div className="w-full flex flex-row items-center justify-between">
+					<p className="text-3xl">Student</p>
+					<Link
+						href={`/admin/update-student/${params?.slug}`}
+						className="h-10 w-32 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
+					>
+						Edit Student
+					</Link>
+				</div>
 				<div className="w-full flex-1 flex flex-col lg:flex-row gap-20">
 					<div className="h-fit p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
 						<Image
@@ -86,7 +96,7 @@ export default function Student({ params }) {
 						<div className="flex flex-row items-center gap-3">
 							<p>Level</p>
 							<div className="size-6 rounded-full bg-sky-300 text-white text-sm flex items-center justify-center">
-								<p>3</p>
+								<p>{data?.level}</p>
 							</div>
 						</div>
 					</div>

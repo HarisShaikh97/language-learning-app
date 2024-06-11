@@ -1,12 +1,18 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import axios from "axios"
+import { FallingLines } from "react-loader-spinner"
+import toast from "react-hot-toast"
 import AdminLayout from "@/components/admin/layout/Layout"
 
 export default function Class({ params }) {
+	const router = useRouter()
+
 	const [data, setData] = useState()
+	const [isLoading, setIsLoading] = useState()
 
 	useEffect(() => {
 		;(async () => {
@@ -22,12 +28,44 @@ export default function Class({ params }) {
 		})()
 	}, [params])
 
-	console.log(data)
+	const handleDelete = async () => {
+		setIsLoading(true)
+		await axios
+			.delete(`/api/classroom?id=${params?.slug}`)
+			?.then((res) => {
+				console.log(res)
+				toast.success(res?.data?.message)
+				setIsLoading(false)
+				router?.back()
+			})
+			?.catch((err) => {
+				console.log(err)
+				toast.error(err?.response?.data?.error)
+				setIsLoading(false)
+			})
+	}
 
 	return (
 		<AdminLayout>
 			<div className="flex-1 p-10 flex flex-col gap-10">
-				<p className="text-3xl">Class: {data?.name}</p>
+				<div className="w-full flex flex-row items-center justify-between">
+					<p className="text-3xl">Class: {data?.name}</p>
+					<button
+						className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
+						onClick={handleDelete}
+					>
+						{isLoading ? (
+							<FallingLines
+								color="#ffffff"
+								width="50"
+								visible={true}
+								ariaLabel="falling-circles-loading"
+							/>
+						) : (
+							"Delete"
+						)}
+					</button>
+				</div>
 				<div className="p-5 border border-sky-300 rounded-lg shadow-xl w-full">
 					<p>Description: {data?.description}</p>
 				</div>
