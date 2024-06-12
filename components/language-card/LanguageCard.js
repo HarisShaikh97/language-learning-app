@@ -31,8 +31,10 @@ export default function LanguageCard({ name, students, teacher, href }) {
 			onClick={handleSelect}
 		>
 			<div className="h-24 xs:h-28 w-full bg-sky-200 flex flex-col items-start gap-5 p-3 xs:p-5">
-				<p className="text-xl font-bold text-primary">{name}</p>
-				<p className="font-semibold text-primary max-w-32 truncate">
+				<p className="text-xl font-bold text-primary text-left truncate max-w-52">
+					{name}
+				</p>
+				<p className="font-semibold text-primary max-w-52 truncate">
 					{teacher?.firstName &&
 						teacher?.lastName &&
 						`${teacher?.firstName} ${teacher?.lastName}`}

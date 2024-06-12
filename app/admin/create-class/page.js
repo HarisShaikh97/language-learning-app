@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import { FallingLines } from "react-loader-spinner"
 import toast from "react-hot-toast"
 import { MultiSelect } from "primereact/multiselect"
 import { Dropdown } from "primereact/dropdown"
@@ -20,6 +21,7 @@ export default function CreateClass() {
 	const [selectedTeacher, setSelectedTeacher] = useState()
 	const [students, setStudents] = useState([])
 	const [selectedStudents, setSelectedStudents] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		;(async () => {
@@ -61,6 +63,8 @@ export default function CreateClass() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
+		setIsLoading(true)
+
 		const payload = {
 			name: name,
 			description: description,
@@ -72,11 +76,13 @@ export default function CreateClass() {
 			.post("/api/classroom", payload)
 			?.then((res) => {
 				console.log(res)
+				setIsLoading(false)
 				toast.success(res?.data?.message)
 				router.back()
 			})
 			?.catch((err) => {
 				console.log(err)
+				setIsLoading(false)
 				toast.error(err?.response?.data?.error)
 			})
 
@@ -130,7 +136,16 @@ export default function CreateClass() {
 							className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
 							onClick={handleSubmit}
 						>
-							Save
+							{isLoading ? (
+								<FallingLines
+									color="#ffffff"
+									width="50"
+									visible={true}
+									ariaLabel="falling-circles-loading"
+								/>
+							) : (
+								"Save"
+							)}
 						</button>
 						<button
 							className="h-12 w-40 flex items-center justify-center rounded-lg border border-b-2 hover:border-b-4 text-primary font-semibold border-primary transform-gpu ease-in-out duration-150"

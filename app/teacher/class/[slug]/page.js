@@ -3,108 +3,90 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import axios from "axios"
+import { FallingLines } from "react-loader-spinner"
+import toast from "react-hot-toast"
 import {
 	DocumentTextIcon,
-	ArrowUpTrayIcon,
-	LinkIcon,
 	UsersIcon,
 	PaperAirplaneIcon
 } from "@heroicons/react/24/solid"
 import TeacherLayout from "@/components/teacher/layout/Layout"
 
 export default function Class({ params }) {
+	const currentDate = new Date()
+
+	const [isLoading, setIsLoading] = useState(false)
 	const [selectedTab, setSelectedTab] = useState("stream")
-	const [assignments, setAssignments] = useState([])
-
-	const teachers = [
-		{
-			id: 1,
-			name: "Jason Pink",
-			image: "/profile.png"
-		},
-		{
-			id: 2,
-			name: "Jasper Pink",
-			image: "/profile.png"
-		}
-	]
-
-	const students = [
-		{
-			id: 1,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 2,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 3,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 4,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 5,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 6,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 7,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 8,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 9,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 10,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 11,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		},
-		{
-			id: 12,
-			name: "Alex Wayne",
-			image: "/profile.png"
-		}
-	]
+	const [data, setData] = useState()
+	const [title, setTitle] = useState("")
+	const [description, setDescription] = useState("")
+	const [file, setFile] = useState()
+	const [dueDate, setDueDate] = useState(
+		`${currentDate?.getFullYear()}-${
+			currentDate?.getMonth() < 10
+				? `0${currentDate?.getMonth()}`
+				: currentDate?.getMonth()
+		}-${
+			currentDate?.getDay() < 10
+				? `0${currentDate?.getDay()}`
+				: currentDate?.getDay()
+		}`
+	)
 
 	useEffect(() => {
 		;(async () => {
 			await axios
-				.get("/api/assignment")
+				.get(`/api/classroom?id=${params?.slug}`)
 				?.then((res) => {
 					console.log(res)
-					setAssignments(res?.data?.Data)
+					setData(res?.data?.Data)
 				})
 				?.catch((err) => {
 					console.log(err)
 				})
 		})()
-	}, [])
+	}, [params])
+
+	const handlePost = async () => {
+		setIsLoading(true)
+
+		console.log(title, description, dueDate, file)
+
+		const formData = new FormData()
+		formData.append("title", title)
+		formData.append("description", description)
+		formData.append("dueDate", dueDate)
+		formData.append("file", file)
+
+		await axios
+			.post(`/api/assignment?classId=${params?.slug}`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data"
+				}
+			})
+			?.then(async (res) => {
+				console.log(res)
+				setTitle("")
+				setDescription("")
+				setFile(null)
+				await axios
+					.get(`/api/classroom?id=${params?.slug}`)
+					?.then((res) => {
+						console.log(res)
+						setData(res?.data?.Data)
+					})
+					?.catch((err) => {
+						console.log(err)
+					})
+				toast.success(res?.data?.message)
+				setIsLoading(false)
+			})
+			?.catch((err) => {
+				console.log(err)
+				toast.error(err?.response?.data?.error)
+				setIsLoading(false)
+			})
+	}
 
 	return (
 		<TeacherLayout>
@@ -156,7 +138,7 @@ export default function Class({ params }) {
 				{selectedTab === "stream" && (
 					<div className="size-full flex flex-col gap-10 md:px-20 lg:px-32">
 						<div className="min-h-44 w-full bg-sky-300 rounded-xl shadow-xl text-3xl font-sans text-white p-5 flex items-end">
-							Arabic Class
+							{data?.name}
 						</div>
 						<div className="w-full flex flex-row gap-10">
 							<div className="h-40 w-64 rounded-xl border border-sky-500 shadow-xl hidden lg:flex flex-col justify-around px-5">
@@ -167,31 +149,60 @@ export default function Class({ params }) {
 								</button>
 							</div>
 							<div className="w-full flex flex-col gap-10">
-								<div className="h-80 w-full rounded-xl border border-sky-500 shadow-xl flex flex-col p-7">
-									<div className="h-full flex-1 bg-sky-100 border-b-2 border-sky-500 p-5">
+								<div className="h-fit w-full rounded-xl border border-sky-500 shadow-xl flex flex-col gap-5 p-7">
+									<div className="flex flex-row items-center gap-3">
+										<p>Title:</p>
+										<input
+											className="outline-none w-60 border-b border-sky-500 p-1"
+											type="text"
+											value={title}
+											onChange={(e) => {
+												setTitle(e.target.value)
+											}}
+										/>
+									</div>
+									<div className="min-h-40 flex-1 bg-sky-100 border-b-2 border-sky-500 p-5">
 										<textarea
 											className="size-full bg-transparent border-none outline-none"
 											placeholder="Write some thing to your class..."
+											value={description}
+											onChange={(e) => {
+												setDescription(e.target.value)
+											}}
 										/>
 									</div>
-									<div className="h-32 md:h-20 w-full flex flex-col gap-5 md:gap-0 md:flex-row md:items-end justify-end md:justify-between">
-										<div className="flex flex-row items-center gap-3">
-											<button className="size-12 bg-sky-100 flex items-center justify-center rounded-full">
-												<ArrowUpTrayIcon className="size-6 text-sky-500" />
-											</button>
-											<button className="size-12 bg-sky-100 flex items-center justify-center rounded-full">
-												<LinkIcon className="size-6 text-sky-500" />
-											</button>
-										</div>
-										<div className="flex flex-row items-center gap-5">
-											<button className="h-10 w-32 flex items-center justify-center rounded-lg border border-b-2 hover:border-b-4 text-primary font-semibold border-primary transform-gpu ease-in-out duration-150">
-												Cancel
-											</button>
-											<button className="h-10 w-32 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150">
-												Post
-											</button>
-										</div>
+									<div className="flex flex-row items-center gap-3">
+										<p>Due date:</p>
+										<input
+											type="date"
+											className="outline-none w-60 border border-sky-300 rounded p-1"
+											value={dueDate}
+											onChange={(e) => {
+												setDueDate(e.target.value)
+											}}
+										/>
 									</div>
+									<input
+										type="file"
+										onChange={(e) => {
+											setFile(e.target.files[0])
+										}}
+									/>
+									<button
+										className="h-10 w-32 flex items-center justify-center place-self-end rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"
+										onClick={handlePost}
+									>
+										{isLoading ? (
+											<FallingLines
+												color="#ffffff"
+												width="50"
+												visible={true}
+												ariaLabel="falling-circles-loading"
+											/>
+										) : (
+											"Post"
+										)}
+									</button>
 								</div>
 								<div className="py-7 rounded-xl border border-sky-500 shadow-xl flex flex-col gap-5 mb-16">
 									<div className="flex flex-row items-center gap-5 px-7">
@@ -272,7 +283,7 @@ export default function Class({ params }) {
 				)}
 				{selectedTab === "classwork" && (
 					<div className="h-full w-full md:w-[75%] lg:w-[55%] flex flex-col overflow-y-auto scrollbar-none">
-						{assignments?.map((item, key) => {
+						{data?.assignments?.map((item, key) => {
 							return (
 								<div className="w-full flex flex-col" key={key}>
 									<div className="h-20 w-full flex flex-row items-center justify-between">
@@ -297,40 +308,33 @@ export default function Class({ params }) {
 					<div className="h-full w-full md:w-[75%] lg:w-[55%] flex flex-col overflow-y-auto scrollbar-none">
 						<p className="text-3xl text-sky-500">Teacher</p>
 						<div className="min-h-[1px] w-full bg-sky-500 my-5" />
-						<div className="flex flex-col gap-5">
-							{teachers?.map((item, key) => {
-								return (
-									<div
-										className="flex flex-row items-center gap-7"
-										key={key}
-									>
-										<Image
-											src={item?.image}
-											alt="profile"
-											height={35}
-											width={35}
-										/>
-										<p>{item?.name}</p>
-									</div>
-								)
-							})}
+						<div className="flex flex-row items-center gap-7">
+							<Image
+								src={data?.teacher?.image || "/profile.png"}
+								alt="profile"
+								height={35}
+								width={35}
+								className="rounded-full overflow-hidden size-10 object-cover"
+							/>
+							<p>{`${data?.teacher?.firstName} ${data?.teacher?.lastName}`}</p>
 						</div>
 						<p className="text-3xl text-sky-500 mt-10">Students</p>
 						<div className="min-h-[1px] w-full bg-sky-500 my-5" />
 						<div className="flex flex-col gap-5">
-							{students?.map((item, key) => {
+							{data?.students?.map((item, key) => {
 								return (
 									<div
 										className="flex flex-row items-center gap-7"
 										key={key}
 									>
 										<Image
-											src={item?.image}
+											src={item?.image || "/profile.png"}
 											alt="profile"
 											height={35}
 											width={35}
+											className="rounded-full overflow-hidden size-10 object-cover"
 										/>
-										<p>{item?.name}</p>
+										<p>{`${item?.firstName} ${item?.lastName}`}</p>
 									</div>
 								)
 							})}

@@ -33,6 +33,7 @@ export default function AllClasses() {
 								id={item?._id}
 								name={item?.name}
 								students={item?.students}
+								teacher={item?.teacher}
 								href={`/teacher/class/${item?._id}`}
 								key={key}
 							/>
