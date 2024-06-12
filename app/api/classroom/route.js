@@ -60,8 +60,8 @@ export async function POST(req) {
 }
 
 export async function GET(req) {
+    await connect()
     try {
-        connect()
 
         const id = await req.nextUrl.searchParams.get("id")
         if (!id) {
