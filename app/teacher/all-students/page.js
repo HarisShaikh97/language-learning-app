@@ -1,198 +1,32 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import toast from "react-hot-toast"
+import axios from "axios"
 import { EyeIcon, TrashIcon } from "@heroicons/react/24/solid"
 import TeacherLayout from "@/components/teacher/layout/Layout"
 
 export default function AllStudents() {
 	const router = useRouter()
 
-	const data = [
-		{
-			id: 1,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 2,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 3,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 4,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 5,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 6,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 7,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 8,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 9,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 10,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 11,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 12,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 13,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 14,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 15,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 16,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 17,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 18,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 19,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 20,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 21,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 22,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 23,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 24,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 25,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		},
-		{
-			id: 26,
-			name: "Jason Pink",
-			phone: "(111) 1234567",
-			email: "jason@gmail.com",
-			class: "Arabic"
-		}
-	]
+	const [data, setData] = useState([])
+
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get("/api/students")
+				?.then((res) => {
+					console.log(res)
+					setData(res?.data?.data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [])
 
 	return (
 		<TeacherLayout>
@@ -226,7 +60,7 @@ export default function AllStudents() {
 								>
 									<div className="size-20 hidden md:flex items-center justify-center">
 										<Image
-											src={"/profile.png"}
+											src={item?.image || "/profile.png"}
 											alt="profile"
 											height={35}
 											width={35}
@@ -234,24 +68,81 @@ export default function AllStudents() {
 										/>
 									</div>
 									<div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 computer:grid-cols-5 text-sm text-primary place-items-center">
-										<p>{item?.name}</p>
+										<p>{`${item?.firstName} ${item?.lastName}`}</p>
 										<p className="hidden lg:flex">
 											{item?.email}
 										</p>
 										<p className="hidden computer:flex">
 											{item?.phone}
 										</p>
-										<p className="hidden sm:flex">
-											{item?.class}
-										</p>
+										<div className="hidden sm:flex w-full truncate justify-center">
+											{item?.classrooms?.map(
+												(classroom, index) => {
+													return (
+														<p key={index}>
+															<span>
+																{index > 0 &&
+																	", "}
+															</span>
+															{classroom?.name}
+														</p>
+													)
+												}
+											)}
+										</div>
 										<div className="flex flex-row items-center gap-3">
-											<button>
+											<button
+												onClick={async () => {
+													await axios
+														.delete(
+															`/api/students?id=${item?._id}`
+														)
+														?.then(async (res) => {
+															toast.success(
+																res?.data
+																	?.message
+															)
+															await axios
+																.get(
+																	"/api/students"
+																)
+																?.then(
+																	(res) => {
+																		console.log(
+																			res
+																		)
+																		setData(
+																			res
+																				?.data
+																				?.data
+																		)
+																	}
+																)
+																?.catch(
+																	(err) => {
+																		console.log(
+																			err
+																		)
+																	}
+																)
+															console.log(res)
+														})
+														?.catch((err) => {
+															console.log(err)
+															toast.error(
+																err?.response
+																	?.data
+																	?.message
+															)
+														})
+												}}
+											>
 												<TrashIcon className="size-6 text-sky-500" />
 											</button>
 											<button
 												onClick={() => {
 													router.push(
-														`/teacher/student/${item?.id}`
+														`/teacher/student/${item?._id}`
 													)
 												}}
 											>

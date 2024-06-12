@@ -44,6 +44,8 @@ export default function AddStudent() {
 		e.preventDefault()
 		setIsLoading(true)
 		if (!image) {
+			setIsLoading(false)
+			toast.error("Image is required!")
 			return
 		}
 

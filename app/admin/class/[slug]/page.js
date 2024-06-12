@@ -70,24 +70,28 @@ export default function Class({ params }) {
 					<p>Description: {data?.description}</p>
 				</div>
 				<p className="text-3xl">Teacher:</p>
-				<div className="h-fit max-w-96 p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
-					<Image
-						src={data?.teacher?.image || "/profile.png"}
-						alt="profile"
-						height={150}
-						width={150}
-						className="rounded-full overflow-hidden"
-					/>
-					<div className="flex flex-col gap-2 items-center">
-						<p className="text-xl font-semibold max-w-52 truncate">{`${
-							data?.teacher?.firstName || ""
-						} ${data?.teacher?.lastName || ""}`}</p>
-						<p className="font-light">{data?.teacher?.email}</p>
-						<p className="text-sm font-light">
-							{data?.teacher?.phone}
-						</p>
+				{data?.teacher ? (
+					<div className="h-fit max-w-96 p-5 md:p-16 sm:p-10 border border-sky-200 rounded-xl shadow-xl flex flex-col items-center gap-5">
+						<Image
+							src={data?.teacher?.image || "/profile.png"}
+							alt="profile"
+							height={150}
+							width={150}
+							className="rounded-full overflow-hidden"
+						/>
+						<div className="flex flex-col gap-2 items-center">
+							<p className="text-xl font-semibold max-w-52 truncate">{`${
+								data?.teacher?.firstName || ""
+							} ${data?.teacher?.lastName || ""}`}</p>
+							<p className="font-light">{data?.teacher?.email}</p>
+							<p className="text-sm font-light">
+								{data?.teacher?.phone}
+							</p>
+						</div>
 					</div>
-				</div>
+				) : (
+					<p>No teacher assigned!</p>
+				)}
 				<p className="text-3xl">Students:</p>
 				<div className="w-full max-h-[70vh] flex-1 flex flex-col gap-5 rounded-lg border border-sky-500 py-10 px-5 md:px-10">
 					<div className="w-full flex flex-row items-center">
