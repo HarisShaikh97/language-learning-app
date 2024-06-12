@@ -49,11 +49,11 @@ export async function GET(req) {
 
         const id = await req.nextUrl.searchParams.get("id")
         if (!id) {
-            const allClassrooms = await Classroom.find().populate("teacher").populate("students")
+            const allClassrooms = await Classroom.find().populate("teacher").populate("students").populate("assignments")
             return NextResponse.json({ message: "All classrooms", Data: allClassrooms, success: true }, { status: 200 })
         }
 
-        const classroom = await Classroom.findById(id).populate("teacher").populate("students")
+        const classroom = await Classroom.findById(id).populate("teacher").populate("students").populate('assignments')
 
         if (!classroom) {
             return NextResponse.json({ message: "Classroom Not found", success: true }, { status: 404 })
