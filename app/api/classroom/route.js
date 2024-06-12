@@ -68,6 +68,7 @@ export async function GET(req) {
             const allClassrooms = await Classroom.find()
                 .populate("teacher")
                 .populate("students")
+                .populate("assignments")
             return NextResponse.json(
                 {
                     message: "All classrooms",
@@ -78,7 +79,7 @@ export async function GET(req) {
             )
         }
 
-        const classroom = await Classroom.findById(id).populate("teacher").populate("students")
+        const classroom = await Classroom.findById(id).populate("teacher").populate("students").populate("assignments")
 
         if (!classroom) {
             return NextResponse.json(
