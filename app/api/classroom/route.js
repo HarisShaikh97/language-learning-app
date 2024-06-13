@@ -125,3 +125,75 @@ export async function DELETE(req) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
+
+export async function PUT(req) {
+    try {
+        await connect();
+
+        const id = req.nextUrl.searchParams.get('id');
+        const reqBody = await req.json();
+        const { name, description, teacher, students, assignments } = reqBody;
+
+        if (!id) {
+            return NextResponse.json(
+                { message: "Classroom ID not provided" },
+                { status: 400 }
+            );
+        }
+
+        const classroom = await Classroom.findById(id);
+        if (!classroom) {
+            return NextResponse.json(
+                { message: "Classroom not found" },
+                { status: 404 }
+            );
+        }
+
+        if (teacher) {
+            const isTeacher = await User.findOne({ _id: teacher, role: "teacher" });
+            if (!isTeacher) {
+                return NextResponse.json(
+                    { error: "Invalid teacher" },
+                    { status: 400 }
+                );
+            }
+            classroom.teacher = teacher;
+        }
+
+        if (students) {
+            const isStudents = await User.find({
+                _id: { $in: students },
+                role: "student"
+            });
+
+            if (isStudents.length !== students.length) {
+                return NextResponse.json(
+                    { error: "One or more student IDs are invalid" },
+                    { status: 400 }
+                );
+            }
+            classroom.students = students;
+        }
+
+        if (name) classroom.name = name;
+        if (description) classroom.description = description;
+        if (assignments) classroom.assignments = assignments;
+
+        const updatedClassroom = await classroom.save();
+
+        return NextResponse.json(
+            {
+                message: "Classroom updated successfully",
+                data: updatedClassroom,
+                success: true
+            },
+            { status: 200 }
+        );
+    } catch (error) {
+        return NextResponse.json(
+            { error: error.message },
+            { status: 500 }
+        );
+    }
+}
+
