@@ -172,7 +172,19 @@ export async function PUT(req) {
                     { status: 400 }
                 );
             }
-            classroom.students = students;
+
+            // Filter out student IDs that are already in the classroom.students array
+            const newStudents = students.filter(studentId => !classroom.students.includes(studentId));
+
+            if (newStudents.length > 0) {
+                classroom.students.push(...newStudents);
+            }
+
+            // Update the student documents to add the classroom ID to their classrooms array
+            await User.updateMany(
+                { _id: { $in: newStudents } },
+                { $addToSet: { classrooms: id } }
+            );
         }
 
         if (name) classroom.name = name;
@@ -196,4 +208,3 @@ export async function PUT(req) {
         );
     }
 }
-

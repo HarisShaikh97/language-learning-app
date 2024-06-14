@@ -37,6 +37,7 @@ export async function POST(req) {
 			phone,
 			role,
 			classrooms: JSON.parse(classrooms),
+			recommendClass: [],
 			password: password,
 			image: imageUrl.url
 		})
