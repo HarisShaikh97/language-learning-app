@@ -39,15 +39,17 @@ const userSchema = new mongoose.Schema({
         default: 0
     },
 
-    classrooms: [{
-        type: Schema.Types.ObjectId, ref: 'Classroom'
-    }],
     recommendClass: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Classroom'
         }
     ],
+
+    classrooms: [{
+        type: Schema.Types.ObjectId, ref: 'Classroom'
+    }],
+
     image: {
         type: String,
 

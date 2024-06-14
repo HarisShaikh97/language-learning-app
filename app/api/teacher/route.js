@@ -68,7 +68,7 @@ export async function GET(req) {
         const id = await req.nextUrl.searchParams.get("id")
         const role = await req.nextUrl.searchParams.get("role")
         if (!id) {
-            const teachers = await User.find({ role }).populate("classrooms").select("-level -nickname")
+            const teachers = await User.find({ role }).populate("classrooms").select("-level -nickname -recommendClass")
             if (teachers.length > 0) {
                 return NextResponse.json(
                     { data: teachers, success: true },
@@ -81,7 +81,7 @@ export async function GET(req) {
             )
         }
 
-        const teacher = await User.findById(id).populate("classrooms").select("-level -nickname")
+        const teacher = await User.findById(id).populate("classrooms").select("-level -nickname -recommendClass")
 
         return NextResponse.json(
             { data: teacher, success: true },

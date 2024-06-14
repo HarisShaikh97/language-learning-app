@@ -16,17 +16,26 @@ export async function POST(req) {
             _id: { $in: students },
             role: "student"
         });
-        console.log(foundStudents);
+
         const foundClasses = await Classroom.find({ _id: { $in: classes } });
 
-        if (foundStudents.length !== students.length) {
-            return NextResponse.json({ error: "One or more students not found" }, { status: 404 });
-        }
-        if (foundClasses.length !== classes.length) {
-            return NextResponse.json({ error: "One or more classes not found" }, { status: 404 });
-        }
+        // if (foundStudents.length !== students.length) {
+        //     return NextResponse.json({ error: "One or more students not found" }, { status: 404 });
+        // }
+        // if (foundClasses.length !== classes.length) {
+        //     return NextResponse.json({ error: "One or more classes not found" }, { status: 404 });
+        // }
 
+        foundStudents.map(async (student) => {
+            // Filter out classes that are already in the recommendClass array
+            const newClasses = classes.flat().filter(classId => !student.recommendClass.includes(classId));
 
+            // If there are new classes to add, push them to the recommendClass array
+            if (newClasses.length > 0) {
+                student.recommendClass.push(...newClasses);
+                await student.save();
+            }
+        })
 
         return NextResponse.json({ message: "Recommendation sent to student" }, { status: 200 });
 
@@ -35,41 +44,5 @@ export async function POST(req) {
     }
 }
 
-export async function GET(req) {
-    try {
-        await connect();
-        const id = req.nextUrl.searchParams.get("id");
-
-        if (!id) {
-            return NextResponse.json({ error: "No id provided" }, { status: 404 });
-        }
-
-        const classes = await Recommend.find();
-
-        const recommendations = classes.map((recommendation) => {
-
-            return { students: recommendation.students, recommendClass: recommendation.classes };
-        });
-
-        const students = recommendations.flatMap((rec) => rec.students);
-        const Classrecommend = recommendations.flatMap((rec) => rec.recommendClass);
-
-        // Ensure id is a valid ObjectId
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return NextResponse.json({ error: "Invalid id format" }, { status: 400 });
-        }
-
-        const objectId = new mongoose.Types.ObjectId(id);
-
-        if (!students.some(studentId => studentId.equals(objectId))) {
-            return NextResponse.json({ message: "No recommendations found" }, { status: 404 });
-        }
-
-        return NextResponse.json({ message: "Recommended Classed", Class: Classrecommend, success: true }, { status: 200 });
-
-    } catch (error) {
-        return NextResponse.json({ message: error.message }, { status: 500 });
-    }
-}
 
 
