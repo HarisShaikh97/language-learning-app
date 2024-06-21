@@ -26,8 +26,8 @@ export async function POST(req) {
 			)
 		}
 
-		// const hashedPassword = await bcrypt.hash(password, 10)
-		// console.log(hashedPassword);
+		const hashedPassword = await bcrypt.hash(password, 10)
+		console.log(hashedPassword);
 		const imageUrl = await HandleFile(image)
 		const student = new User({
 			firstName,
@@ -38,7 +38,7 @@ export async function POST(req) {
 			role,
 			classrooms: JSON.parse(classrooms),
 			recommendClass: [],
-			password: password,
+			password: hashedPassword,
 			image: imageUrl.url
 		})
 
