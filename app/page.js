@@ -15,10 +15,10 @@ export default function Login() {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-	const handleGoogleSignIn = async (e) => {
-		e.preventDefault()
-		await signIn("google", { callbackUrl: "/home" })
-	}
+	// const handleGoogleSignIn = async (e) => {
+	// 	e.preventDefault()
+	// 	await signIn("google", { callbackUrl: "/home" })
+	// }
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
@@ -46,7 +46,7 @@ export default function Login() {
 			<p className="text-xl sm:text-3xl md:text-5xl text-primary font-extrabold w-[250px] sm:w-[450px] text-center my-10">
 				Log in to have fun and learn faster
 			</p>
-			<div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px]">
+			{/* <div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px]">
 				<button
 					onClick={handleGoogleSignIn}
 					className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center"
@@ -62,7 +62,7 @@ export default function Login() {
 					<p className="text-white">Sign in with Google</p>
 				</button>
 			</div>
-			<p className="mt-5">or</p>
+			<p className="mt-5">or</p> */}
 			<div className="flex flex-col gap-3 w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary text-xs font-bold">
 					Username or Email:

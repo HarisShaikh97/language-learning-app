@@ -6,34 +6,46 @@ import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import { FallingLines } from "react-loader-spinner"
+import toast from "react-hot-toast"
 
 export default function Signup() {
 	const router = useRouter()
 
+	const [isLoading, setIsLoading] = useState("")
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-	const handleGoogleSignIn = async (e) => {
-		e.preventDefault()
-		await signIn("google", { callbackUrl: "/home" })
-	}
+	// const handleGoogleSignIn = async (e) => {
+	// 	e.preventDefault()
+	// 	await signIn("google", { callbackUrl: "/home" })
+	// }
 
 	const handleSignUp = async (e) => {
 		e.preventDefault()
 
-		const payload = {
-			email: email,
-			password: password
-		}
+		setIsLoading(true)
+
+		const formData = new FormData()
+		formData.append("email", email)
+		formData.append("password", password)
 
 		await axios
-			.post("/api/user-signup", payload)
-			.then((res) => {
-				console.log(res)
-				router.push("/login")
+			.post("/api/students", formData, {
+				headers: {
+					"Content-Type": "multipart/form-data"
+				}
 			})
-			.catch((err) => {
-				console.log("Error:", err)
+			?.then((res) => {
+				console.log(res)
+				toast.success(res?.data?.message)
+				setIsLoading(false)
+				router?.back()
+			})
+			?.catch((err) => {
+				console.log(err)
+				toast.error(err?.response?.data?.error)
+				setIsLoading(false)
 			})
 	}
 
@@ -57,7 +69,7 @@ export default function Signup() {
 					<p className="w-[250px] sm:w-[350px] text-3xl text-center font-bold mt-10">
 						Sign up and start learning
 					</p>
-					<div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px] mt-5">
+					{/* <div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px] mt-5">
 						<button
 							onClick={handleGoogleSignIn}
 							className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center"
@@ -73,7 +85,7 @@ export default function Signup() {
 							<p className="text-white">Sign in with Google</p>
 						</button>
 					</div>
-					<p className="mt-10">Or sign up with email</p>
+					<p className="mt-10">Or sign up with email</p> */}
 					<div className="flex flex-col gap-3 w-[250px] sm:w-[450px]">
 						<p className="text-primary text-sm font-bold">Email</p>
 						<div className="h-14 w-full rounded bg-sky-50 shadow-xl px-3 flex items-center justify-center">
@@ -127,7 +139,16 @@ export default function Signup() {
 						className="flex items-center justify-center bg-blue-300 mb-10 min-h-12 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-xl text-white  font-bold"
 						onClick={handleSignUp}
 					>
-						Sign up, it&apos;s free
+						{isLoading ? (
+							<FallingLines
+								color="#ffffff"
+								width="50"
+								visible={true}
+								ariaLabel="falling-circles-loading"
+							/>
+						) : (
+							"Sign up, it's free"
+						)}
 					</button>
 				</div>
 			</div>

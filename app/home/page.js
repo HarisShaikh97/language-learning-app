@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSession } from "next-auth/react"
+import axios from "axios"
 import Layout from "@/components/layout/Layout"
 import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgressCard"
 import WeeklyProgressCardGrid from "@/components/weekly-progress-card-grid/WeeklyProgreeCardGrid"
@@ -9,14 +11,31 @@ import ScenarioPopup from "@/components/scenario-popup/ScenarioPopup"
 import coursesData from "@/utils/Data"
 
 export default function Home() {
+	const { data } = useSession()
+
+	const [user, setUser] = useState()
 	const [selectedTab, setSelectedTab] = useState("green")
 	const [showCards, setShowCards] = useState(false)
 	const [showPopup, setShowPopup] = useState(false)
 	const [selectedScenario, setSelectedScenario] = useState()
 
 	useEffect(() => {
-		setShowCards(true)
-	}, [])
+		;(async () => {
+			setShowCards(true)
+			if (data?.user?.id) {
+				await axios
+					.get(`/api/students?id=${data?.user?.id}`)
+					?.then((res) => {
+						console.log(res)
+						setUser(res?.data?.data)
+					})
+					?.catch((err) => {
+						console.log(err)
+					})
+			}
+		})()
+	}, [data])
+
 	return (
 		<Layout>
 			<div className="min-h-full flex-1 flex flex-col items-center relative">
@@ -54,30 +73,17 @@ export default function Home() {
 					)}
 					<div className="w-full flex flex-col gap-5 pl-10 mb-10">
 						<p className="font-bold">Recommended by Teacher</p>
-						<div className="flex flex-row items-center gap-5 w-full">
-							{/* {isLeftButtonVisible && (
-                                <button onClick={scrollToLeft}>
-                                    <ChevronLeftIcon className="size-5 text-black" />
-                                </button>
-                            )} */}
-							<div className="w-full overflow-x-auto scrollbar-none">
-								<div className="flex flex-row flex-wrap gap-5">
-									{coursesData?.map((item, key) => {
-										return (
-											<LanguageCard
-												name={item?.title}
-												href="/my-courses"
-												key={key}
-											/>
-										)
-									})}
-								</div>
-							</div>
-							{/* {isRightButtonVisible && (
-                                <button onClick={scrollToRight}>
-                                    <ChevronRightIcon className="size-5 text-black" />
-                                </button>
-                            )} */}
+						<div className="flex flex-row flex-wrap gap-5">
+							{user?.recommendClass?.map((item, key) => {
+								return (
+									<LanguageCard
+										id={item?._id}
+										name={item?.name}
+										students={item?.students}
+										key={key}
+									/>
+								)
+							})}
 						</div>
 					</div>
 				</div>

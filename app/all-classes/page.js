@@ -1,22 +1,41 @@
 "use client"
 
+import { useState, useEffect } from "react"
+import axios from "axios"
 import Layout from "@/components/layout/Layout"
 import LanguageCard from "@/components/language-card/LanguageCard"
 import coursesData from "@/utils/Data"
 
 export default function AllClasses() {
+	const [classes, setClasses] = useState([])
+
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get("/api/classroom")
+				?.then((res) => {
+					console.log(res)
+					setClasses(res?.data?.Data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [])
+
 	return (
 		<Layout>
 			<div className="flex-1 min-h-full flex flex-col gap-5 p-10">
 				<p className="text-2xl font-bold mt-10">
 					Select to add a Course
 				</p>
-				<div className="w-full md:w-fit grid grid-flow-row md:grid-flow-col gap-5">
-					{coursesData?.map((item, key) => {
+				<div className="flex flex-row flex-wrap gap-5">
+					{classes?.map((item, key) => {
 						return (
 							<LanguageCard
-								name={item?.title}
-								href="/my-courses"
+								id={item?._id}
+								name={item?.name}
+								students={item?.students}
 								key={key}
 							/>
 						)
