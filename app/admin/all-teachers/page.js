@@ -46,7 +46,7 @@ export default function AllTeachers() {
 						<div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 computer:grid-cols-5 text-lg font-semibold place-items-center">
 							<p>Name</p>
 							<p className="hidden lg:flex">Email</p>
-							<p className="hidden computer:flex">Phone no.</p>
+							<p className="hidden computer:flex">Password</p>
 							<p className="hidden sm:flex">Class</p>
 							<p>Action</p>
 						</div>
@@ -72,17 +72,14 @@ export default function AllTeachers() {
 										<p className="hidden lg:flex">
 											{item?.email}
 										</p>
-										<p className="hidden computer:flex">
-											{item?.phone}
+										<p className="hidden computer:flex max-w-40 truncate">
+											{item?.password}
 										</p>
-										<div className="hidden sm:flex">
+										<div className="hidden sm:flex w-full truncate justify-center">
 											{item?.classrooms?.map(
 												(classroom, index) => {
 													return (
-														<p
-															className="w-full truncate"
-															key={index}
-														>
+														<p key={index}>
 															<span>
 																{index > 0 &&
 																	", "}

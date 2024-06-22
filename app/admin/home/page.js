@@ -1,12 +1,11 @@
 "use client"
 
-import { useContext } from "react"
+import { useState, useEffect } from "react"
 import { AreaChart, Area, YAxis, XAxis, ResponsiveContainer } from "recharts"
 import AdminLayout from "@/components/admin/layout/Layout"
-import { AppContext } from "@/context/context"
 
 export default function Home() {
-	const { state } = useContext(AppContext)
+	const [isLoading, setIsLoading] = useState(true)
 
 	const classes = [
 		{
@@ -161,7 +160,9 @@ export default function Home() {
 		}
 	]
 
-	console.log(state)
+	useEffect(() => {
+		setIsLoading(false)
+	}, [])
 
 	return (
 		<AdminLayout>
@@ -171,18 +172,24 @@ export default function Home() {
 						Students
 					</p>
 					<div className="h-80 w-full">
-						<ResponsiveContainer width="100%" height="100%">
-							<AreaChart width={500} height={300} data={students}>
-								<YAxis />
-								<XAxis dataKey="month" />
-								<Area
-									type="bump"
-									dataKey="quantity"
-									fill="#2D9CDB"
-									stroke="#2D9CDB"
-								/>
-							</AreaChart>
-						</ResponsiveContainer>
+						{!isLoading && (
+							<ResponsiveContainer width="100%" height="100%">
+								<AreaChart
+									width={500}
+									height={300}
+									data={students}
+								>
+									<YAxis />
+									<XAxis dataKey="month" />
+									<Area
+										type="bump"
+										dataKey="quantity"
+										fill="#2D9CDB"
+										stroke="#2D9CDB"
+									/>
+								</AreaChart>
+							</ResponsiveContainer>
+						)}
 					</div>
 				</div>
 				<div className="flex flex-col gap-5">
@@ -190,18 +197,24 @@ export default function Home() {
 						Teachers
 					</p>
 					<div className="h-80 w-full">
-						<ResponsiveContainer width="100%" height="100%">
-							<AreaChart width={500} height={300} data={teachers}>
-								<YAxis />
-								<XAxis dataKey="month" />
-								<Area
-									type="bump"
-									dataKey="quantity"
-									fill="#7D9CDB"
-									stroke="#7D9CDB"
-								/>
-							</AreaChart>
-						</ResponsiveContainer>
+						{!isLoading && (
+							<ResponsiveContainer width="100%" height="100%">
+								<AreaChart
+									width={500}
+									height={300}
+									data={teachers}
+								>
+									<YAxis />
+									<XAxis dataKey="month" />
+									<Area
+										type="bump"
+										dataKey="quantity"
+										fill="#7D9CDB"
+										stroke="#7D9CDB"
+									/>
+								</AreaChart>
+							</ResponsiveContainer>
+						)}
 					</div>
 				</div>
 				<div className="flex flex-col gap-5">
@@ -209,18 +222,24 @@ export default function Home() {
 						Classes
 					</p>
 					<div className="h-80 w-full">
-						<ResponsiveContainer width="100%" height="100%">
-							<AreaChart width={500} height={300} data={classes}>
-								<YAxis />
-								<XAxis dataKey="month" />
-								<Area
-									type="bump"
-									dataKey="quantity"
-									fill="#fD9CDB"
-									stroke="#fD9CDB"
-								/>
-							</AreaChart>
-						</ResponsiveContainer>
+						{!isLoading && (
+							<ResponsiveContainer width="100%" height="100%">
+								<AreaChart
+									width={500}
+									height={300}
+									data={classes}
+								>
+									<YAxis />
+									<XAxis dataKey="month" />
+									<Area
+										type="bump"
+										dataKey="quantity"
+										fill="#fD9CDB"
+										stroke="#fD9CDB"
+									/>
+								</AreaChart>
+							</ResponsiveContainer>
+						)}
 					</div>
 				</div>
 			</div>

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Layout from "@/components/layout/Layout"
-// import DiscountBanner from "@/components/discount-banner/DiscountBanner"
 import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgressCard"
 import WeeklyProgressCardGrid from "@/components/weekly-progress-card-grid/WeeklyProgreeCardGrid"
 import LanguageCard from "@/components/language-card/LanguageCard"
@@ -21,7 +20,6 @@ export default function Home() {
 	return (
 		<Layout>
 			<div className="min-h-full flex-1 flex flex-col items-center relative">
-				{/* <DiscountBanner /> */}
 				{showPopup && (
 					<ScenarioPopup
 						id={selectedScenario}

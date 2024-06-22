@@ -15,8 +15,6 @@ export default function Signup() {
 
 	const handleGoogleSignIn = async (e) => {
 		e.preventDefault()
-
-		// Call signIn method from NextAuth with Google provider
 		await signIn("google", { callbackUrl: "/home" })
 	}
 
@@ -74,18 +72,6 @@ export default function Signup() {
 							</div>
 							<p className="text-white">Sign in with Google</p>
 						</button>
-						{/* <button className="h-10 w-full rounded-full bg-[#3B5998] hover:bg-opacity-75 relative flex items-center justify-center">
-                            <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
-                                <Image src={"/facebook-logo.svg"} alt="logo" height={22.5} width={22.5} />
-                            </div>
-                            <p className="text-white">Sign in with Facebook</p>
-                        </button>
-                        <button className="h-10 w-full rounded-full bg-black hover:bg-opacity-75 relative flex items-center justify-center">
-                            <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
-                                <Image src={"/apple-logo.svg"} alt="logo" height={25} width={25} />
-                            </div>
-                            <p className="text-white">Sign in with Apple</p>
-                        </button> */}
 					</div>
 					<p className="mt-10">Or sign up with email</p>
 					<div className="flex flex-col gap-3 w-[250px] sm:w-[450px]">

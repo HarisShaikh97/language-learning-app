@@ -20,10 +20,7 @@ export const authOptions = {
 				try {
 					await connect()
 					const user = await User.findOne({ email })
-					const userPass = await bcrypt.compare(
-						password,
-						user.password
-					)
+					const userPass = password === user.password
 
 					if (!user) {
 						return false
