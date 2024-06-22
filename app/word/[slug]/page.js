@@ -1,7 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSession } from "next-auth/react"
 import axios from "axios"
+import toast from "react-hot-toast"
 import {
 	BoltIcon,
 	CheckCircleIcon,
@@ -10,20 +12,26 @@ import {
 import { useRouter } from "next/navigation"
 
 export default function Word({ params }) {
+	const { data } = useSession()
+
 	const router = useRouter()
 
-	const words = [
-		{ word: "واحد", meaning: "one" },
-		{ word: "اثنان", meaning: "two" },
-		{ word: "ثلاثة", meaning: "three" }
-	]
-
+	const [user, setUser] = useState()
 	const [currentWord, setCurrentWord] = useState(0)
 	const [showQuiz, setShowQuiz] = useState(false)
 	const [quiz, setQuiz] = useState()
 
 	useEffect(() => {
 		;(async () => {
+			await axios
+				.get(`/api/students?id=${data?.user?.id}`)
+				?.then((res) => {
+					console.log(res)
+					setUser(res?.data?.data)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
 			await axios
 				.get(`/api/quiz?id=${params?.slug}`)
 				?.then((res) => {
@@ -34,7 +42,30 @@ export default function Word({ params }) {
 					console.log(err)
 				})
 		})()
-	}, [params])
+	}, [params, data])
+
+	const handleCorrectOption = async () => {
+		const payload = {
+			level: user?.level + 1
+		}
+
+		await axios
+			.put(`/api/students?id=${data?.user?.id}`, payload)
+			?.then((res) => {
+				console.log(res)
+				toast.success("Correct answer!")
+				router?.back()
+			})
+			?.catch((err) => {
+				console.log(err)
+				toast.error("Error!")
+			})
+	}
+
+	const handleFalseOption = () => {
+		toast.error("Wrong Answer!")
+		router?.back()
+	}
 
 	return (
 		<div className="flex-1 flex flex-col items-center gap-10">
@@ -65,9 +96,7 @@ export default function Word({ params }) {
 								<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10">
 									<button
 										className="h-20 px-3 rounded-xl bg-gray-100 border-b-2 hover:border-b-4 border border-gray-500 transform-gpu ease-in-out duration-300 flex items-center justify-center"
-										onClick={() => {
-											router?.back()
-										}}
+										onClick={handleCorrectOption}
 									>
 										<p className="text-xl font-bold truncate">
 											{quiz?.correctOption}
@@ -78,9 +107,7 @@ export default function Word({ params }) {
 											<button
 												className="h-20 px-3 rounded-xl bg-gray-100 border-b-2 hover:border-b-4 border border-gray-500 transform-gpu ease-in-out duration-300 flex items-center justify-center"
 												key={key}
-												onClick={() => {
-													router?.back()
-												}}
+												onClick={handleFalseOption}
 											>
 												<p className="text-xl font-bold truncate">
 													{item}

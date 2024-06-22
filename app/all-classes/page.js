@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Layout from "@/components/layout/Layout"
 import LanguageCard from "@/components/language-card/LanguageCard"
-import coursesData from "@/utils/Data"
 
 export default function AllClasses() {
 	const [classes, setClasses] = useState([])

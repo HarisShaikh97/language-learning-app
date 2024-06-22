@@ -8,7 +8,6 @@ import WeeklyProgressCard from "@/components/weekly-progress-card/WeeklyProgress
 import WeeklyProgressCardGrid from "@/components/weekly-progress-card-grid/WeeklyProgreeCardGrid"
 import LanguageCard from "@/components/language-card/LanguageCard"
 import ScenarioPopup from "@/components/scenario-popup/ScenarioPopup"
-import coursesData from "@/utils/Data"
 
 export default function Home() {
 	const { data } = useSession()
