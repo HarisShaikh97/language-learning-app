@@ -2,8 +2,8 @@ import connect from "@/app/db/connect";
 import User from "@/app/models/user.model";
 import Classroom from "@/app/models/classroom.model";
 import { NextResponse } from "next/server";
-import Recommend from "@/app/models/recommend.model";
-import mongoose from "mongoose";
+
+
 
 
 export async function POST(req) {
