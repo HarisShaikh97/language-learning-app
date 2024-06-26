@@ -19,8 +19,8 @@ const classroomSchema = new mongoose.Schema({
         ref: "User"
     }],
     assignments: [{
-        type: Schema.Types.ObjectId, ref:
-            "Assignment"
+        type: Schema.Types.ObjectId,
+        ref: "Assignment"
     }],
 
 

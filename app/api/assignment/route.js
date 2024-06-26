@@ -35,7 +35,7 @@ export async function POST(req) {
 
         const savedAssignment = await newAssignment.save()
 
-        classroom.assignments.push(savedAssignment._id)
+        classroom?.assignments.push(savedAssignment._id)
         await classroom.save();
         return NextResponse.json({ message: "Assignment created successfully", assignment: savedAssignment, success: true, }, { status: 200 })
 
