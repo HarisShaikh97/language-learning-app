@@ -1,5 +1,4 @@
 import User from "@/app/models/user.model"
-import bcrypt from "bcrypt"
 import connect from "@/app/db/connect"
 import { NextResponse } from "next/server"
 import HandleFile from "@/utils/HandleFile"
@@ -35,23 +34,24 @@ export async function POST(req) {
 			nickname: "",
 			email,
 			phone,
-			role,
+			role: role || "student",
 			classrooms: JSON.parse(classrooms),
 			recommendClass: [],
 			password,
-			image: imageUrl.url || ""
+			image: imageUrl?.url || ""
 		})
 
-		const ClassID = JSON.parse(classrooms)
-		const newStudent = await student.save()
-		for (const classroomId of ClassID) {
-			const data = await Classroom.findByIdAndUpdate(
-				classroomId,
-				{ $push: { students: newStudent._id } },
-				{ new: true, runValidators: true }
-			)
+		if (classrooms) {
+			const ClassID = JSON.parse(classrooms)
+			for (const classroomId of ClassID) {
+				const data = await Classroom.findByIdAndUpdate(
+					classroomId,
+					{ $push: { students: newStudent._id } },
+					{ new: true, runValidators: true }
+				)
+			}
 		}
-		console.log(newStudent)
+		const newStudent = await student.save()
 		return NextResponse.json(
 			{
 				message: "student saved successfully",
@@ -90,7 +90,7 @@ export async function GET(req) {
 				path: "teacher",
 				model: "User"
 			}
-		})
+		}).populate('recommendClass');
 		return NextResponse.json(
 			{ data: student, success: true },
 			{ status: 200 }
@@ -131,7 +131,8 @@ export async function PUT(req) {
 				lastName: reqBody.lastName,
 				email: reqBody.email,
 				phone: reqBody.phone,
-				nickname: reqBody.nickname
+				nickname: reqBody.nickname,
+				level: reqBody.level
 			},
 			{ new: true, runValidators: false }
 		)
