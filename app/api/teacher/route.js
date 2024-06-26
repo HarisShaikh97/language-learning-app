@@ -38,7 +38,7 @@ export async function POST(req) {
             image: imageUrl.url
         })
 
-        const createdTeacher = await newTeacher.save().select("-nickname")
+        const createdTeacher = await newTeacher.save()
 
         const ClassID = JSON.parse(classrooms)
 

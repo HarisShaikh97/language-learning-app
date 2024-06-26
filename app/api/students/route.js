@@ -38,8 +38,8 @@ export async function POST(req) {
 			role,
 			classrooms: JSON.parse(classrooms),
 			recommendClass: [],
-			password: password,
-			image: imageUrl.url || ''
+			password,
+			image: imageUrl.url || ""
 		})
 
 		const ClassID = JSON.parse(classrooms)

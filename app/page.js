@@ -5,30 +5,36 @@ import Image from "next/image"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { FallingLines } from "react-loader-spinner"
+import toast from "react-hot-toast"
 
 export default function Login() {
 	const router = useRouter()
 
+	const [isLoading, setIsLoading] = useState(false)
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-	const handleGoogleSignIn = async (e) => {
-		e.preventDefault()
-
-		// Call signIn method from NextAuth with Google provider
-		await signIn("google", { callbackUrl: "/home" })
-	}
+	// const handleGoogleSignIn = async (e) => {
+	// 	e.preventDefault()
+	// 	await signIn("google", { callbackUrl: "/home" })
+	// }
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
+		setIsLoading(true)
 		const res = await signIn("credentials", {
 			email: email,
 			password: password,
 			redirect: false,
 			callbackUrl: "/home"
 		})
+		setIsLoading(false)
 		if (res.status === 200) {
+			toast.success("Login successful!")
 			router.push(res.url)
+		} else {
+			toast.error("Login failed!")
 		}
 	}
 
@@ -40,7 +46,7 @@ export default function Login() {
 			<p className="text-xl sm:text-3xl md:text-5xl text-primary font-extrabold w-[250px] sm:w-[450px] text-center my-10">
 				Log in to have fun and learn faster
 			</p>
-			<div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px]">
+			{/* <div className="flex flex-col items-center gap-5 w-[250px] sm:w-[450px]">
 				<button
 					onClick={handleGoogleSignIn}
 					className="h-10 w-full rounded-full bg-[#4285F4] hover:bg-opacity-75 relative flex items-center justify-center"
@@ -55,20 +61,8 @@ export default function Login() {
 					</div>
 					<p className="text-white">Sign in with Google</p>
 				</button>
-				{/* <button className="h-10 w-full rounded-full bg-[#3B5998] hover:bg-opacity-75 relative flex items-center justify-center">
-                    <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
-                        <Image src={"/facebook-logo.svg"} alt="logo" height={22.5} width={22.5} />
-                    </div>
-                    <p className="text-white">Sign in with Facebook</p>
-                </button>
-                <button className="h-10 w-full rounded-full bg-black hover:bg-opacity-75 relative flex items-center justify-center">
-                    <div className="h-8 w-8 rounded-full bg-white absolute left-1 top-1 flex items-center justify-center">
-                        <Image src={"/apple-logo.svg"} alt="logo" height={25} width={25} />
-                    </div>
-                    <p className="text-white">Sign in with Apple</p>
-                </button> */}
 			</div>
-			<p className="mt-5">or</p>
+			<p className="mt-5">or</p> */}
 			<div className="flex flex-col gap-3 w-[250px] sm:w-[450px] mt-5">
 				<p className="text-primary text-xs font-bold">
 					Username or Email:
@@ -115,14 +109,23 @@ export default function Login() {
 				</p>
 			</div>
 			<button
-				className="flex items-center justify-center bg-blue-300 py-2 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-white font-bold"
+				className="flex items-center justify-center bg-blue-300 min-h-10 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-white font-bold"
 				onClick={handleSignIn}
 			>
-				Sign in
+				{isLoading ? (
+					<FallingLines
+						color="#ffffff"
+						width="25"
+						visible={true}
+						ariaLabel="falling-circles-loading"
+					/>
+				) : (
+					"Sign in"
+				)}
 			</button>
 			<Link
 				href={"/teacher/login"}
-				className="flex items-center justify-center bg-blue-400 py-2 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-300 text-white font-bold"
+				className="flex items-center justify-center bg-blue-400 min-h-10 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-300 text-white font-bold"
 			>
 				Sign in as a teacher
 			</Link>

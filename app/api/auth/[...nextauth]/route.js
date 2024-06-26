@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 import connect from "@/app/db/connect"
 import User from "@/app/models/user.model"
-import bcrypt from "bcryptjs"
+
 export const authOptions = {
 	providers: [
 		GoogleProvider({
@@ -20,10 +20,7 @@ export const authOptions = {
 				try {
 					await connect()
 					const user = await User.findOne({ email })
-					const userPass = await bcrypt.compare(
-						password,
-						user.password
-					)
+					const userPass = password === user.password
 
 					if (!user) {
 						return false
@@ -41,6 +38,18 @@ export const authOptions = {
 			}
 		})
 	],
+	callbacks: {
+		async jwt({ token, user }) {
+			if (user) {
+				token.id = user._id
+			}
+			return token
+		},
+		async session({ session, token }) {
+			session.user.id = token.id
+			return session
+		}
+	},
 	session: {
 		strategy: "jwt"
 	},

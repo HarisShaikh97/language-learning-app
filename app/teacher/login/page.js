@@ -2,17 +2,34 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { FallingLines } from "react-loader-spinner"
+import toast from "react-hot-toast"
 
 export default function TeacherLogin() {
 	const router = useRouter()
 
+	const [isLoading, setIsLoading] = useState(false)
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
-		router?.push("/teacher/all-students")
+		setIsLoading(true)
+		const res = await signIn("credentials", {
+			email: email,
+			password: password,
+			redirect: false,
+			callbackUrl: "/teacher/all-students"
+		})
+		setIsLoading(false)
+		if (res.status === 200) {
+			toast.success("Login successful!")
+			router.push(res.url)
+		} else {
+			toast.error("Login failed!")
+		}
 	}
 
 	return (
@@ -69,10 +86,19 @@ export default function TeacherLogin() {
 				</p>
 			</div>
 			<button
-				className="flex items-center justify-center bg-blue-300 py-2 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-white font-bold"
+				className="flex items-center justify-center bg-blue-300 h-12 w-[250px] sm:w-[450px] rounded mt-5 border-b-2 border-blue-400 text-white font-bold"
 				onClick={handleSignIn}
 			>
-				Sign in
+				{isLoading ? (
+					<FallingLines
+						color="#ffffff"
+						width="50"
+						visible={true}
+						ariaLabel="falling-circles-loading"
+					/>
+				) : (
+					"Sign in"
+				)}
 			</button>
 		</div>
 	)

@@ -1,6 +1,8 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import axios from "axios"
 import Image from "next/image"
 import { XMarkIcon } from "@heroicons/react/16/solid"
 import {
@@ -12,13 +14,22 @@ import Link from "next/link"
 
 export default function ScenarioPopup({ id, setShowPopup }) {
 	const router = useRouter()
-	// const [courseId, setCourseId] = useState(2);
 
-	// useEffect(() => {
-	//     setCourseId(localStorage.getItem("course_id"));
-	// }, []);
+	const [quiz, setQuiz] = useState()
 
-	// console.log(coursesData);
+	useEffect(() => {
+		;(async () => {
+			await axios
+				.get(`/api/quiz?id=${id}`)
+				?.then((res) => {
+					console.log(res)
+					setQuiz(res?.data?.quiz)
+				})
+				?.catch((err) => {
+					console.log(err)
+				})
+		})()
+	}, [id])
 
 	return (
 		<div className="fixed top-0 left-0 h-screen w-screen bg-primary bg-opacity-35 z-20">
@@ -44,17 +55,12 @@ export default function ScenarioPopup({ id, setShowPopup }) {
 					Introductions
 				</p>
 				<p className="text-sm">
-					{
-						coursesData[0]?.sections[0]?.scenarios?.find((item) => {
-							return item?.id === id
-						})?.translations?.length
-					}{" "}
-					words and phrases
+					{quiz?.words?.length} words and phrases
 				</p>
 				<button
 					className="h-12 w-36 rounded hover:bg-blue-400 bg-blue-300 border-b-4 border-blue-500 font-semibold"
 					onClick={() => {
-						router.push("/word/1")
+						router.push(`/word/${id}`)
 					}}
 				>
 					Start learning
@@ -63,32 +69,30 @@ export default function ScenarioPopup({ id, setShowPopup }) {
 					<CheckCircleIcon className="size-7" />
 					<p className="font-semibold">Mark all as known</p>
 				</button>
-				{coursesData[0]?.sections[0]?.scenarios
-					?.find((item) => {
-						return item?.id === id
-					})
-					?.translations?.map((item, key) => {
-						return (
-							<div
-								className="w-full flex flex-row items-center justify-between"
-								key={key}
+				{quiz?.words?.map((item, key) => {
+					return (
+						<div
+							className="w-full flex flex-row items-center justify-between"
+							key={key}
+						>
+							<div className="size-10 border-2 rounded-full"></div>
+							<Link
+								href={`/word/${id}`}
+								className="flex flex-row gap-5 items-center p-2 rounded-lg hover:border border-black"
 							>
-								<div className="size-10 border-2 rounded-full"></div>
-								<Link
-									href={"/word/1"}
-									className="flex flex-row gap-5 items-center p-2 rounded-lg hover:border border-black"
-								>
-									<p className="text-sm font-semibold">
-										{item?.arabic}
-									</p>
-									<p className="text-xs">{item?.english}</p>
-								</Link>
-								<button>
-									<EllipsisHorizontalIcon className="size-7 text-black" />
-								</button>
-							</div>
-						)
-					})}
+								<p className="text-sm font-semibold">
+									{item?.word}
+								</p>
+								<p className="text-xs max-w-40 truncate">
+									{item?.meaning}
+								</p>
+							</Link>
+							<button>
+								<EllipsisHorizontalIcon className="size-7 text-black" />
+							</button>
+						</div>
+					)
+				})}
 			</div>
 		</div>
 	)
