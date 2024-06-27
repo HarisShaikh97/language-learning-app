@@ -204,79 +204,108 @@ export default function Class({ params }) {
 										)}
 									</button>
 								</div>
-								<div className="py-7 rounded-xl border border-sky-500 shadow-xl flex flex-col gap-5 mb-16">
-									<div className="flex flex-row items-center gap-5 px-7">
-										<Image
-											src={"/profile.png"}
-											alt="profile"
-											height={50}
-											width={50}
-										/>
-										<div className="flex flex-col">
-											<p className="font-semibold">
-												Alex Wayne
+								{data?.assignments?.map((item, key) => {
+									return (
+										<div
+											className="py-7 rounded-xl border border-sky-500 shadow-xl flex flex-col gap-5 mb-16"
+											key={key}
+										>
+											<div className="flex flex-row items-center gap-5 px-7">
+												<Image
+													src={
+														data?.teacher?.image ||
+														"/profile.png"
+													}
+													alt="profile"
+													height={50}
+													width={50}
+												/>
+												<div className="flex flex-col">
+													<p className="font-semibold">
+														{`${data?.teacher?.firstName} ${data?.teacher?.lastName}`}
+													</p>
+													<p className="text-sm font-light">
+														{item?.dueDate}
+													</p>
+												</div>
+											</div>
+											<p className="px-7">
+												{item?.title}
 											</p>
-											<p className="text-sm font-light">
-												Jun 07, 2023
+											<p className="text-wrap text-xs px-7">
+												{item?.description}
 											</p>
-										</div>
-									</div>
-									<p className="px-7">Class Final Result</p>
-									<div className="h-[1px] w-full bg-sky-500 my-2" />
-									<div className="flex flex-row gap-2 items-center text-sky-500 px-7">
-										<UsersIcon className="size-5" />
-										<p>8 class comments</p>
-									</div>
-									<div className="flex flex-row gap-5 px-7">
-										<Image
-											src={"/profile.png"}
-											alt="profile"
-											height={50}
-											width={50}
-											className="size-[50px]"
-										/>
-										<div className="flex flex-col gap-3">
-											<div className="flex flex-row gap-3 items-center">
-												<p>Alex Wayne</p>
-												<p className="text-xs font-light text-gray-500">
-													Jun 07, 2023
+											<div className="h-[1px] w-full bg-sky-500 my-2" />
+											<div className="flex flex-row gap-2 items-center text-sky-500 px-7">
+												<UsersIcon className="size-5" />
+												<p>
+													{item?.comments?.length ||
+														0}{" "}
+													class comments
 												</p>
 											</div>
-											<p className="text-wrap text-xs">
-												Lorem ipsum dolor sit amet,
-												consectetur adipiscing elit, sed
-												do eiusmod tempor incididunt ut
-												labore et dolore magna aliqua.
-												Ut enim ad minim veniam, quis
-												nostrud exercitation ullamco
-												laboris nisi ut aliquip ex ea
-												commodo consequat. Duis aute
-												irure dolor in reprehenderit in
-												voluptate velit esse cillum
-												dolore eu fugiat nulla pariatur.
-											</p>
+											{item?.comments?.map(
+												(comment, index) => {
+													return (
+														<div
+															className="flex flex-row gap-5 px-7"
+															key={index}
+														>
+															<Image
+																src={
+																	"/profile.png"
+																}
+																alt="profile"
+																height={50}
+																width={50}
+																className="size-[50px]"
+															/>
+															<div className="flex flex-col gap-3">
+																<div className="flex flex-row gap-3 items-center">
+																	<p>
+																		Alex
+																		Wayne
+																	</p>
+																	<p className="text-xs font-light text-gray-500">
+																		Jun 07,
+																		2023
+																	</p>
+																</div>
+																<p className="text-wrap text-xs">
+																	{
+																		comment?.description
+																	}
+																</p>
+															</div>
+														</div>
+													)
+												}
+											)}
+											<div className="px-7 w-full flex flex-row gap-5 items-center">
+												<Image
+													src={
+														data?.teacher?.image ||
+														"/profile.png"
+													}
+													alt="profile"
+													height={50}
+													width={50}
+													className="size-[50px]"
+												/>
+												<div className="h-12 w-full rounded-full border flex items-center justify-center px-3">
+													<input
+														type="text"
+														className="w-full bg-transparent outline-none"
+														placeholder="Type your comment..."
+													/>
+												</div>
+												<button>
+													<PaperAirplaneIcon className="size-8 text-sky-500" />
+												</button>
+											</div>
 										</div>
-									</div>
-									<div className="px-7 w-full flex flex-row gap-5 items-center">
-										<Image
-											src={"/profile.png"}
-											alt="profile"
-											height={50}
-											width={50}
-											className="size-[50px]"
-										/>
-										<div className="h-12 w-full rounded-full border flex items-center justify-center px-3">
-											<input
-												type="text"
-												className="w-full bg-transparent outline-none"
-												placeholder="Type your comment..."
-											/>
-										</div>
-										<button>
-											<PaperAirplaneIcon className="size-8 text-sky-500" />
-										</button>
-									</div>
-								</div>
+									)
+								})}
 							</div>
 						</div>
 					</div>
