@@ -7,7 +7,7 @@ export async function POST(req) {
     try {
         connect()
         const reqBody = await req.json()
-        const { name, description, teacher, students, assignments } = reqBody
+        const { name, description, teacher, students, work } = reqBody
 
         const isTeacher = await User.findOne({ _id: teacher, role: "teacher" })
         const isStudents = await User.find({
@@ -42,7 +42,7 @@ export async function POST(req) {
             description,
             teacher: teacher,
             students: students,
-            assignments: assignments
+            work: work
         })
 
         const Data = await newClass.save()
@@ -67,7 +67,7 @@ export async function GET(req) {
             const allClassrooms = await Classroom.find()
                 .populate("teacher")
                 .populate("students")
-                .populate("assignments");
+                .populate("work");
 
             return NextResponse.json(
                 {
@@ -82,7 +82,7 @@ export async function GET(req) {
         const classroom = await Classroom.findById(id)
             .populate("teacher")
             .populate("students")
-            .populate("assignments");
+            .populate("work");
 
         if (!classroom) {
             return NextResponse.json(

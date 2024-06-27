@@ -19,7 +19,7 @@ const classroomSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     }],
-    assignments: [{
+    work: [{
         type: Schema.Types.ObjectId,
         ref: "Assignment"
     }],

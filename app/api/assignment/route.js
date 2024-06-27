@@ -35,7 +35,8 @@ export async function POST(req) {
 
         const savedAssignment = await newAssignment.save()
 
-        classroom?.assignments.push(savedAssignment._id)
+        classroom?.work.push(savedAssignment._id)
+
         await classroom.save();
         return NextResponse.json({ message: "Assignment created successfully", assignment: savedAssignment, success: true, }, { status: 200 })
 
@@ -68,8 +69,7 @@ export async function DELETE(req) {
     try {
         connect()
 
-        // await Assignment.deleteMany();
-        // console.log('All assignments deleted successfully');
+
         const id = req.nextUrl.searchParams.get('id')
 
         if (!id) {
