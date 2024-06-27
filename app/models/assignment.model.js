@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
+import { Schema } from "mongoose";
 
-const assignmentSchema = new Schema({
+const assignmentSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -17,13 +17,14 @@ const assignmentSchema = new Schema({
     },
     file: {
         type: String,
+
     },
     dueDate: {
-        type: Date, // It's better to use Date type for dueDate
+        type: String,
         required: true,
     },
     createdAt: { type: Date, default: Date.now },
 });
 
-const Assignment = mongoose.models.Assignment || mongoose.model("Assignment", assignmentSchema);
+const Assignment = mongoose.models.Assignment || mongoose.model('Assignment', assignmentSchema);
 export default Assignment;

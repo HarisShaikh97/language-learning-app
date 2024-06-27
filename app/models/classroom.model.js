@@ -21,7 +21,7 @@ const classroomSchema = new Schema({
     }],
     work: [{
         type: Schema.Types.ObjectId,
-        ref: "Assignment"
+        ref: "assignment"
     }],
     createdAt: { type: Date, default: Date.now },
 });

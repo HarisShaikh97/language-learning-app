@@ -5,12 +5,12 @@ import { Schema } from "mongoose";
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-    
+
     },
 
     lastName: {
         type: String,
-    
+
     },
     nickname: {
         type: String,
@@ -47,7 +47,8 @@ const userSchema = new mongoose.Schema({
     ],
 
     classrooms: [{
-        type: Schema.Types.ObjectId, ref: 'Classroom'
+        type: Schema.Types.ObjectId,
+        ref: 'Classroom'
     }],
 
     image: {

@@ -42,7 +42,7 @@ export async function POST(req) {
             description,
             teacher: teacher,
             students: students,
-            work: work
+            work
         })
 
         const Data = await newClass.save()
@@ -82,7 +82,7 @@ export async function GET(req) {
         const classroom = await Classroom.findById(id)
             .populate("teacher")
             .populate("students")
-            .populate("work");
+            .populate("work")
 
         if (!classroom) {
             return NextResponse.json(
@@ -103,6 +103,8 @@ export async function GET(req) {
 export async function DELETE(req) {
     try {
         connect()
+
+        await Classroom.deleteMany()
         const id = await req.nextUrl.searchParams.get("id")
 
         if (!id) {
@@ -135,7 +137,7 @@ export async function PUT(req) {
 
         const id = req.nextUrl.searchParams.get('id');
         const reqBody = await req.json();
-        const { name, description, teacher, students, assignments } = reqBody;
+        const { name, description, teacher, students, work } = reqBody;
 
         if (!id) {
             return NextResponse.json(
@@ -192,7 +194,7 @@ export async function PUT(req) {
 
         if (name) classroom.name = name;
         if (description) classroom.description = description;
-        if (assignments) classroom.assignments = assignments;
+        if (work) classroom.work = work;
 
         const updatedClassroom = await classroom.save();
 

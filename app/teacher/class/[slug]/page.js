@@ -22,19 +22,17 @@ export default function Class({ params }) {
 	const [description, setDescription] = useState("")
 	const [file, setFile] = useState()
 	const [dueDate, setDueDate] = useState(
-		`${currentDate?.getFullYear()}-${
-			currentDate?.getMonth() < 10
-				? `0${currentDate?.getMonth()}`
-				: currentDate?.getMonth()
-		}-${
-			currentDate?.getDay() < 10
-				? `0${currentDate?.getDay()}`
-				: currentDate?.getDay()
+		`${currentDate?.getFullYear()}-${currentDate?.getMonth() < 10
+			? `0${currentDate?.getMonth()}`
+			: currentDate?.getMonth()
+		}-${currentDate?.getDay() < 10
+			? `0${currentDate?.getDay()}`
+			: currentDate?.getDay()
 		}`
 	)
 
 	useEffect(() => {
-		;(async () => {
+		; (async () => {
 			await axios
 				.get(`/api/classroom?id=${params?.slug}`)
 				?.then((res) => {
@@ -94,10 +92,9 @@ export default function Class({ params }) {
 				<div className="w-full flex flex-col">
 					<div className="h-fit flex flex-col md:flex-row md:items-center">
 						<button
-							className={`h-12 w-28 flex items-center justify-center transform-gpu ease-in-out duration-300 ${
-								selectedTab === "stream" &&
+							className={`h-12 w-28 flex items-center justify-center transform-gpu ease-in-out duration-300 ${selectedTab === "stream" &&
 								"bg-sky-100 border-b-2 border-sky-500 text-sky-500"
-							}`}
+								}`}
 							onClick={() => {
 								if (selectedTab !== "stream") {
 									setSelectedTab("stream")
@@ -107,10 +104,9 @@ export default function Class({ params }) {
 							Stream
 						</button>
 						<button
-							className={`h-12 w-28 flex items-center justify-center transform-gpu ease-in-out duration-300 ${
-								selectedTab === "classwork" &&
+							className={`h-12 w-28 flex items-center justify-center transform-gpu ease-in-out duration-300 ${selectedTab === "classwork" &&
 								"bg-sky-100 border-b-2 border-sky-500 text-sky-500"
-							}`}
+								}`}
 							onClick={() => {
 								if (selectedTab !== "classwork") {
 									setSelectedTab("classwork")
@@ -120,10 +116,9 @@ export default function Class({ params }) {
 							Classwork
 						</button>
 						<button
-							className={`h-12 w-28 flex items-center justify-center transform-gpu ease-in-out duration-300 ${
-								selectedTab === "people" &&
+							className={`h-12 w-28 flex items-center justify-center transform-gpu ease-in-out duration-300 ${selectedTab === "people" &&
 								"bg-sky-100 border-b-2 border-sky-500 text-sky-500"
-							}`}
+								}`}
 							onClick={() => {
 								if (selectedTab !== "people") {
 									setSelectedTab("people")
@@ -204,7 +199,7 @@ export default function Class({ params }) {
 										)}
 									</button>
 								</div>
-								{data?.assignments?.map((item, key) => {
+								{data?.work?.map((item, key) => {
 									return (
 										<div
 											className="py-7 rounded-xl border border-sky-500 shadow-xl flex flex-col gap-5 mb-16"
@@ -312,7 +307,7 @@ export default function Class({ params }) {
 				)}
 				{selectedTab === "classwork" && (
 					<div className="h-full w-full md:w-[75%] lg:w-[55%] flex flex-col overflow-y-auto scrollbar-none">
-						{data?.assignments?.map((item, key) => {
+						{data?.work?.map((item, key) => {
 							return (
 								<div className="w-full flex flex-col" key={key}>
 									<div className="h-20 w-full flex flex-row items-center justify-between">
