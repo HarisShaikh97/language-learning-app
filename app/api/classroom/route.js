@@ -60,15 +60,14 @@ export async function POST(req) {
 }
 
 export async function GET(req) {
-    await connect()
+    await connect();
     try {
-
-        const id = await req.nextUrl.searchParams.get("id")
+        const id = req.nextUrl.searchParams.get("id");
         if (!id) {
             const allClassrooms = await Classroom.find()
                 .populate("teacher")
                 .populate("students")
-                .populate('assignments')
+                .populate("assignments");
 
             return NextResponse.json(
                 {
@@ -77,24 +76,27 @@ export async function GET(req) {
                     success: true
                 },
                 { status: 200 }
-            )
+            );
         }
 
-        const classroom = await Classroom.findById(id).populate("teacher").populate("students").populate('assignments')
+        const classroom = await Classroom.findById(id)
+            .populate("teacher")
+            .populate("students")
+            .populate("assignments");
 
         if (!classroom) {
             return NextResponse.json(
-                { message: "Classroom Not found", success: true },
+                { message: "Classroom Not found", success: false },
                 { status: 404 }
-            )
+            );
         }
 
         return NextResponse.json(
             { message: "Classroom found", Data: classroom, success: true },
             { status: 200 }
-        )
+        );
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
 

@@ -67,7 +67,11 @@ export async function GET(req) {
 export async function DELETE(req) {
     try {
         connect()
+
+        // await Assignment.deleteMany();
+        // console.log('All assignments deleted successfully');
         const id = req.nextUrl.searchParams.get('id')
+
         if (!id) {
             return NextResponse.json({ message: "ID not found!" }, { status: 404 })
         }
