@@ -19,10 +19,12 @@ const classroomSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     }],
-    work: [{
-        type: Schema.Types.ObjectId,
-        ref: "assignments"
-    }],
+    work: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Tasks"
+        }
+    ],
     createdAt: { type: Date, default: Date.now },
 });
 
