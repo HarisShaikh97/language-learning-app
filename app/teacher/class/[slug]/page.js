@@ -57,7 +57,7 @@ export default function Class({ params }) {
 		formData.append("file", file)
 
 		await axios
-			.post(`/api/task?classId=${params?.slug}`, formData, {
+			.post(`/api/assignment?classId=${params?.slug}`, formData, {
 				headers: {
 					"Content-Type": "multipart/form-data"
 				}
