@@ -41,6 +41,8 @@ export async function POST(req) {
 			image: imageUrl?.url || ""
 		})
 
+		const newStudent = await student.save()
+
 		if (classrooms) {
 			const ClassID = JSON.parse(classrooms)
 			for (const classroomId of ClassID) {
@@ -51,7 +53,6 @@ export async function POST(req) {
 				)
 			}
 		}
-		const newStudent = await student.save()
 		return NextResponse.json(
 			{
 				message: "student saved successfully",
