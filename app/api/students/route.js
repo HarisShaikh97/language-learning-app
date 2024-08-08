@@ -1,8 +1,11 @@
 import User from "@/app/models/user.model";
 import connect from "@/app/db/connect";
 import { NextResponse } from "next/server";
+import HandleFile from "@/utils/HandleFile";
+import Classroom from "@/app/models/classroom.model";
 import { writeFile } from "fs/promises";
 import fs from "fs";
+
 import csvParser from "csv-parser";
 
 const processCsvFile = (filePath) => {
@@ -109,11 +112,12 @@ export async function POST(req) {
 		// const classrooms = reqBody.get("class");
 		// const image = reqBody.get("image");
 		const file = reqBody.get("file");
-
+		const url = await HandleFile(file)
+		console.log(url);
 		const bytes = await file.arrayBuffer();
 		const buffer = await Buffer.from(bytes);
 
-		const path = `public/uploads/admin/${Date.now() + file.name}`;
+		const path = `public/${Date.now() + file.name}`;
 		await writeFile(path, buffer);
 
 		const userDetails = await processCsvFile(path);
