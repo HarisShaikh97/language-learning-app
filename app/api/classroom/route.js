@@ -14,7 +14,7 @@ export async function POST(req) {
             _id: { $in: students },
             role: "student"
         })
-
+        console.log(isStudents);
         if (!isTeacher) {
             return NextResponse.json(
                 { error: "Invalid teacher" },
@@ -44,7 +44,10 @@ export async function POST(req) {
             students: students,
             work
         })
-
+        isStudents.map(async (student) => {
+            student?.classrooms.push(newClass._id)
+            await student.save()
+        })
         const Data = await newClass.save()
         return NextResponse.json(
             {

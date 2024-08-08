@@ -40,7 +40,7 @@ const handleUser = async (userDetails) => {
 		const { email } = item
 		try {
 			const isStudent = await User.findOne({ email });
-
+			console.log(isStudent);
 			if (isStudent) {
 				emailError.push({ email: isStudent.email });
 			}
@@ -112,8 +112,8 @@ export async function POST(req) {
 		// const classrooms = reqBody.get("class");
 		// const image = reqBody.get("image");
 		const file = reqBody.get("file");
-		const url = await HandleFile(file)
-		console.log(url);
+
+
 		const bytes = await file.arrayBuffer();
 		const buffer = await Buffer.from(bytes);
 
@@ -121,10 +121,10 @@ export async function POST(req) {
 		await writeFile(path, buffer);
 
 		const userDetails = await processCsvFile(path);
-		console.log(userDetails);
+
 		const res = await handleUser(userDetails)
 
-		console.log(res);
+
 		return res
 		// userDetails.map(async (item) => {
 		// 	const isStudent = await User.findOne({ email });
