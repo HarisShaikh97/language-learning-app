@@ -17,47 +17,54 @@ export default function AddStudent() {
 	const router = useRouter()
 
 	const [isLoading, setIsLoading] = useState(false)
-	const [allClasses, setAllClasses] = useState([])
-	const [selectedClasses, setSelectedClasses] = useState([])
-	const [firstName, setFirstName] = useState("")
-	const [lastName, setLastName] = useState("")
-	const [phone, setPhone] = useState("")
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
-	const [imageURL, setImageURL] = useState(null)
-	const [image, setImage] = useState(null)
+	const [file, setFile] = useState(null)
+	// const [allClasses, setAllClasses] = useState([])
+	// const [selectedClasses, setSelectedClasses] = useState([])
+	// const [firstName, setFirstName] = useState("")
+	// const [lastName, setLastName] = useState("")
+	// const [phone, setPhone] = useState("")
+	// const [email, setEmail] = useState("")
+	// const [password, setPassword] = useState("")
+	// const [imageURL, setImageURL] = useState(null)
+	// const [image, setImage] = useState(null)
 
-	const handleImageDrop = (e) => {
-		e.preventDefault()
-		const file = e.dataTransfer.files[0]
-		if (file) {
-			setImageURL(URL.createObjectURL(file))
-			setImage(file)
-		}
-	}
+	// const handleImageDrop = (e) => {
+	// 	e.preventDefault()
+	// 	const file = e.dataTransfer.files[0]
+	// 	if (file) {
+	// 		setImageURL(URL.createObjectURL(file))
+	// 		setImage(file)
+	// 	}
+	// }
 
-	const handleImageDragOver = (e) => {
-		e.preventDefault()
-	}
+	// const handleImageDragOver = (e) => {
+	// 	e.preventDefault()
+	// }
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setIsLoading(true)
-		if (!image) {
+		// if (!image) {
+		// 	setIsLoading(false)
+		// 	toast.error("Image is required!")
+		// 	return
+		// }
+		if (!file) {
 			setIsLoading(false)
-			toast.error("Image is required!")
+			toast.error("File is required!")
 			return
 		}
 
 		const formData = new FormData()
-		formData.append("firstName", firstName)
-		formData.append("lastName", lastName)
-		formData.append("phone", phone)
-		formData.append("email", email)
-		formData.append("password", password)
-		formData.append("image", image)
-		formData.append("role", "student")
-		formData.append("class", JSON.stringify(selectedClasses))
+		formData.append("file", file)
+		// formData.append("firstName", firstName)
+		// formData.append("lastName", lastName)
+		// formData.append("phone", phone)
+		// formData.append("email", email)
+		// formData.append("password", password)
+		// formData.append("image", image)
+		// formData.append("role", "student")
+		// formData.append("class", JSON.stringify(selectedClasses))
 
 		await axios
 			.post("/api/students", formData, {
@@ -73,24 +80,30 @@ export default function AddStudent() {
 			})
 			?.catch((err) => {
 				console.log(err)
-				toast.error(err?.response?.data?.error)
+				toast.error(
+					`${
+						err?.response?.data?.error
+					} ${err?.response?.data?.emails?.map(
+						(item) => item?.email
+					)}`
+				)
 				setIsLoading(false)
 			})
 	}
 
-	useEffect(() => {
-		;(async () => {
-			await axios
-				.get("/api/classroom")
-				?.then((res) => {
-					console.log(res)
-					setAllClasses(res?.data?.Data)
-				})
-				?.catch((err) => {
-					console.log(err)
-				})
-		})()
-	}, [])
+	// useEffect(() => {
+	// 	;(async () => {
+	// 		await axios
+	// 			.get("/api/classroom")
+	// 			?.then((res) => {
+	// 				console.log(res)
+	// 				setAllClasses(res?.data?.Data)
+	// 			})
+	// 			?.catch((err) => {
+	// 				console.log(err)
+	// 			})
+	// 	})()
+	// }, [])
 
 	return (
 		<AdminLayout>
@@ -98,18 +111,21 @@ export default function AddStudent() {
 				<p className="text-xl font-semibold">Add New Student</p>
 				<div className="w-full flex flex-col gap-10">
 					<div className="flex flex-col gap-10 md:flex-row items-center justify-between">
-						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
+						<div className="flex flex-col gap-3">
+							<p className="text-xl font-semibold">
+								Select a file (.csv)
+							</p>
 							<input
-								type="text"
-								placeholder="Enter First Name"
-								className="w-full bg-transparent outline-none border-none"
-								value={firstName}
+								type="file"
+								placeholder="Select a file"
+								className="w-96 border rounded p-1"
 								onChange={(e) => {
-									setFirstName(e.target.value)
+									setFile(e.target.files[0])
 								}}
+								accept=".csv"
 							/>
 						</div>
-						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
+						{/* <div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
 								placeholder="Enter Last Name"
@@ -130,9 +146,9 @@ export default function AddStudent() {
 									setPhone(e.target.value)
 								}}
 							/>
-						</div>
+						</div> */}
 					</div>
-					<div className="flex flex-col gap-10 md:flex-row items-center justify-between">
+					{/* <div className="flex flex-col gap-10 md:flex-row items-center justify-between">
 						<div className="h-12 w-full px-5 border border-gray-300 rounded-lg flex justify-center">
 							<input
 								type="text"
@@ -185,7 +201,7 @@ export default function AddStudent() {
 							<CloudArrowUpIcon className="size-20 text-sky-500" />
 						)}
 						<div />
-					</div>
+					</div> */}
 					<div className="h-36 sm:h-20 w-full flex flex-col sm:flex-row sm:items-center items-end sm:justify-end gap-5">
 						<button
 							className="h-12 w-40 flex items-center justify-center rounded-lg bg-sky-300 border-b-2 hover:border-b-4 border-sky-500 text-white font-semibold transform-gpu ease-in-out duration-150"

@@ -52,7 +52,7 @@ export default function AllStudents() {
 						</div>
 					</div>
 					<div className="size-full flex flex-col overflow-y-auto scrollbar-none">
-						{data?.map((item, key) => {
+						{[...data].reverse()?.map((item, key) => {
 							return (
 								<div
 									className="min-h-20 w-full flex flex-row items-center"
